@@ -359,6 +359,28 @@ def process_markdown_file(repo_config, file_path, search_db):
 
 # Determine priority based on repo type and file location
 def get_priority(repo_config, file_path):
+    """
+    Determines the indexing priority of a repository file.
+    
+    This function calculates a numerical priority based on the repository configuration
+    and the file's location relative to the repository root. For website repositories, it
+    first checks if the file is within any configured directory and returns a priority
+    reflecting its order. If not, root-level HTML or markdown files receive a low priority
+    (8) while all other website files are assigned the lowest priority (10). For blog
+    repositories, files in the '_posts' directory with a date-formatted name are given a
+    higher priority (2) if they are less than 90 days old; otherwise, they receive a medium
+    priority (3). Documentation repositories assign a priority of 3 to files with 'api' in
+    their path and 4 to all others. Non-specified repository types default to a priority
+    of 4.
+    
+    Args:
+        repo_config: A dictionary containing repository settings, including type and optional
+                     directory mappings.
+        file_path: A Path object representing the file to be prioritized.
+    
+    Returns:
+        int: The calculated priority for the file.
+    """
     repo_type = repo_config["type"]
     repo_dir = get_repo_dir(repo_config)
     rel_path = file_path.relative_to(repo_dir)
@@ -380,16 +402,16 @@ def get_priority(repo_config, file_path):
             if dir_name in path_str:
                 return priority
         
-        # Root HTML files (like index.html, about.html, news.html) get medium priority
+        # Root HTML files (like index.html, about.html, news.html) get low priority
         if file_path.suffix.lower() == '.html' and len(rel_path.parts) == 1:
-            return 5  # Medium priority for root HTML files
+            return 8  # Low priority for root HTML files
             
-        # Root markdown files get medium priority
+        # Root markdown files get low priority
         if file_path.suffix.lower() == '.md' and len(rel_path.parts) == 1:
-            return 5  # Medium priority for root markdown files
+            return 8  # Low priority for root markdown files
             
         # Default priority for other website content
-        return 6
+        return 10  # Lowest priority for other website content
             
     # Blog posts (medium priority)
     elif repo_type == "blog":
@@ -784,7 +806,37 @@ def process_html_file(repo_config, file_path, search_db):
 # MAIN FUNCTION
 # =====================================================================
 
+def deduplicate_entries(search_db):
+    """
+    Remove duplicate search entries based on title, content, and URL.
+    
+    Given a list of search entries where each entry is a dictionary containing
+    the keys 'title', 'content', and 'url', this function returns a new list that
+    preserves the original order while keeping only the first occurrence of each
+    unique entry.
+    """
+    seen = set()
+    unique_entries = []
+    
+    for entry in search_db:
+        # Create a unique key for each entry
+        key = (entry['title'], entry['content'], entry['url'])
+        if key not in seen:
+            seen.add(key)
+            unique_entries.append(entry)
+    
+    return unique_entries
+
 def main():
+    """
+    Main entry point for generating the search index JSON file.
+    
+    Initializes an empty search database, processes each repository configuration,
+    deduplicates entries, and writes the final search database to the JSON file
+    specified by OUTPUT_PATH. If an error occurs during processing or file operations,
+    the function prints an error message and traceback, then exits with a nonzero
+    status.
+    """
     try:
         print(f"Starting search index generation")
         
@@ -794,6 +846,9 @@ def main():
         # Process each repository
         for repo_config in REPOSITORIES:
             process_repository(repo_config, search_db)
+        
+        # Deduplicate entries before writing to JSON
+        search_db = deduplicate_entries(search_db)
         
         # Write to JSON file in the current directory
         output_file = Path(OUTPUT_PATH)
