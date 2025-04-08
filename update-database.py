@@ -247,7 +247,141 @@ def get_file_url(repo_config, file_path, permalink=None):
 # CONTENT PROCESSING FUNCTIONS
 # =====================================================================
 
-# Process a single markdown file based on repository type
+def split_content_into_chunks(content, max_length=1000):
+    """
+    Split long content into meaningful chunks while preserving context.
+    
+    Args:
+        content: The text content to split
+        max_length: Maximum length for each chunk (default 1000 characters)
+        
+    Returns:
+        List of tuples containing (chunk_text, context_title)
+    """
+    if len(content) <= max_length:
+        return [(content, None)]
+    
+    chunks = []
+    current_chunk = []
+    current_length = 0
+    
+    # Split by paragraphs first
+    paragraphs = re.split(r'\n\n+', content)
+    
+    for para in paragraphs:
+        para = para.strip()
+        if not para:
+            continue
+            
+        # If paragraph is too long, split by sentences
+        if len(para) > max_length:
+            sentences = re.split(r'(?<=[.!?])\s+(?=[A-Z])', para)
+            for sentence in sentences:
+                if current_length + len(sentence) > max_length and current_chunk:
+                    # Store current chunk
+                    chunk_text = ' '.join(current_chunk).strip()
+                    chunks.append((chunk_text, None))
+                    current_chunk = []
+                    current_length = 0
+                
+                current_chunk.append(sentence)
+                current_length += len(sentence)
+        else:
+            if current_length + len(para) > max_length and current_chunk:
+                # Store current chunk
+                chunk_text = ' '.join(current_chunk).strip()
+                chunks.append((chunk_text, None))
+                current_chunk = []
+                current_length = 0
+            
+            current_chunk.append(para)
+            current_length += len(para)
+    
+    # Store any remaining content
+    if current_chunk:
+        chunk_text = ' '.join(current_chunk).strip()
+        chunks.append((chunk_text, None))
+    
+    return chunks
+
+def process_docs_html_file(repo_config, file_path, search_db):
+    """Process documentation HTML files (*.c.html, *.h.html, *.py.html, etc.)"""
+    print(f"  - {file_path.relative_to(get_repo_dir(repo_config))}")
+    
+    try:
+        content = file_path.read_text(encoding='utf-8')
+        
+        # Parse HTML content
+        soup = BeautifulSoup(content, 'html.parser')
+        
+        # Get title from HTML
+        title_tag = soup.find('title')
+        title = title_tag.text.strip() if title_tag else file_path.stem.replace('.html', '').replace('-', ' ').capitalize()
+        
+        # Generate URL for this file
+        url = get_file_url(repo_config, file_path)
+        
+        # Extract main content
+        main_content = soup.find('main') or soup.find('article') or soup.find('div', class_='content') or soup.find('div', id='content')
+        
+        if not main_content:
+            # If no main content container found, use the body
+            main_content = soup.find('body')
+        
+        if not main_content:
+            print(f"  Warning: Could not find main content in {file_path}")
+            return
+        
+        # Extract text content
+        text_content = main_content.get_text(separator=' ', strip=True)
+        
+        # Clean up the text
+        clean_content = re.sub(r'\s+', ' ', text_content).strip()
+        
+        if len(clean_content) >= 50:
+            # Split content into chunks if it's too long
+            content_chunks = split_content_into_chunks(clean_content)
+            
+            # Create entries for each chunk
+            for i, (chunk, context) in enumerate(content_chunks):
+                chunk_title = title
+                if len(content_chunks) > 1:
+                    chunk_title = f"{title} - Part {i+1}"
+                
+                entry = {
+                    'title': chunk_title,
+                    'content': chunk,
+                    'url': url,
+                    'type': 'docs_content',
+                    'priority': get_priority(repo_config, file_path)
+                }
+                search_db.append(entry)
+            
+            # Process code blocks and function documentation
+            code_blocks = main_content.find_all(['pre', 'code'])
+            for block in code_blocks:
+                code_content = block.get_text(strip=True)
+                if len(code_content) >= 50:
+                    # Split code content if it's too long
+                    code_chunks = split_content_into_chunks(code_content, max_length=500)  # Shorter chunks for code
+                    
+                    for i, (chunk, context) in enumerate(code_chunks):
+                        chunk_title = f"{title} - Code Example"
+                        if len(code_chunks) > 1:
+                            chunk_title = f"{title} - Code Example (Part {i+1})"
+                        
+                        entry = {
+                            'title': chunk_title,
+                            'content': chunk,
+                            'url': url,
+                            'type': 'docs_code',
+                            'priority': get_priority(repo_config, file_path)
+                        }
+                        search_db.append(entry)
+    
+    except Exception as e:
+        print(f"Error processing documentation HTML file {file_path}: {e}")
+
 def process_markdown_file(repo_config, file_path, search_db):
     print(f"  - {file_path.relative_to(get_repo_dir(repo_config))}")
     
@@ -284,14 +418,22 @@ def process_markdown_file(repo_config, file_path, search_db):
                 clean_content = re.sub(r'\s+', ' ', clean_content).strip()
                 
                 if len(clean_content) >= 50:
-                    entry = {
-                        'title': title,
-                        'content': clean_content,
-                        'url': url,
-                        'type': f"{repo_type}_content",
-                        'priority': get_priority(repo_config, file_path)
-                    }
-                    search_db.append(entry)
+                    # Split long content into chunks
+                    content_chunks = split_content_into_chunks(clean_content)
+                    
+                    for i, (chunk, context) in enumerate(content_chunks):
+                        chunk_title = title
+                        if len(content_chunks) > 1:
+                            chunk_title = f"{title} - Introduction (Part {i+1})"
+                        
+                        entry = {
+                            'title': chunk_title,
+                            'content': chunk,
+                            'url': url,
+                            'type': f"{repo_type}_content",
+                            'priority': get_priority(repo_config, file_path)
+                        }
+                        search_db.append(entry)
             
             # Process remaining sections with headers
             for i, section in enumerate(sections[1:], 1):
@@ -322,45 +464,24 @@ def process_markdown_file(repo_config, file_path, search_db):
                 # Generate anchor ID for section header
                 anchor = generate_anchor(header)
                 
-                # Create entry for the section
-                section_title = f"{title} - {header}" if title.lower() != header.lower() else header
-                entry = {
-                    'title': section_title,
-                    'content': clean_content,
-                    'url': f"{url}#{anchor}",
-                    'type': f"{repo_type}_section",
-                    'priority': get_priority(repo_config, file_path)
-                }
-                search_db.append(entry)
+                # Split long content into chunks
+                content_chunks = split_content_into_chunks(clean_content)
                 
-                # Also create entries for individual paragraphs
-                paragraphs = re.split(r'\n\n+', clean_content)
-                for para in paragraphs:
-                    para = para.strip()
-                    if not para:
-                        continue
-                    if len(para) < 100:  # Only include substantial paragraphs
-                        continue
-                    if para.startswith('```') or para.startswith('<'):  # Skip code blocks and HTML
-                        continue
+                for j, (chunk, context) in enumerate(content_chunks):
+                    # Create section title
+                    section_title = f"{title} - {header}"
+                    if len(content_chunks) > 1:
+                        section_title = f"{title} - {header} (Part {j+1})"
                     
                     entry = {
                         'title': section_title,
-                        'content': para,
+                        'content': chunk,
                         'url': f"{url}#{anchor}",
-                        'type': f"{repo_type}_paragraph",
+                        'type': f"{repo_type}_section",
                         'priority': get_priority(repo_config, file_path)
                     }
                     search_db.append(entry)
-        
-        # Special processing for different repository types
-        if repo_config["type"] == "website":
-            process_website_specific(repo_config, file_path, front_matter, content, search_db)
-        elif repo_config["type"] == "blog":
-            process_blog_specific(repo_config, file_path, front_matter, content, url, title, search_db)
-        elif repo_config["type"] == "docs":
-            process_docs_specific(repo_config, file_path, front_matter, content, search_db)
-            
+    
     except Exception as e:
         print(f"Error processing file {file_path}: {e}")
 
@@ -649,68 +770,6 @@ def should_exclude_file(file_path):
     ]
     
     return any(pattern in path_str for pattern in exclude_patterns)
-
-def process_docs_html_file(repo_config, file_path, search_db):
-    """Process documentation HTML files (*.c.html, *.h.html, *.py.html, etc.)"""
-    print(f"  - {file_path.relative_to(get_repo_dir(repo_config))}")
-    
-    try:
-        content = file_path.read_text(encoding='utf-8')
-        
-        # Parse HTML content
-        soup = BeautifulSoup(content, 'html.parser')
-        
-        # Get title from HTML
-        title_tag = soup.find('title')
-        title = title_tag.text.strip() if title_tag else file_path.stem.replace('.html', '').replace('-', ' ').capitalize()
-        
-        # Generate URL for this file
-        url = get_file_url(repo_config, file_path)
-        
-        # Extract main content
-        main_content = soup.find('main') or soup.find('article') or soup.find('div', class_='content') or soup.find('div', id='content')
-        
-        if not main_content:
-            # If no main content container found, use the body
-            main_content = soup.find('body')
-        
-        if not main_content:
-            print(f"  Warning: Could not find main content in {file_path}")
-            return
-        
-        # Extract text content
-        text_content = main_content.get_text(separator=' ', strip=True)
-        
-        # Clean up the text
-        clean_content = re.sub(r'\s+', ' ', text_content).strip()
-        
-        if len(clean_content) >= 50:
-            # Create entry for the entire page
-            entry = {
-                'title': title,
-                'content': clean_content,
-                'url': url,
-                'type': 'docs_content',
-                'priority': get_priority(repo_config, file_path)
-            }
-            search_db.append(entry)
-            
-            # Also process code blocks and function documentation
-            code_blocks = main_content.find_all(['pre', 'code'])
-            for block in code_blocks:
-                code_content = block.get_text(strip=True)
-                if len(code_content) >= 50:
-                    entry = {
-                        'title': f"{title} - Code Example",
-                        'content': code_content,
-                        'url': url,
-                        'type': 'docs_code',
-                        'priority': get_priority(repo_config, file_path)
-                    }
-                    search_db.append(entry)
-    
-    except Exception as e:
-        print(f"Error processing documentation HTML file {file_path}: {e}")
 
 def process_repository(repo_config, search_db):
     repo_dir = get_repo_dir(repo_config)
