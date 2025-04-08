@@ -380,16 +380,16 @@ def get_priority(repo_config, file_path):
             if dir_name in path_str:
                 return priority
         
-        # Root HTML files (like index.html, about.html, news.html) get medium priority
+        # Root HTML files (like index.html, about.html, news.html) get low priority
         if file_path.suffix.lower() == '.html' and len(rel_path.parts) == 1:
-            return 5  # Medium priority for root HTML files
+            return 8  # Low priority for root HTML files
             
-        # Root markdown files get medium priority
+        # Root markdown files get low priority
         if file_path.suffix.lower() == '.md' and len(rel_path.parts) == 1:
-            return 5  # Medium priority for root markdown files
+            return 8  # Low priority for root markdown files
             
         # Default priority for other website content
-        return 6
+        return 10  # Lowest priority for other website content
             
     # Blog posts (medium priority)
     elif repo_type == "blog":
@@ -784,6 +784,20 @@ def process_html_file(repo_config, file_path, search_db):
 # MAIN FUNCTION
 # =====================================================================
 
+def deduplicate_entries(search_db):
+    """Remove duplicate entries based on title, content, and URL."""
+    seen = set()
+    unique_entries = []
+    
+    for entry in search_db:
+        # Create a unique key for each entry
+        key = (entry['title'], entry['content'], entry['url'])
+        if key not in seen:
+            seen.add(key)
+            unique_entries.append(entry)
+    
+    return unique_entries
+
 def main():
     try:
         print(f"Starting search index generation")
@@ -794,6 +808,9 @@ def main():
         # Process each repository
         for repo_config in REPOSITORIES:
             process_repository(repo_config, search_db)
+        
+        # Deduplicate entries before writing to JSON
+        search_db = deduplicate_entries(search_db)
         
         # Write to JSON file in the current directory
         output_file = Path(OUTPUT_PATH)
