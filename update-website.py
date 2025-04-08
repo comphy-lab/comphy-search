@@ -216,7 +216,8 @@ def get_file_url(repo_config, file_path, permalink=None):
                                 return f"{base_url}{redirect}"
                             else:
                                 return f"{base_url}/{redirect}"
-                except:
+                except Exception as e:
+                    print(f"Warning: Could not parse redirect meta for {file_path}: {e}")
                     pass
                 # Default to root URL with section
                 return f"{base_url}#{file_name.lower()}"
