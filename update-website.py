@@ -194,6 +194,33 @@ def get_file_url(repo_config, file_path, permalink=None):
                     # File is directly in the mapped directory
                     return f"{base_url}{url_path}"
         
+        # Special handling for root HTML files
+        if file_path.suffix.lower() == '.html' and len(rel_path.parts) == 1:
+            # For root HTML files like index.html, about.html, news.html
+            file_name = file_path.stem
+            if file_name.lower() == 'index':
+                return base_url
+            else:
+                # Check if this is a redirect file
+                try:
+                    content = file_path.read_text(encoding='utf-8')
+                    if 'meta http-equiv="refresh"' in content:
+                        # Extract the redirect URL
+                        match = re.search(r'url=([^"\'>\s]+)', content)
+                        if match:
+                            redirect = match.group(1)
+                            if redirect.startswith('/#'):
+                                # It's a section in the index page
+                                return f"{base_url}{redirect[1:]}"  # Remove the leading /
+                            elif redirect.startswith('/'):
+                                return f"{base_url}{redirect}"
+                            else:
+                                return f"{base_url}/{redirect}"
+                except:
+                    pass
+                # Default to root URL with section
+                return f"{base_url}#{file_name.lower()}"
+        
         # Regular file in the root of the website
         if len(rel_path.parts) == 1:
             # Root level markdown file, like index.md
@@ -201,7 +228,8 @@ def get_file_url(repo_config, file_path, permalink=None):
             if file_name.lower() == "index":
                 return base_url
             else:
-                return f"{base_url}/{file_name.lower()}/"
+                # For about.md, news.md, etc. - they should be at the root URL with section
+                return f"{base_url}#{file_name.lower()}"
     
     # Default handling for other types
     path_no_ext = str(rel_path.with_suffix(''))
@@ -261,7 +289,7 @@ def process_markdown_file(repo_config, file_path, search_db):
             for i, section in enumerate(sections[1:], 1):
                 if not section.strip():
                     continue
-                
+                    
                 # Extract header and content
                 lines = section.splitlines()
                 if not lines:
@@ -337,17 +365,30 @@ def get_priority(repo_config, file_path):
     
     # Website repository special priorities
     if repo_type == "website":
-        # Team members (highest priority)
-        if "_team/" in path_str:
-            return 1
-        # Teaching content (medium-high priority)
-        elif "_teaching/" in path_str:
-            return 2
-        # Research content
-        elif "_research/" in path_str:
-            # Check if this is a featured paper (would require parsing content)
-            # Default to medium priority for research
-            return 3
+        # Check if file is in a mapped directory
+        dir_mappings = repo_config.get("directories", {})
+        
+        # Create a priority map based on the order of directories in the configuration
+        priority_map = {}
+        for i, dir_name in enumerate(dir_mappings.keys()):
+            # Assign priorities starting from 1 (highest) in the order they appear in the config
+            priority_map[dir_name] = i + 1
+        
+        # Check if file is in any of the mapped directories
+        for dir_name, priority in priority_map.items():
+            if dir_name in path_str:
+                return priority
+        
+        # Root HTML files (like index.html, about.html, news.html) get medium priority
+        if file_path.suffix.lower() == '.html' and len(rel_path.parts) == 1:
+            return 5  # Medium priority for root HTML files
+            
+        # Root markdown files get medium priority
+        if file_path.suffix.lower() == '.md' and len(rel_path.parts) == 1:
+            return 5  # Medium priority for root markdown files
+            
+        # Default priority for other website content
+        return 6
             
     # Blog posts (medium priority)
     elif repo_type == "blog":
@@ -593,8 +634,150 @@ def process_repository(repo_config, search_db):
     for file_path in md_files:
         process_markdown_file(repo_config, file_path, search_db)
     
+    # For website repositories, also process HTML files in the root directory
+    if repo_config["type"] == "website":
+        html_files = list(repo_dir.glob('*.html'))
+        print(f"Found {len(html_files)} HTML files in root directory to process")
+        
+        for file_path in html_files:
+            process_html_file(repo_config, file_path, search_db)
+    
     # Clean up the repository after processing
     cleanup_repo(repo_config)
+
+# Process HTML files from the root directory
+def process_html_file(repo_config, file_path, search_db):
+    print(f"  - {file_path.relative_to(get_repo_dir(repo_config))}")
+    
+    try:
+        content = file_path.read_text(encoding='utf-8')
+        
+        # Check if this is a redirect file
+        if 'meta http-equiv="refresh"' in content:
+            # Skip redirect files as they don't contain actual content
+            return
+        
+        # Parse HTML content
+        soup = BeautifulSoup(content, 'html.parser')
+        
+        # Get title from HTML
+        title_tag = soup.find('title')
+        title = title_tag.text.strip() if title_tag else file_path.stem.replace('-', ' ').capitalize()
+        
+        # Generate URL for this file
+        url = get_file_url(repo_config, file_path)
+        base_url = repo_config["url"].rstrip('/')
+        
+        # For Jekyll sites, look for sections with IDs
+        sections = soup.find_all(['section', 'div'], class_='target-section', id=True)
+        if sections:
+            for section in sections:
+                section_id = section.get('id')
+                if not section_id:
+                    continue
+                
+                # Get section title from first heading or use ID
+                section_title = None
+                heading = section.find(['h1', 'h2', 'h3', 'h4', 'h5', 'h6'])
+                if heading:
+                    section_title = heading.get_text(strip=True)
+                if not section_title:
+                    section_title = section_id.replace('-', ' ').capitalize()
+                
+                # Extract text content from section
+                text_content = section.get_text(separator=' ', strip=True)
+                
+                # Clean up the text
+                clean_content = re.sub(r'\s+', ' ', text_content).strip()
+                
+                if len(clean_content) >= 50:
+                    # Create entry for the section
+                    entry = {
+                        'title': f"{title} - {section_title}",
+                        'content': clean_content,
+                        'url': f"{base_url}#{section_id}",  # Use base URL for sections
+                        'type': f"{repo_config['type']}_section",
+                        'priority': get_priority(repo_config, file_path)
+                    }
+                    search_db.append(entry)
+                    
+                    # Process subsections (h2, h3, h4 tags within the section)
+                    for heading in section.find_all(['h2', 'h3', 'h4']):
+                        heading_text = heading.get_text(strip=True)
+                        if not heading_text:
+                            continue
+                        
+                        # Find content until next heading
+                        section_content = ''
+                        current = heading.next_sibling
+                        while current and (not hasattr(current, 'name') or current.name not in ['h2', 'h3', 'h4']):
+                            if hasattr(current, 'string') and current.string:
+                                section_content += str(current)
+                            elif hasattr(current, 'get_text'):
+                                section_content += current.get_text()
+                            current = current.next_sibling
+                        
+                        # Clean HTML tags for content
+                        clean_section = re.sub(r'<[^>]+>', ' ', section_content)
+                        clean_section = re.sub(r'\s+', ' ', clean_section).strip()
+                        
+                        if len(clean_section) >= 50:
+                            # Generate anchor ID for subsection header
+                            anchor = generate_anchor(heading_text)
+                            
+                            # Create entry for the subsection
+                            subsection_title = f"{title} - {section_title} - {heading_text}"
+                            entry = {
+                                'title': subsection_title,
+                                'content': clean_section,
+                                'url': f"{base_url}#{section_id}-{anchor}",  # Use base URL for subsections
+                                'type': f"{repo_config['type']}_subsection",
+                                'priority': get_priority(repo_config, file_path)
+                            }
+                            search_db.append(entry)
+                            
+                    # Also process any markdown content that will be loaded into this section
+                    if section_id == 'about-content':
+                        # Look for aboutCoMPhy.md
+                        about_file = file_path.parent / 'aboutCoMPhy.md'
+                        if about_file.exists():
+                            process_markdown_file(repo_config, about_file, search_db)
+                    elif section_id == 'news-content':
+                        # Look for News.md
+                        news_file = file_path.parent / 'News.md'
+                        if news_file.exists():
+                            process_markdown_file(repo_config, news_file, search_db)
+        else:
+            # Extract main content (excluding navigation, footer, etc.)
+            main_content = soup.find('main') or soup.find('article') or soup.find('div', class_='content') or soup.find('div', id='content')
+            
+            if not main_content:
+                # If no main content container found, use the body
+                main_content = soup.find('body')
+            
+            if not main_content:
+                print(f"  Warning: Could not find main content in {file_path}")
+                return
+            
+            # Extract text content
+            text_content = main_content.get_text(separator=' ', strip=True)
+            
+            # Clean up the text
+            clean_content = re.sub(r'\s+', ' ', text_content).strip()
+            
+            if len(clean_content) >= 50:
+                # Create entry for the entire page
+                entry = {
+                    'title': title,
+                    'content': clean_content,
+                    'url': url,
+                    'type': f"{repo_config['type']}_content",
+                    'priority': get_priority(repo_config, file_path)
+                }
+                search_db.append(entry)
+    
+    except Exception as e:
+        print(f"Error processing HTML file {file_path}: {e}")
 
 # =====================================================================
 # MAIN FUNCTION
