@@ -302,7 +302,7 @@
   },
   {
     "title": "[14]Sanjay, V., Zhang, B., Lv, C., & Lohse, D. The role of viscosity on drop impact forces on non-wetting surfaces. J. Fluid Mech., 1004, A6 (2025).",
-    "content": "DropsImpact forcesFeatured [![JFM](https://img.shields.io/static/v1.svg?style=flat-square&label=JFM&message=OA&color=orange)](https://doi.org/10.1017/jfm.2024.982) [![arXiv](https://img.shields.io/static/v1.svg?style=flat-square&label=arXiv&message=2311.03012&color=green)](https://arxiv.org/abs/2311.03012) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat-square&logo=github&logoColor=white)](https://github.com/VatsalSy/The-role-of-viscosity-on-drop-impact-forces) [![Blog](https://img.shields.io/badge/Blog-Coming%20Soon-yellow?style=flat-square&logo=obsidian&logoColor=white)](https://blogs.comphy-lab.org/Blog/2025-JFM-viscous-drop-impact) #### Highlights * Cover of that volume of J. Fluid Mech.",
+    "content": "DropsImpact forces [![JFM](https://img.shields.io/static/v1.svg?style=flat-square&label=JFM&message=OA&color=orange)](https://doi.org/10.1017/jfm.2024.982) [![arXiv](https://img.shields.io/static/v1.svg?style=flat-square&label=arXiv&message=2311.03012&color=green)](https://arxiv.org/abs/2311.03012) [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat-square&logo=github&logoColor=white)](https://github.com/VatsalSy/The-role-of-viscosity-on-drop-impact-forces) [![Blog](https://img.shields.io/badge/Blog-Coming%20Soon-yellow?style=flat-square&logo=obsidian&logoColor=white)](https://blogs.comphy-lab.org/Blog/2025-JFM-viscous-drop-impact) #### Highlights * Cover of that volume of J. Fluid Mech.",
     "url": "https://comphy-lab.org/research/#14",
     "type": "paper",
     "tags": [],
@@ -379,16 +379,16 @@
     "priority": 1
   },
   {
-    "title": "Our Team & Collaborators - Maziyar Jalaal (Mazi)",
-    "content": "[ ](https://scholar.google.com/citations?user=FE8TQeUAAAAJ) [ ](https://x.com/maziyarj) [ ](https://bsky.app/profile/mazi1.bsky.social) - [Associate Professor, Fluid Lab, Univ. Amsterdam](https://www.fluidlab.nl/) **Collaboration on:** Plastocapillarity, Viscoplastic Flows.",
-    "url": "https://comphy-lab.org/team/#index#Maziyar%2BJalaal%2BMazi",
+    "title": "Our Team & Collaborators - Maziyar Jalaal",
+    "content": "[ ](https://scholar.google.com/citations?user=FE8TQeUAAAAJ) [ ](https://x.com/maziyarj) [ ](https://bsky.app/profile/mazi1.bsky.social) - **Mazi** [Associate Professor, Fluid Lab, Univ. Amsterdam](https://www.fluidlab.nl/) **Collaboration on:** Plastocapillarity, Viscoplastic Flows.",
+    "url": "https://comphy-lab.org/team/#index#Maziyar%2BJalaal",
     "type": "website_section",
     "priority": 1
   },
   {
-    "title": "Our Team & Collaborators - Uddalok Sen (Udo)",
-    "content": "[ ](https://scholar.google.com/citations?user=a6h2uMQAAAAJ) - [Assistant Professor, PhySM, Wageningen University and Research](https://www.physm-lab.org/) **Collaboration on:** Drop Impact, Sheet Retraction.",
-    "url": "https://comphy-lab.org/team/#index#Uddalok%2BSen%2BUdo",
+    "title": "Our Team & Collaborators - Uddalok Sen",
+    "content": "[ ](https://scholar.google.com/citations?user=a6h2uMQAAAAJ) - **Udo** [Assistant Professor, PhySM, Wageningen University and Research](https://www.physm-lab.org/) **Collaboration on:** Drop Impact, Sheet Retraction.",
+    "url": "https://comphy-lab.org/team/#index#Uddalok%2BSen",
     "type": "website_section",
     "priority": 1
   },
