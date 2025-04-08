@@ -20,30 +20,30 @@ import shutil
 #   - type: Type of repository (website, blog, docs, other)
 
 REPOSITORIES = [
-    # {
-    #     "repo_url": "https://github.com/comphy-lab/comphy-lab.github.io.git",  # GitHub repository URL
-    #     "path": "comphy-lab.github.io",  # Local directory name
-    #     "url": "https://comphy-lab.org",  # URL where the website is published
-    #     "type": "website",  # Repository type
-    #     # Optional: Custom directory mappings - maps directories to URL paths
-    #     "directories": {
-    #         "_team": "/team/",
-    #         "_research": "/research/",
-    #         "_teaching": "/teaching/"
-    #     }
-    # },
-    # {
-    #     "repo_url": "https://github.com/comphy-lab/CoMPhy-Lab-Blogs.git",  # GitHub repository URL
-    #     "path": "CoMPhy-Lab-Blogs",  # Local directory name
-    #     "url": "https://blogs.comphy-lab.org",  # URL where the blog is published
-    #     "type": "blog",  # Repository type
-    #     # Optional: Blog-specific settings
-    #     "blog_settings": {
-    #         "post_dir": "_posts",  # Directory containing posts (standard Jekyll structure)
-    #         "date_in_url": True,   # Whether to include date in URLs (Jekyll style: /YYYY/MM/DD/title/)
-    #         "url_prefix": "/blog"  # Prefix for blog URLs
-    #     }
-    # },
+    {
+        "repo_url": "https://github.com/comphy-lab/comphy-lab.github.io.git",  # GitHub repository URL
+        "path": "comphy-lab.github.io",  # Local directory name
+        "url": "https://comphy-lab.org",  # URL where the website is published
+        "type": "website",  # Repository type
+        # Optional: Custom directory mappings - maps directories to URL paths
+        "directories": {
+            "_team": "/team/",
+            "_research": "/research/",
+            "_teaching": "/teaching/"
+        }
+    },
+    {
+        "repo_url": "https://github.com/comphy-lab/CoMPhy-Lab-Blogs.git",  # GitHub repository URL
+        "path": "CoMPhy-Lab-Blogs",  # Local directory name
+        "url": "https://blogs.comphy-lab.org",  # URL where the blog is published
+        "type": "blog",  # Repository type
+        # Optional: Blog-specific settings
+        "blog_settings": {
+            "post_dir": "_posts",  # Directory containing posts (standard Jekyll structure)
+            "date_in_url": True,   # Whether to include date in URLs (Jekyll style: /YYYY/MM/DD/title/)
+            "url_prefix": "/blog"  # Prefix for blog URLs
+        }
+    },
     {
         "repo_url": "https://github.com/comphy-lab/documentationWeb",  # GitHub repository URL
         "path": "testCode",  # Local directory name
@@ -247,16 +247,17 @@ def get_file_url(repo_config, file_path, permalink=None):
 # CONTENT PROCESSING FUNCTIONS
 # =====================================================================
 
-def split_content_into_chunks(content, max_length=1000):
+def split_content_into_chunks(content, max_length=1000, original_title=None):
     """
     Split long content into meaningful chunks while preserving context.
     
     Args:
         content: The text content to split
         max_length: Maximum length for each chunk (default 1000 characters)
+        original_title: Original title to help generate contextual chunk titles
         
     Returns:
-        List of tuples containing (chunk_text, context_title)
+        List of tuples containing (chunk_text, chunk_title)
     """
     if len(content) <= max_length:
         return [(content, None)]
@@ -280,7 +281,11 @@ def split_content_into_chunks(content, max_length=1000):
                 if current_length + len(sentence) > max_length and current_chunk:
                     # Store current chunk
                     chunk_text = ' '.join(current_chunk).strip()
-                    chunks.append((chunk_text, None))
+                    
+                    # Generate a meaningful title for this chunk
+                    chunk_title = generate_chunk_title(chunk_text, original_title)
+                    chunks.append((chunk_text, chunk_title))
+                    
                     current_chunk = []
                     current_length = 0
                 
@@ -290,7 +295,11 @@ def split_content_into_chunks(content, max_length=1000):
             if current_length + len(para) > max_length and current_chunk:
                 # Store current chunk
                 chunk_text = ' '.join(current_chunk).strip()
-                chunks.append((chunk_text, None))
+                
+                # Generate a meaningful title for this chunk
+                chunk_title = generate_chunk_title(chunk_text, original_title)
+                chunks.append((chunk_text, chunk_title))
+                
                 current_chunk = []
                 current_length = 0
             
@@ -300,9 +309,86 @@ def split_content_into_chunks(content, max_length=1000):
     # Store any remaining content
     if current_chunk:
         chunk_text = ' '.join(current_chunk).strip()
-        chunks.append((chunk_text, None))
+        
+        # Generate a meaningful title for this chunk
+        chunk_title = generate_chunk_title(chunk_text, original_title)
+        chunks.append((chunk_text, chunk_title))
     
     return chunks
+
+def generate_chunk_title(chunk_text, original_title=None):
+    """
+    Generate a meaningful title for a content chunk based on its content.
+    
+    Args:
+        chunk_text: The text content of the chunk
+        original_title: The original title of the full content
+        
+    Returns:
+        A string containing a meaningful title for the chunk
+    """
+    # Extract first sentence (up to 100 chars) for context
+    first_sentence = chunk_text.split('.')[0] if '.' in chunk_text else chunk_text
+    first_sentence = first_sentence[:100].strip()
+    
+    # Look for keywords or topics in the chunk
+    keywords = []
+    
+    # Check for common section indicators
+    if "introduction" in chunk_text.lower()[:200]:
+        keywords.append("Introduction")
+    elif "conclusion" in chunk_text.lower()[:200]:
+        keywords.append("Conclusion")
+    elif "summary" in chunk_text.lower()[:200]:
+        keywords.append("Summary")
+    elif "method" in chunk_text.lower()[:200]:
+        keywords.append("Methods")
+    elif "result" in chunk_text.lower()[:200]:
+        keywords.append("Results")
+    elif "example" in chunk_text.lower()[:200]:
+        keywords.append("Examples")
+    elif "definition" in chunk_text.lower()[:200]:
+        keywords.append("Definitions")
+    
+    # For code chunks, identify language or pattern
+    code_indicators = {
+        "def ": "Python Function",
+        "function ": "Function Definition",
+        "class ": "Class Definition",
+        "#include": "C/C++ Code",
+        "int main": "C/C++ Main",
+        "public class": "Java Code",
+        "import ": "Import Statements",
+        "npm": "Node.js",
+        "const ": "JavaScript",
+        "var ": "JavaScript",
+        "let ": "JavaScript",
+        "<html": "HTML",
+        "<div": "HTML",
+        "SELECT": "SQL Query",
+        "FROM": "SQL Query"
+    }
+    
+    for indicator, label in code_indicators.items():
+        if indicator in chunk_text[:200]:
+            keywords.append(label)
+            break
+    
+    # Create title based on collected information
+    if keywords and original_title:
+        return f"{original_title}: {' - '.join(keywords)}"
+    elif keywords:
+        return ' - '.join(keywords)
+    elif original_title:
+        # Extract key topic from the first sentence if possible
+        words = first_sentence.split()
+        if len(words) > 3:
+            key_phrase = ' '.join(words[:3]) + "..."
+            return f"{original_title}: {key_phrase}"
+        else:
+            return f"{original_title}: Context"
+    else:
+        return "Content Section"
 
 def process_docs_html_file(repo_config, file_path, search_db):
     """Process documentation HTML files (*.c.html, *.h.html, *.py.html, etc.)"""
@@ -340,16 +426,25 @@ def process_docs_html_file(repo_config, file_path, search_db):
         
         if len(clean_content) >= 50:
             # Split content into chunks if it's too long
-            content_chunks = split_content_into_chunks(clean_content)
+            content_chunks = split_content_into_chunks(clean_content, original_title=title)
             
             # Create entries for each chunk
-            for i, (chunk, context) in enumerate(content_chunks):
-                chunk_title = title
-                if len(content_chunks) > 1:
-                    chunk_title = f"{title} - Part {i+1}"
+            for i, (chunk, chunk_title) in enumerate(content_chunks):
+                if chunk_title:
+                    entry_title = chunk_title
+                elif len(content_chunks) > 1:
+                    # If no specific title was generated, create a meaningful one
+                    if i == 0:
+                        entry_title = f"{title} - Overview"
+                    elif i == len(content_chunks) - 1:
+                        entry_title = f"{title} - Additional Details"
+                    else:
+                        entry_title = f"{title} - Continued"
+                else:
+                    entry_title = title
                 
                 entry = {
-                    'title': chunk_title,
+                    'title': entry_title,
                     'content': chunk,
                     'url': url,
                     'type': 'docs_content',
@@ -362,16 +457,37 @@ def process_docs_html_file(repo_config, file_path, search_db):
             for block in code_blocks:
                 code_content = block.get_text(strip=True)
                 if len(code_content) >= 50:
-                    # Split code content if it's too long
-                    code_chunks = split_content_into_chunks(code_content, max_length=500)  # Shorter chunks for code
+                    # Try to detect what type of code it is
+                    code_type = "Code Example"
+                    if "def " in code_content[:100]:
+                        code_type = "Function Definition"
+                    elif "class " in code_content[:100]:
+                        code_type = "Class Definition"
+                    elif "#include" in code_content[:100]:
+                        code_type = "C/C++ Code"
+                    elif "public class" in code_content[:100]:
+                        code_type = "Java Code"
                     
-                    for i, (chunk, context) in enumerate(code_chunks):
-                        chunk_title = f"{title} - Code Example"
-                        if len(code_chunks) > 1:
-                            chunk_title = f"{title} - Code Example (Part {i+1})"
+                    # Split code content if it's too long
+                    code_chunks = split_content_into_chunks(code_content, max_length=500, original_title=f"{title} - {code_type}")
+                    
+                    for i, (chunk, chunk_title) in enumerate(code_chunks):
+                        entry_title = chunk_title if chunk_title else f"{title} - {code_type}"
+                        
+                        # Extract function or class name if possible
+                        if "def " in chunk[:100]:
+                            match = re.search(r'def\s+(\w+)', chunk[:100])
+                            if match:
+                                func_name = match.group(1)
+                                entry_title = f"{title} - Function: {func_name}"
+                        elif "class " in chunk[:100]:
+                            match = re.search(r'class\s+(\w+)', chunk[:100])
+                            if match:
+                                class_name = match.group(1)
+                                entry_title = f"{title} - Class: {class_name}"
                         
                         entry = {
-                            'title': chunk_title,
+                            'title': entry_title,
                             'content': chunk,
                             'url': url,
                             'type': 'docs_code',
@@ -418,16 +534,20 @@ def process_markdown_file(repo_config, file_path, search_db):
                 clean_content = re.sub(r'\s+', ' ', clean_content).strip()
                 
                 if len(clean_content) >= 50:
-                    # Split long content into chunks
-                    content_chunks = split_content_into_chunks(clean_content)
+                    # Split long content into chunks with meaningful titles
+                    content_chunks = split_content_into_chunks(clean_content, original_title=title)
                     
-                    for i, (chunk, context) in enumerate(content_chunks):
-                        chunk_title = title
-                        if len(content_chunks) > 1:
-                            chunk_title = f"{title} - Introduction (Part {i+1})"
+                    for chunk, chunk_title in content_chunks:
+                        if chunk_title:
+                            entry_title = chunk_title
+                        elif len(content_chunks) > 1:
+                            # If this is likely an introduction
+                            entry_title = f"{title} - Introduction"
+                        else:
+                            entry_title = title
                         
                         entry = {
-                            'title': chunk_title,
+                            'title': entry_title,
                             'content': chunk,
                             'url': url,
                             'type': f"{repo_type}_content",
@@ -464,17 +584,18 @@ def process_markdown_file(repo_config, file_path, search_db):
                 # Generate anchor ID for section header
                 anchor = generate_anchor(header)
                 
-                # Split long content into chunks
-                content_chunks = split_content_into_chunks(clean_content)
+                # Base section title
+                section_title = f"{title} - {header}"
                 
-                for j, (chunk, context) in enumerate(content_chunks):
-                    # Create section title
-                    section_title = f"{title} - {header}"
-                    if len(content_chunks) > 1:
-                        section_title = f"{title} - {header} (Part {j+1})"
+                # Split long content into chunks with context-aware titles
+                content_chunks = split_content_into_chunks(clean_content, original_title=section_title)
+                
+                for chunk, chunk_title in content_chunks:
+                    # Use generated title or create a meaningful fallback
+                    entry_title = chunk_title if chunk_title else section_title
                     
                     entry = {
-                        'title': section_title,
+                        'title': entry_title,
                         'content': chunk,
                         'url': f"{url}#{anchor}",
                         'type': f"{repo_type}_section",
@@ -992,6 +1113,41 @@ def deduplicate_entries(search_db):
     
     return unique_entries
 
+def fix_urls(search_db):
+    """
+    Post-process URLs to fix common issues:
+    - Fix URLs with multiple hash symbols
+    - Handle special case for Aboutcomphy.md content
+    - Normalize URLs with section identifiers
+    """
+    for entry in search_db:
+        url = entry['url']
+        
+        # Fix multiple hash symbols (take only the first section)
+        if url.count('#') > 1:
+            base_url, _, rest = url.partition('#')
+            section, _, _ = rest.partition('#')
+            entry['url'] = f"{base_url}#{section}"
+        
+        # Special case for AboutComphy.md content
+        if "aboutcomphy" in url.lower():
+            if "comphy-lab.org" in url:
+                entry['url'] = "https://comphy-lab.org/#about"
+        
+        # Fix urls with /index.html or /index
+        if "/index.html#" in url:
+            entry['url'] = url.replace("/index.html#", "/#")
+        elif "/index#" in url:
+            entry['url'] = url.replace("/index#", "/#")
+        
+        # Fix encoded space in URLs (+ should be %20 in fragments)
+        if '+' in url and '#' in url:
+            base_url, hash_tag, fragment = url.partition('#')
+            clean_fragment = fragment.replace('+', '%20')
+            entry['url'] = f"{base_url}#{clean_fragment}"
+    
+    return search_db
+
 def main():
     """
     Main entry point for generating the search index JSON file.
@@ -1015,6 +1171,12 @@ def main():
         # Deduplicate entries before writing to JSON
         search_db = deduplicate_entries(search_db)
         
+        # Post-process to fix URLs
+        search_db = fix_urls(search_db)
+        
+        # Sort the database by priority (lower numbers = higher priority)
+        search_db = sorted(search_db, key=lambda x: x.get('priority', 10))
+        
         # Write to JSON file in the current directory
         output_file = Path(OUTPUT_PATH)
         
@@ -1024,6 +1186,7 @@ def main():
         
         print(f"Generated search database with {len(search_db)} entries")
         print(f"Written search database to {output_file}")
+        print(f"Database sorted by priority (highest priority entries first)")
         
     except Exception as e:
         print(f"Error: {e}")
