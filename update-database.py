@@ -70,6 +70,15 @@ OUTPUT_PATH = "search_db.json"
 
 # Helper function to generate proper anchor links
 def generate_anchor(text):
+    """
+    Generate a proper anchor ID that matches Jekyll's auto-generated IDs.
+    
+    Args:
+        text: The heading text to convert to an anchor
+        
+    Returns:
+        A string containing the anchor ID
+    """
     # Remove date prefix if present (e.g., "2025-01-21 ")
     text = re.sub(r'^\d{4}-\d{2}-\d{2}\s+', '', text)
     
@@ -79,14 +88,16 @@ def generate_anchor(text):
     # Remove any other markdown formatting
     text = re.sub(r'[*_`]', '', text)
     
-    # Keep special characters that are part of the title
-    text = re.sub(r'[^\w\s\-\':]', '', text)
+    # Keep alphanumeric characters, spaces, and hyphens
+    text = re.sub(r'[^\w\s\-]', '', text)
     
-    # Replace spaces with +
-    text = re.sub(r'\s+', '+', text)
+    # Convert to lowercase
+    text = text.lower()
     
-    # Ensure special characters are properly encoded
-    return urllib.parse.quote_plus(text)
+    # Replace spaces with hyphens
+    text = re.sub(r'\s+', '-', text)
+    
+    return text
 
 # Parse markdown frontmatter to extract metadata
 def parse_frontmatter(content):
@@ -196,7 +207,12 @@ def get_file_url(repo_config, file_path, permalink=None):
                 parts = str(rel_path).split(dir_name + os.sep, 1)
                 if len(parts) > 1:
                     file_name = Path(parts[1]).stem
-                    return f"{base_url}{url_path}#{file_name.lower()}"
+                    
+                    # Special handling for index files in special directories
+                    if file_name.lower() == 'index':
+                        return f"{base_url}{url_path}"
+                    else:
+                        return f"{base_url}{url_path}#{file_name.lower()}"
                 else:
                     # File is directly in the mapped directory
                     return f"{base_url}{url_path}"
@@ -503,7 +519,7 @@ def process_markdown_file(repo_config, file_path, search_db):
     
     try:
         content = file_path.read_text(encoding='utf-8')
-        front_matter, content = parse_frontmatter(content)
+        front_matter, content_body = parse_frontmatter(content)
         
         # Get permalink if available in frontmatter
         permalink = front_matter.get('permalink')
@@ -512,21 +528,32 @@ def process_markdown_file(repo_config, file_path, search_db):
         url = get_file_url(repo_config, file_path, permalink)
         
         # Get title from frontmatter or filename
-        title = front_matter.get('title')
-        if not title:
-            title = file_path.stem.replace('-', ' ').capitalize()
+        page_title = front_matter.get('title')
+        if not page_title:
+            page_title = file_path.stem.replace('-', ' ').capitalize()
             
             # For blogs, remove date prefix from title if present
-            if repo_config["type"] == "blog" and re.match(r'^\d{4}-\d{2}-\d{2}-', title):
-                title = re.sub(r'^\d{4}-\d{2}-\d{2}-', '', title)
+            if repo_config["type"] == "blog" and re.match(r'^\d{4}-\d{2}-\d{2}-', page_title):
+                page_title = re.sub(r'^\d{4}-\d{2}-\d{2}-', '', page_title)
         
         # Get repository type for entry type
         repo_type = repo_config["type"]
         
+        # Special handling for research index file
+        if repo_type == "website" and "_research" in str(file_path) and file_path.stem.lower() == "index":
+            process_research_index(repo_config, url, content_body, search_db)
+            return # Skip default processing for research index
+
+        # Special handling for team index file
+        is_team_index = False
+        if repo_type == "website" and "_team" in str(file_path) and file_path.stem.lower() == "index":
+            is_team_index = True
+        
         # Split content by headers to create individual entries
-        if content.strip():
+        if content_body.strip():
             # First, try finding headers with regex
-            sections = re.split(r'^#+\s+', content, flags=re.MULTILINE)
+            # Use content_body here instead of the full content
+            sections = re.split(r'^#+\s+', content_body, flags=re.MULTILINE)
             
             # Process content before first header (if any)
             if sections and sections[0].strip():
@@ -535,16 +562,16 @@ def process_markdown_file(repo_config, file_path, search_db):
                 
                 if len(clean_content) >= 50:
                     # Split long content into chunks with meaningful titles
-                    content_chunks = split_content_into_chunks(clean_content, original_title=title)
+                    content_chunks = split_content_into_chunks(clean_content, original_title=page_title)
                     
                     for chunk, chunk_title in content_chunks:
                         if chunk_title:
                             entry_title = chunk_title
                         elif len(content_chunks) > 1:
                             # If this is likely an introduction
-                            entry_title = f"{title} - Introduction"
+                            entry_title = f"{page_title} - Introduction"
                         else:
-                            entry_title = title
+                            entry_title = page_title
                         
                         entry = {
                             'title': entry_title,
@@ -585,7 +612,15 @@ def process_markdown_file(repo_config, file_path, search_db):
                 anchor = generate_anchor(header)
                 
                 # Base section title
-                section_title = f"{title} - {header}"
+                section_title = f"{page_title} - {header}"
+                
+                # Special handling for team members and collaborators
+                section_url = f"{url}#{anchor}"
+                if is_team_index:
+                    # Team members should have a higher priority
+                    entry_priority = 1  # Highest priority
+                else:
+                    entry_priority = get_priority(repo_config, file_path)
                 
                 # Split long content into chunks with context-aware titles
                 content_chunks = split_content_into_chunks(clean_content, original_title=section_title)
@@ -597,14 +632,58 @@ def process_markdown_file(repo_config, file_path, search_db):
                     entry = {
                         'title': entry_title,
                         'content': chunk,
-                        'url': f"{url}#{anchor}",
+                        'url': section_url,
                         'type': f"{repo_type}_section",
-                        'priority': get_priority(repo_config, file_path)
+                        'priority': entry_priority
                     }
                     search_db.append(entry)
     
     except Exception as e:
         print(f"Error processing file {file_path}: {e}")
+
+def process_research_index(repo_config, base_url, content, search_db):
+    """Process the _research/index.md file specifically for papers."""
+    try:
+        soup = BeautifulSoup(content, 'html.parser')
+        h3_tags = soup.find_all('h3', id=True)
+        
+        print(f"  Found {len(h3_tags)} potential paper entries in research index.")
+        
+        for h3 in h3_tags:
+            paper_id = h3.get('id')
+            if not paper_id or not paper_id.isdigit(): # Check if ID is numeric (like '[15]')
+                if paper_id != "thesis": # Allow specific non-numeric IDs like 'thesis'
+                  continue
+
+            # Extract title (full citation) from h3
+            paper_title = h3.get_text(strip=True)
+            
+            # Construct URL: base_url should be something like https://comphy-lab.org/research/
+            paper_url = f"{base_url}#{paper_id}"
+            
+            # Find the next sibling <tags> element
+            tags_element = h3.find_next_sibling('tags')
+            tags = []
+            if tags_element:
+                tags = re.findall(r'<span>(.*?)</span>', str(tags_element))
+            
+            # Determine priority - updated to move Featured papers to Priority 1
+            priority = 1 if 'Featured' in tags else 2
+            
+            # Create entry (content is the same as title, no chunking)
+            entry = {
+                'title': paper_title,
+                'content': paper_title,
+                'url': paper_url,
+                'type': 'paper',
+                'tags': tags,
+                'priority': priority
+            }
+            search_db.append(entry)
+            # print(f"    Added paper entry: {paper_title[:50]}... URL: {paper_url}")
+
+    except Exception as e:
+        print(f"Error processing research index: {e}")
 
 # Determine priority based on repo type and file location
 def get_priority(repo_config, file_path):
@@ -648,6 +727,9 @@ def get_priority(repo_config, file_path):
         
         # Check if file is in any of the mapped directories
         for dir_name, priority in priority_map.items():
+            # Skip _research directory here, as it's handled specifically
+            if dir_name == "_research": 
+                continue 
             if dir_name in path_str:
                 return priority
         
@@ -700,64 +782,9 @@ def process_website_specific(repo_config, file_path, front_matter, content, sear
         # Team members are already processed in the general function
         pass
     
-    # Research content specific processing
-    elif "_research/" in path_str:
-        # Process paper entries (h3 tags with ids)
-        soup = BeautifulSoup(content, 'html.parser')
-        h3_tags = soup.find_all('h3')
-        
-        for h3 in h3_tags:
-            if 'id' not in h3.attrs:
-                continue
-                
-            id_attr = h3['id']
-            
-            # Try to extract paper number and title
-            match = re.match(r'\[([\d]+)\](.*)', h3.text)
-            if not match:
-                continue
-                
-            number, title = match.groups()
-            
-            # Find content until next h3 or end
-            section_content = ''
-            current = h3.next_sibling
-            while current and (not hasattr(current, 'name') or current.name != 'h3'):
-                if hasattr(current, 'string') and current.string:
-                    section_content += str(current)
-                elif hasattr(current, 'get_text'):
-                    section_content += current.get_text()
-                current = current.next_sibling
-            
-            # Extract tags
-            tags = []
-            tag_match = re.search(r'<tags>(.*?)</tags>', section_content, re.DOTALL)
-            if tag_match:
-                tag_content = tag_match.group(1)
-                tags = re.findall(r'<span>(.*?)</span>', tag_content)
-            
-            # Clean HTML tags for content
-            clean_content = re.sub(r'<[^>]+>', ' ', section_content)
-            clean_content = re.sub(r'\s+', ' ', clean_content).strip()
-            
-            # Get permalink from frontmatter or default
-            permalink = front_matter.get('permalink', '/research/')
-            
-            # Create entry for paper
-            entry = {
-                'title': f"[{number}]{title.strip()}",
-                'content': clean_content,
-                'url': f"{repo_config['url']}{permalink}#{id_attr}",
-                'type': 'paper',
-                'tags': tags,
-                'priority': 3  # Medium priority for papers
-            }
-            search_db.append(entry)
-            
-            # Check if this is a featured paper
-            if 'Featured' in tags:
-                # Boost priority for featured papers
-                entry['priority'] = 2
+    # Research content specific processing - REMOVED, handled in process_markdown_file
+    # elif "_research/" in path_str:
+    #     pass
     
     # Teaching content specific processing
     elif "_teaching/" in path_str:
@@ -793,7 +820,7 @@ def process_website_specific(repo_config, file_path, front_matter, content, sear
                     'content': detail_content.get_text().strip(),
                     'url': f"{repo_config['url']}{permalink}",
                     'type': 'teaching_detail',
-                    'priority': 2  # Medium-high priority for teaching content
+                    'priority': 3  # Updated: Medium priority for teaching content
                 }
                 search_db.append(entry)
 
@@ -1119,6 +1146,7 @@ def fix_urls(search_db):
     - Fix URLs with multiple hash symbols
     - Handle special case for Aboutcomphy.md content
     - Normalize URLs with section identifiers
+    - Fix team URLs to use proper anchor tags with hyphens
     """
     for entry in search_db:
         url = entry['url']
@@ -1140,10 +1168,42 @@ def fix_urls(search_db):
         elif "/index#" in url:
             entry['url'] = url.replace("/index#", "/#")
         
-        # Fix encoded space in URLs (+ should be %20 in fragments)
-        if '+' in url and '#' in url:
+        # Fix team URLs
+        if "/team/#index" in url:
+            # Extract proper anchor from title if available
+            if 'title' in entry and ' - ' in entry['title']:
+                # Title format is typically "Our Team & Collaborators - Person Name (Role)"
+                person_part = entry['title'].split(' - ', 1)[1]
+                # Generate anchor from person name using Jekyll-style formatting
+                anchor = generate_anchor(person_part)
+                entry['url'] = url.replace("#index", f"#{anchor}")
+            # Special case for section headers
+            elif 'title' in entry and entry['title'] == "Our Team & Collaborators - Present Team":
+                entry['url'] = url.replace("#index", "#present-team")
+            elif 'title' in entry and entry['title'] == "Our Team & Collaborators - Active Collaborations":
+                entry['url'] = url.replace("#index", "#active-collaborations")
+            elif 'title' in entry and entry['title'] == "Our Team & Collaborators - Our Alumni":
+                entry['url'] = url.replace("#index", "#our-alumni")
+            # Default case - just remove the #index
+            else:
+                entry['url'] = url.replace("#index", "")
+        
+        # Fix any remaining encoded space in URLs (convert %20 or + to hyphens in fragments)
+        if ('#' in url) and ('+' in url or '%20' in url):
             base_url, hash_tag, fragment = url.partition('#')
-            clean_fragment = fragment.replace('+', '%20')
+            
+            # If this is a team member URL, ensure proper formatting
+            if '/team/' in base_url:
+                # Replace encoded spaces with hyphens
+                clean_fragment = fragment.replace('+', '-').replace('%20', '-')
+                # Replace multiple hyphens with a single hyphen
+                clean_fragment = re.sub(r'-+', '-', clean_fragment)
+                # Ensure it's lowercase
+                clean_fragment = clean_fragment.lower()
+            else:
+                # For non-team URLs, just fix the encoding
+                clean_fragment = fragment.replace('+', '%20')
+                
             entry['url'] = f"{base_url}#{clean_fragment}"
     
     return search_db
