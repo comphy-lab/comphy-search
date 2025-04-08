@@ -20,30 +20,37 @@ import shutil
 #   - type: Type of repository (website, blog, docs, other)
 
 REPOSITORIES = [
+    # {
+    #     "repo_url": "https://github.com/comphy-lab/comphy-lab.github.io.git",  # GitHub repository URL
+    #     "path": "comphy-lab.github.io",  # Local directory name
+    #     "url": "https://comphy-lab.org",  # URL where the website is published
+    #     "type": "website",  # Repository type
+    #     # Optional: Custom directory mappings - maps directories to URL paths
+    #     "directories": {
+    #         "_team": "/team/",
+    #         "_research": "/research/",
+    #         "_teaching": "/teaching/"
+    #     }
+    # },
+    # {
+    #     "repo_url": "https://github.com/comphy-lab/CoMPhy-Lab-Blogs.git",  # GitHub repository URL
+    #     "path": "CoMPhy-Lab-Blogs",  # Local directory name
+    #     "url": "https://blogs.comphy-lab.org",  # URL where the blog is published
+    #     "type": "blog",  # Repository type
+    #     # Optional: Blog-specific settings
+    #     "blog_settings": {
+    #         "post_dir": "_posts",  # Directory containing posts (standard Jekyll structure)
+    #         "date_in_url": True,   # Whether to include date in URLs (Jekyll style: /YYYY/MM/DD/title/)
+    #         "url_prefix": "/blog"  # Prefix for blog URLs
+    #     }
+    # },
     {
-        "repo_url": "https://github.com/comphy-lab/comphy-lab.github.io.git",  # GitHub repository URL
-        "path": "comphy-lab.github.io",  # Local directory name
-        "url": "https://comphy-lab.org",  # URL where the website is published
-        "type": "website",  # Repository type
-        # Optional: Custom directory mappings - maps directories to URL paths
-        "directories": {
-            "_team": "/team/",
-            "_research": "/research/",
-            "_teaching": "/teaching/"
-        }
+        "repo_url": "https://github.com/comphy-lab/documentationWeb",  # GitHub repository URL
+        "path": "testCode",  # Local directory name
+        "url": "https://test.comphy-lab.org",  # URL where the blog is published
+        "type": "docs",  # Repository type
     },
-    {
-        "repo_url": "https://github.com/comphy-lab/CoMPhy-Lab-Blogs.git",  # GitHub repository URL
-        "path": "CoMPhy-Lab-Blogs",  # Local directory name
-        "url": "https://blogs.comphy-lab.org",  # URL where the blog is published
-        "type": "blog",  # Repository type
-        # Optional: Blog-specific settings
-        "blog_settings": {
-            "post_dir": "_posts",  # Directory containing posts (standard Jekyll structure)
-            "date_in_url": True,   # Whether to include date in URLs (Jekyll style: /YYYY/MM/DD/title/)
-            "url_prefix": "/blog"  # Prefix for blog URLs
-        }
-    },
+
     # Add more repositories as needed
     # Example for documentation site:
     # {
@@ -621,6 +628,90 @@ def process_docs_specific(repo_config, file_path, front_matter, content, search_
     pass
     
 # Process files from a repository
+def should_exclude_file(file_path):
+    """
+    Check if a file should be excluded from processing.
+    
+    Args:
+        file_path: Path object representing the file
+        
+    Returns:
+        bool: True if file should be excluded, False otherwise
+    """
+    # Convert to string for easier path checking
+    path_str = str(file_path)
+    
+    # List of paths/patterns to exclude
+    exclude_patterns = [
+        '.github/',  # GitHub specific files
+        '.git/',     # Git directory
+        'basilisk/', # Basilisk code directory
+    ]
+    
+    return any(pattern in path_str for pattern in exclude_patterns)
+
+def process_docs_html_file(repo_config, file_path, search_db):
+    """Process documentation HTML files (*.c.html, *.h.html, *.py.html, etc.)"""
+    print(f"  - {file_path.relative_to(get_repo_dir(repo_config))}")
+    
+    try:
+        content = file_path.read_text(encoding='utf-8')
+        
+        # Parse HTML content
+        soup = BeautifulSoup(content, 'html.parser')
+        
+        # Get title from HTML
+        title_tag = soup.find('title')
+        title = title_tag.text.strip() if title_tag else file_path.stem.replace('.html', '').replace('-', ' ').capitalize()
+        
+        # Generate URL for this file
+        url = get_file_url(repo_config, file_path)
+        
+        # Extract main content
+        main_content = soup.find('main') or soup.find('article') or soup.find('div', class_='content') or soup.find('div', id='content')
+        
+        if not main_content:
+            # If no main content container found, use the body
+            main_content = soup.find('body')
+        
+        if not main_content:
+            print(f"  Warning: Could not find main content in {file_path}")
+            return
+        
+        # Extract text content
+        text_content = main_content.get_text(separator=' ', strip=True)
+        
+        # Clean up the text
+        clean_content = re.sub(r'\s+', ' ', text_content).strip()
+        
+        if len(clean_content) >= 50:
+            # Create entry for the entire page
+            entry = {
+                'title': title,
+                'content': clean_content,
+                'url': url,
+                'type': 'docs_content',
+                'priority': get_priority(repo_config, file_path)
+            }
+            search_db.append(entry)
+            
+            # Also process code blocks and function documentation
+            code_blocks = main_content.find_all(['pre', 'code'])
+            for block in code_blocks:
+                code_content = block.get_text(strip=True)
+                if len(code_content) >= 50:
+                    entry = {
+                        'title': f"{title} - Code Example",
+                        'content': code_content,
+                        'url': url,
+                        'type': 'docs_code',
+                        'priority': get_priority(repo_config, file_path)
+                    }
+                    search_db.append(entry)
+    
+    except Exception as e:
+        print(f"Error processing documentation HTML file {file_path}: {e}")
+
 def process_repository(repo_config, search_db):
     repo_dir = get_repo_dir(repo_config)
     
@@ -648,8 +739,8 @@ def process_repository(repo_config, search_db):
         # For other repository types, get all markdown files
         md_files = list(repo_dir.glob('**/*.md'))
     
-    # Filter out README.md files and other files to skip
-    md_files = [f for f in md_files if f.name.lower() != 'readme.md']
+    # Filter out README.md files and excluded files
+    md_files = [f for f in md_files if f.name.lower() != 'readme.md' and not should_exclude_file(f)]
     
     print(f"Found {len(md_files)} markdown files to process")
     
@@ -660,10 +751,25 @@ def process_repository(repo_config, search_db):
     # For website repositories, also process HTML files in the root directory
     if repo_config["type"] == "website":
         html_files = list(repo_dir.glob('*.html'))
+        # Filter out excluded files
+        html_files = [f for f in html_files if not should_exclude_file(f)]
         print(f"Found {len(html_files)} HTML files in root directory to process")
         
         for file_path in html_files:
             process_html_file(repo_config, file_path, search_db)
+    
+    # For documentation repositories, process HTML files in the docs directory
+    if repo_config["type"] == "docs":
+        docs_dir = repo_dir / "docs"
+        if docs_dir.exists():
+            # Find all HTML files in docs directory
+            html_files = list(docs_dir.glob('**/*.html'))
+            # Filter out excluded files
+            html_files = [f for f in html_files if not should_exclude_file(f)]
+            print(f"Found {len(html_files)} documentation HTML files to process")
+            
+            for file_path in html_files:
+                process_docs_html_file(repo_config, file_path, search_db)
     
     # Clean up the repository after processing
     cleanup_repo(repo_config)
