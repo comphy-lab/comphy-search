@@ -3188,15 +3188,15 @@
     "priority": 4
   },
   {
-    "title": "Test documentation: Lid driven cavity using dye injection - postProcess/getData-LidDriven.c: getting Data from...",
-    "content": "getting Data from simulation snapshot Author Command-line arguments: Return getting Data from simulation snapshot Author Vatsal Sanjay Email: vatsalsy@comphy-lab.org CoMPhy Lab Physics of Fluids Department Last updated: Mar 8, 2025 #include \"utils.h\" #include \"output.h\" #include \"poisson.h\" vector u []; char filename [ 1000 ]; int nx , ny , len ; double xmin , ymin , xmax , ymax , Deltax , Deltay ; scalar T [], vel [], psi [], omega []; scalar * list = NULL ; Main entry point for processing fluid dynamics simulation data. This function validates the command-line arguments and initializes the simulation by reading in the file name and domain parameters (xmin, ymin, xmax, ymax, ny). It registers the necessary scalar fields (T, vel, psi), restores simulation data, applies Dirichlet boundary conditions for both the velocity and streamfunction, computes the velocity magnitude and vorticity, and then solves the Poisson equation to update the streamfunction.",
+    "title": "Test documentation: Lid driven cavity using dye injection - postProcess/getData-LidDriven.c: C/C++ Code",
+    "content": "getting Data from simulation snapshot Author Vatsal Sanjay Email: vatsalsy@comphy-lab.org CoMPhy Lab Physics of Fluids Department Last updated: Mar 8, 2025 #include \"utils.h\" #include \"output.h\" #include \"poisson.h\" vector u []; char filename [ 1000 ]; int nx , ny , len ; double xmin , ymin , xmax , ymax , Deltax , Deltay ; scalar T [], vel [], psi [], omega []; scalar * list = NULL ; Main entry point for processing fluid dynamics simulation data. This function validates the command-line arguments and initializes the simulation by reading in the file name and domain parameters (xmin, ymin, xmax, ymax, ny). It registers the necessary scalar fields (T, vel, psi), restores simulation data, applies Dirichlet boundary conditions for both the velocity and streamfunction, computes the velocity magnitude and vorticity, and then solves the Poisson equation to update the streamfunction. Finally, it calculates grid spacing and interpolates the scalar fields over the designated grid.",
     "url": "https://test.comphy-lab.org/docs/postProcess/getData-LidDriven.c/",
     "type": "docs_content",
     "priority": 4
   },
   {
-    "title": "Test documentation: Lid driven cavity using dye injection - postProcess/getData-LidDriven.c: Finally, it calculates...",
-    "content": "Finally, it calculates grid spacing and interpolates the scalar fields over the designated grid. Command-line arguments: arguments[0]: Program name. arguments[1]: Filename of the simulation snapshot. arguments[2]: Lower bound (xmin) of the x-domain. arguments[3]: Lower bound (ymin) of the y-domain. arguments[4]: Upper bound (xmax) of the x-domain. arguments[5]: Upper bound (ymax) of the y-domain. arguments[6]: Number of grid points along the y-direction (ny).",
+    "title": "Test documentation: Lid driven cavity using dye injection - postProcess/getData-LidDriven.c: Command-line arguments: arguments[0]:...",
+    "content": "Command-line arguments: arguments[0]: Program name. arguments[1]: Filename of the simulation snapshot. arguments[2]: Lower bound (xmin) of the x-domain. arguments[3]: Lower bound (ymin) of the y-domain. arguments[4]: Upper bound (xmax) of the x-domain. arguments[5]: Upper bound (ymax) of the y-domain. arguments[6]: Number of grid points along the y-direction (ny).",
     "url": "https://test.comphy-lab.org/docs/postProcess/getData-LidDriven.c/",
     "type": "docs_content",
     "priority": 4
@@ -3308,7 +3308,7 @@
   },
   {
     "title": "Test documentation: Lid driven cavity using dye injection - testCases/LidDrivenCavity-Newtonian-dyeInjection.c: Lid-Driven Cavity Flow...",
-    "content": "Lid-Driven Cavity Flow of a Newtonian Fluid with dye Injection Parameters Boundary Conditions Initialization Snapshot Generation Logs simulation progress and convergence details. Outputs final simulation results for visualization. Entry point for the lid-driven cavity flow simulation with dye injection. Lid-Driven Cavity Flow of a Newtonian Fluid with dye Injection This simulation models a lid-driven cavity flow for a Newtonian fluid with constant viscosity and includes dye injection for flow visualization. This extends the classic benchmark case with a passive tracer to visualize flow patterns.",
+    "content": "Lid-Driven Cavity Flow of a Newtonian Fluid with dye Injection This simulation models a lid-driven cavity flow for a Newtonian fluid with constant viscosity and includes dye injection for flow visualization. This extends the classic benchmark case with a passive tracer to visualize flow patterns.",
     "url": "https://test.comphy-lab.org/docs/testCases/LidDrivenCavity-Newtonian-dyeInjection.c/",
     "type": "docs_content",
     "priority": 4
@@ -3392,7 +3392,7 @@
   },
   {
     "title": "Test documentation: Lid driven cavity using dye injection - src-local/dye-injection.h: dye Injection for...",
-    "content": "dye Injection for Flow Visualization Parameters dye Injection for Flow Visualization This module introduces a circular tracer (dye) into the flow at a specified time and location. The dye then advects with the flow, allowing visualization of flow patterns. This is useful for visualizing complex flow structures in simulations like lid-driven cavity flow.",
+    "content": "dye Injection for Flow Visualization This module introduces a circular tracer (dye) into the flow at a specified time and location. The dye then advects with the flow, allowing visualization of flow patterns. This is useful for visualizing complex flow structures in simulations like lid-driven cavity flow.",
     "url": "https://test.comphy-lab.org/docs/src-local/dye-injection.h/",
     "type": "docs_content",
     "priority": 4
