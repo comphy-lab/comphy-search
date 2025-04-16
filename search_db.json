@@ -3462,14 +3462,14 @@
   },
   {
     "title": "Aboutcomphy - Soft Matter Singularities",
-    "content": "We examine topological transitions in fluid systems\u2014such as [**droplet impact**](/research/?tag=Drops), [**bubble bursting**](/research/?tag=Bubbles), and [**sheet fragmentation**](/research/?tag=Sheets) \u2014 where local instabilities drive fast, often dramatic flow dynamics. Our goal is to expose the universal mechanisms governing these [**singular**]((/research/?tag=Soft-matter-singularities)) events in soft matter.",
+    "content": "We examine topological transitions in fluid systems\u2014such as [**droplet impact**](/research/?tag=Drops), [**bubble bursting**](/research/?tag=Bubbles), and [**sheet fragmentation**](/research/?tag=Sheets) \u2014 where local instabilities drive fast, often dramatic flow dynamics. Our goal is to expose the universal mechanisms governing these [**singular**](/research/?tag=Soft-matter-singularities) events in soft matter.",
     "url": "https://comphy-lab.org/#about",
     "type": "website_section",
     "priority": 8
   },
   {
     "title": "Aboutcomphy - Non-Newtonian Flows as the `Drosophila' of Continuum Mechanics",
-    "content": "From [**elastoviscoplastic**]((/research/?tag=Non-Newtonian)) bubble bursting and elastic sheet break-up to champagne [**bubble**](/research/?tag=Bubbles) bursting and classical Taylor\u2013Culick retractions, non-Newtonian fluids serve as model systems to explore the fundamentals of continuum mechanics. By integrating high-fidelity simulations, analytical frameworks, and collaborative experiments, we reveal how microstructural stresses affect fluid and solid dynamics. This research provides key insights for industrial and environmental applications.",
+    "content": "From [**elastoviscoplastic**](/research/?tag=Non-Newtonian) bubble bursting and elastic sheet break-up to champagne [**bubble**](/research/?tag=Bubbles) bursting and classical Taylor\u2013Culick retractions, non-Newtonian fluids serve as model systems to explore the fundamentals of continuum mechanics. By integrating high-fidelity simulations, analytical frameworks, and collaborative experiments, we reveal how microstructural stresses affect fluid and solid dynamics. This research provides key insights for industrial and environmental applications.",
     "url": "https://comphy-lab.org/#about",
     "type": "website_section",
     "priority": 8
