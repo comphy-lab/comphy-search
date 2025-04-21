@@ -161,15 +161,21 @@ def cleanup_repo(repo_config):
 # Get URL for a file within a repository
 def get_file_url(repo_config, file_path, permalink=None):
     """
-    Generate a URL for a file based on repository configuration and file path
+    Generates the public URL for a file based on repository configuration and file path.
+    
+    Handles different repository types ("blog", "website", "docs") with custom URL logic:
+    - For blogs, supports date-based URLs and permalinks.
+    - For websites, maps special directories and handles root files and redirects.
+    - For documentation, preserves folder structure and appends `.html` as needed.
+    - Falls back to a path-based URL for other types.
     
     Args:
-        repo_config: Repository configuration dictionary
-        file_path: Path to the file (Path object)
-        permalink: Optional permalink from frontmatter
-        
+        repo_config: Dictionary containing repository configuration, including type and base URL.
+        file_path: Path object representing the file's location within the repository.
+        permalink: Optional permalink string from frontmatter to override default URL generation.
+    
     Returns:
-        Full URL to the resource
+        The full public URL as a string for the given file.
     """
     base_url = repo_config["url"].rstrip('/')
     repo_dir = get_repo_dir(repo_config)
@@ -457,7 +463,11 @@ def generate_chunk_title(chunk_text, original_title=None):
         return "Content Section"
 
 def process_docs_html_file(repo_config, file_path, search_db):
-    """Process documentation HTML files (*.c.html, *.h.html, *.py.html, etc.)"""
+    """
+    Processes a documentation HTML file and adds its content and code blocks to the search database.
+    
+    Parses the HTML file to extract the main content and title, splits the content into searchable chunks, and generates entries for both text and code sections. Handles files with compound extensions (e.g., `.c.html`) and assigns appropriate entry types and priorities.
+    """
     print(f"  - {file_path.relative_to(get_repo_dir(repo_config))}")
     
     try:
@@ -977,6 +987,11 @@ def should_exclude_file(file_path):
     return any(pattern in path_str for pattern in exclude_patterns)
 
 def process_repository(repo_config, search_db):
+    """
+    Processes a repository by type, extracting and indexing content for the search database.
+    
+    Depending on the repository type ('docs', 'blog', or 'website'), this function locates relevant content files (HTML or markdown), processes them using the appropriate handlers, and adds structured entries to the search database. After processing, the local repository directory is cleaned up.
+    """
     repo_dir = get_repo_dir(repo_config)
     
     print(f"Processing {repo_config['type']} repository at {repo_dir}")
@@ -1209,13 +1224,15 @@ def deduplicate_entries(search_db):
 
 def fix_urls(search_db):
     """
-    Post-process URLs to fix common issues:
-    - Fix URLs with multiple hash symbols
-    - Handle special case for Aboutcomphy.md content
-    - Normalize URLs with section identifiers
-    - Fix team URLs to use proper anchor tags with hyphens
-    - Fix documentation URLs to use the correct format
-    - Remove trailing slashes from HTML files
+    Cleans and normalizes URLs in the search database entries to ensure consistency.
+    
+    This function fixes common URL issues, including removing duplicate hash symbols, correcting special cases for AboutComphy content, normalizing section identifiers, updating team member anchors, adjusting documentation URLs by removing `/docs/` prefixes, removing trailing slashes from `.html` URLs, and standardizing encoded spaces in URL fragments.
+    
+    Args:
+        search_db: List of search database entries, each containing a 'url' key.
+    
+    Returns:
+        The updated search database with normalized URLs.
     """
     for entry in search_db:
         url = entry['url']
