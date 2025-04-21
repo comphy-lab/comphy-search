@@ -1020,6 +1020,7 @@ def process_repository(repo_config, search_db):
                 process_docs_html_file(repo_config, file_path, search_db)
         else:
             print(f"Warning: docs directory not found in {repo_dir}")
+            cleanup_repo(repo_config)  # Clean up before returning
             return  # Skip processing if docs directory doesn't exist
             
     elif repo_config["type"] == "blog":
