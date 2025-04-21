@@ -8,6 +8,8 @@ from pathlib import Path
 import datetime
 import subprocess
 import shutil
+from pathlib import PurePosixPath
+from urllib.parse import quote
 
 # =====================================================================
 # CONFIGURATION - Modify these settings for your repositories
@@ -265,51 +267,21 @@ def get_file_url(repo_config, file_path, permalink=None):
         # For documentation files, we want to preserve the full folder structure
         # and generate URLs in the format base_url/FOLDER_NAME/filename.ext.html
         
-        # Extract the full path relative to the repo
-        path_str = str(rel_path)
+        # Convert to POSIX path for consistent handling
+        path_str = rel_path.as_posix()
         
         # If the file is in a docs directory, remove that prefix
-        if "docs/" in path_str:
-            path_str = path_str.split("docs/", 1)[1]
+        if path_str.startswith("docs/"):
+            path_str = path_str[len("docs/"):]
+            
+        # Use PurePosixPath for reliable path handling
+        p = PurePosixPath(path_str)
+        dir_path, file_name = str(p.parent), p.name
         
-        # Get the directory path and filename separately
-        dir_path = os.path.dirname(path_str)
-        file_name = os.path.basename(path_str)
-        
-        # If this is already an HTML file, we need to handle it differently
-        if file_name.endswith('.html'):
-            # Remove .html and check if it ends with another extension
-            base_name = file_name[:-5]  # remove .html
-            if '.' in base_name:
-                # This is likely a .c.html, .py.html, etc. file - keep as is
-                if dir_path:
-                    dir_path = dir_path.replace(os.sep, '/')
-                    return f"{base_url}/{dir_path}/{file_name}"
-                else:
-                    return f"{base_url}/{file_name}"
-            else:
-                # Regular HTML file
-                if dir_path:
-                    dir_path = dir_path.replace(os.sep, '/')
-                    return f"{base_url}/{dir_path}/{base_name}.html"
-                else:
-                    return f"{base_url}/{base_name}.html"
-        
-        # For non-HTML files
-        if dir_path:
-            # Ensure we're using forward slashes for URLs
-            dir_path = dir_path.replace(os.sep, '/')
-            # For files with extensions (like .c, .py, etc.), append .html
-            if '.' in file_name:
-                return f"{base_url}/{dir_path}/{file_name}.html"
-            else:
-                return f"{base_url}/{dir_path}/{file_name}.html"
-        else:
-            # For files in the root, just append .html
-            if '.' in file_name:
-                return f"{base_url}/{file_name}.html"
-            else:
-                return f"{base_url}/{file_name}.html"
+        # Build, percent-encode and return the final URL
+        suffix = ".html"
+        target = f"{dir_path}/{file_name}{suffix}" if dir_path != "." else f"{file_name}{suffix}"
+        return f"{base_url}/{quote(target)}"
     
     # Default handling for other types
     path_no_ext = str(rel_path.with_suffix(''))
@@ -1227,7 +1199,7 @@ def fix_urls(search_db):
     """
     Cleans and normalizes URLs in the search database entries to ensure consistency.
     
-    This function fixes common URL issues, including removing duplicate hash symbols, correcting special cases for AboutComphy content, normalizing section identifiers, updating team member anchors, adjusting documentation URLs by removing `/docs/` prefixes, removing trailing slashes from `.html` URLs, and standardizing encoded spaces in URL fragments.
+    This function fixes common URL issues, including removing duplicate hash symbols, correcting special cases for AboutComphy content, normalizing section identifiers, updating team member anchors, removing trailing slashes from `.html` URLs, and standardizing encoded spaces in URL fragments.
     
     Args:
         search_db: List of search database entries, each containing a 'url' key.
@@ -1274,11 +1246,6 @@ def fix_urls(search_db):
             # Default case - just remove the #index
             else:
                 entry['url'] = url.replace("#index", "")
-        
-        # Fix documentation URLs - ensure they don't have /docs/ in the path
-        if "/docs/" in url and entry['type'].startswith('docs_'):
-            # Remove the /docs/ prefix from the URL
-            entry['url'] = url.replace("/docs/", "/")
         
         # Remove trailing slashes from HTML files
         if url.endswith('.html/'):
