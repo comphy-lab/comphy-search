@@ -3091,21 +3091,21 @@
   },
   {
     "title": "Test documentation: Lid driven cavity using dye injection | Test documentation: Lid driven cavity using dye injection: Test documentation: Lid...",
-    "content": "Test documentation: Lid driven cavity using dye injection This repository contains the computational framework and tools for multiphase fluid dynamics simulations based on the Basilisk C framework. The codebase specializes in the simulation and analysis of lid driven cavity flow with dye injection. Documentation The full documentation for this project is available at test.comphy-lab.org . This website contains detailed explanations of the code, examples, and usage instructions. Overview The codebase implements a classical lid driven cavity flow problem with dye injection using the Basilisk CFD library with custom implementations for specific dye injection including.",
+    "content": "Test documentation: Lid driven cavity using dye injection This repository contains the computational framework and tools for multiphase fluid dynamics simulations based on the Basilisk C framework. The codebase specializes in the simulation and analysis of lid driven cavity flow with dye injection. Documentation The full documentation for this project is available at comphy-lab.org/documentationWeb/ . This website contains detailed explanations of the code, examples, and usage instructions. Overview The codebase implements a classical lid driven cavity flow problem with dye injection using the Basilisk CFD library with custom implementations for specific dye injection including.",
     "url": "https://test.comphy-lab.org/docs/index/",
     "type": "docs_content",
     "priority": 4
   },
   {
     "title": "Test documentation: Lid driven cavity using dye injection | Test documentation: Lid driven cavity using dye injection: Repository Structure basilisk/src/...",
-    "content": "Repository Structure basilisk/src/ - Core Basilisk CFD library (reference only, do not modify) testCases/ - Test cases for simulation LidDrivenCavity-Newtonian-dyeInjection.c - Lid-driven cavity with dye injection src-local/ - Custom header files extending Basilisk functionality dye-injection.h - Dye injection for flow visualization postProcess/ - Project-specific post-processing tools 2-LidDrivenCavity-Newtonian-dyeInjection.py - Visualization script for post-processing getData-LidDriven.c - Data extraction utility src-local/ Directory The src-local/ directory contains custom header files that extend the base Basilisk functionality: dye-injection.h : Implements a circular tracer (dye) injection for flow visualization with: Configurable injection time and position Circular dye region with adjustable radius Integration with Basilisk\u2019s tracer module for advection postProcess/ Directory The postProcess/ directory provides tools for analyzing and visualizing simulation results: 2-LidDrivenCavity-Newtonian-dyeInjection.py : Python script for generating visualizations that: Processes simulation timesteps in parallel Creates two-panel plots showing dye concentration and velocity magnitude Adds streamlines to visualize flow patterns Uses \u2018getData-LidDriven\u2019 utility to extract field data getData-LidDriven.c : C utility that extracts and processes numerical data from simulation output files testCases/ Directory The testCases/ directory contains simulation configurations: LidDrivenCavity-Newtonian-dyeInjection.c : Main simulation case that implements: Classical lid-driven cavity flow for a Newtonian fluid Configurable Reynolds number (default: Re = 1) Dye injection in the upper center of the cavity at t=0.05 Adaptive grid with level 8 refinement Proper boundary conditions for the moving lid and no-slip walls Regular snapshot generation for visualization Getting Started Prerequisites Basilisk C installed ( Installation instructions ) C compiler (gcc recommended) Make build system Scientific visualization tools (optional: ParaView, Gnuplot, etc.) Installation Clone this repository: git clone https://github.com/username/comphy-lab.git cd comphy-lab Make sure Basilisk is properly installed and the BASILISK environment variable is set.",
+    "content": "Repository Structure basilisk/src/ - Core Basilisk CFD library (reference only, do not modify) simulationCases/ - Test cases for simulation LidDrivenCavity-Newtonian-dyeInjection.c - Lid-driven cavity with dye injection src-local/ - Custom header files extending Basilisk functionality dye-injection.h - Dye injection for flow visualization postProcess/ - Project-specific post-processing tools 2-LidDrivenCavity-Newtonian-dyeInjection.py - Visualization script for post-processing getData-LidDriven.c - Data extraction utility src-local/ Directory The src-local/ directory contains custom header files that extend the base Basilisk functionality: dye-injection.h : Implements a circular tracer (dye) injection for flow visualization with: Configurable injection time and position Circular dye region with adjustable radius Integration with Basilisk\u2019s tracer module for advection postProcess/ Directory The postProcess/ directory provides tools for analyzing and visualizing simulation results: 2-LidDrivenCavity-Newtonian-dyeInjection.py : Python script for generating visualizations that: Processes simulation timesteps in parallel Creates two-panel plots showing dye concentration and velocity magnitude Adds streamlines to visualize flow patterns Uses \u2018getData-LidDriven\u2019 utility to extract field data getData-LidDriven.c : C utility that extracts and processes numerical data from simulation output files simulationCases/ Directory The simulationCases/ directory contains simulation configurations: LidDrivenCavity-Newtonian-dyeInjection.c : Main simulation case that implements: Classical lid-driven cavity flow for a Newtonian fluid Configurable Reynolds number (default: Re = 1) Dye injection in the upper center of the cavity at t=0.05 Adaptive grid with level 8 refinement Proper boundary conditions for the moving lid and no-slip walls Regular snapshot generation for visualization Getting Started Prerequisites Basilisk C installed ( Installation instructions ) C compiler (gcc recommended) Make build system Scientific visualization tools (optional: ParaView, Gnuplot, etc.) Installation Clone this repository: git clone https://github.com/username/comphy-lab.git cd comphy-lab Make sure Basilisk is properly installed and the BASILISK environment variable is set.",
     "url": "https://test.comphy-lab.org/docs/index/",
     "type": "docs_content",
     "priority": 4
   },
   {
     "title": "Test documentation: Lid driven cavity using dye injection | Test documentation: Lid driven cavity using dye injection: Compile a test...",
-    "content": "Compile a test case to verify the setup: cd testCases make test_name.tst Usage Compiling Simulation Files Basic compilation: qcc -autolink file.c -o executable -lm Compilation with custom headers: qcc -I $PWD /src-local -autolink file.c -o executable -lm Running Simulations Run a compiled executable: ./executable Execute a specific test case: cd testCases && make test_name.tst Post-Processing The postProcess/ directory contains tools for post-processing simulation results: Visualization Generation : Automated generation of two-panel plots showing: Dye concentration with coolwarm colormap Velocity magnitude with viridis colormap Streamlines to visualize flow patterns Data Extraction : Utility to extract numerical data from simulation output files Parallel Processing : Multi-core processing of simulation timesteps for efficient visualization LaTeX Integration : Formatted plots with mathematical notation using LaTeX Code Style Guidelines Indentation : 2 spaces (no tabs) Line length : 80 characters maximum Documentation : Use markdown in comments starting with /** .",
+    "content": "Compile a test case to verify the setup: cd simulationCases make test_name.tst Usage Compiling Simulation Files Basic compilation: qcc -autolink file.c -o executable -lm Compilation with custom headers: qcc -I $PWD /src-local -autolink file.c -o executable -lm Running Simulations Run a compiled executable: ./executable Execute a specific test case: cd simulationCases && make test_name.tst Post-Processing The postProcess/ directory contains tools for post-processing simulation results: Visualization Generation : Automated generation of two-panel plots showing: Dye concentration with coolwarm colormap Velocity magnitude with viridis colormap Streamlines to visualize flow patterns Data Extraction : Utility to extract numerical data from simulation output files Parallel Processing : Multi-core processing of simulation timesteps for efficient visualization LaTeX Integration : Formatted plots with mathematical notation using LaTeX Code Style Guidelines Indentation : 2 spaces (no tabs) Line length : 80 characters maximum Documentation : Use markdown in comments starting with /** .",
     "url": "https://test.comphy-lab.org/docs/index/",
     "type": "docs_content",
     "priority": 4
@@ -3140,7 +3140,7 @@
   },
   {
     "title": "Test documentation: Lid driven cavity using dye injection | Test documentation: Lid driven cavity using dye injection: Context",
-    "content": "Acknowledgments S. Popinet & collaborators, Basilisk C, http://basilisk.fr (Last accessed: June 2025) (2013-2025) Generated Documentation Root Directory reset_install_requirements.sh postProcess postProcess/2-LidDrivenCavity-Newtonian-dyeInjection.py postProcess/getData-LidDriven.c src-local src-local/dye-injection.h testCases testCases/LidDrivenCavity-Newtonian-dyeInjection.c",
+    "content": "Acknowledgments S. Popinet & collaborators, Basilisk C, http://basilisk.fr (Last accessed: June 2025) (2013-2025) Generated Documentation Root Directory reset_install_requirements.sh postProcess postProcess/2-LidDrivenCavity-Newtonian-dyeInjection.py postProcess/getData-LidDriven.c simulationCases simulationCases/LidDrivenCavity-Newtonian-dyeInjection.c src-local src-local/dye-injection.h",
     "url": "https://test.comphy-lab.org/docs/index/",
     "type": "docs_content",
     "priority": 4
@@ -3185,6 +3185,13 @@
     "content": "Let us know if you find issues running with Linux by opening an issue.# modify using http://basilisk.fr/src/INSTALL# ensures that we are always using the latest version of basilisk# Check if --hard flag is passedHARD_RESET=falseif[[\"$1\"==\"--hard\"]];thenHARD_RESET=truefi# Function to install basiliskinstall_basilisk(){darcsclone http://basilisk.fr/basiliskcdbasilisk/srcif[[\"$OSTYPE\"==\"darwin\"*]];thenecho\"Using MacOS\"ln-sconfig.osx configelseecho\"Using Linux\"ln-sconfig.gcc configfimake-kmake}# Remove project config alwaysrm-rf.project_config# Check if basilisk needs to be installedif[[\"$HARD_RESET\"==true]]||[[!-d\"basilisk\"]];thenecho\"Installing basilisk...\"rm-rfbasiliskinstall_basiliskelseecho\"Using existing basilisk installation...\"cdbasilisk/srcfi# Setup environment variablesecho\"export BASILISK=$PWD\">>../../.project_configecho\"export PATH=\\$PATH:\\$BASILISK\">>../../.project_configsource../../.project_config# Check if qcc is working properlyecho\"\\nChecking qcc installation...\"if!qcc--version>/dev/null2>&1;thenecho\"\\033[0;31mError: qcc is not working properly.\\033[0m\"echo\"Please ensure you have Xcode Command Line Tools installed.\"echo\"You can install them by running: xcode-select --install\"echo\"For more details, visit: http://basilisk.fr/src/INSTALL\"exit1elseecho\"\\033[0;32mqcc is properly installed.\\033[0m\"qcc--versionfi",
     "url": "https://test.comphy-lab.org/docs/reset_install_requirements.sh/",
     "type": "docs_code",
+    "priority": 4
+  },
+  {
+    "title": "Post-Processing Tools | Documentation",
+    "content": "Post-Processing Tools 2-LidDrivenCavity-Newtonian-dyeInjection.py Computational fluid dynamics simulations using Basilisk C framework. getData-LidDriven.c Computational fluid dynamics simulations using Basilisk C framework.",
+    "url": "https://test.comphy-lab.org/docs/postProcess/index/",
+    "type": "docs_content",
     "priority": 4
   },
   {
@@ -3273,7 +3280,7 @@
   },
   {
     "title": "postProcess/2-LidDrivenCavity-Newtonian-dyeInjection.py | Test documentation: Lid driven cavity using dye injection: Function Definition",
-    "content": "It ensures that the output directory exists and then sets up a multiprocessing pool to concurrently process simulation data timesteps by mapping a worker function that generates visualizations. parser = argparse.ArgumentParser() parser.add_argument( '--CPUs' , type = int , default = mp.cpu_count(), help = 'Number of CPUs to use' ) parser.add_argument( '--nGFS' , type = int , default = 150 , help = 'Number of restart files to process' ) parser.add_argument( '--GridsPerR' , type = int , default = 512 , help = 'Number of grids per R' ) parser.add_argument( '--ZMAX' , type = float , default = 0.5 , help = 'Maximum Z value' ) parser.add_argument( '--RMAX' , type = float , default = 0.5 , help = 'Maximum R value' ) parser.add_argument( '--ZMIN' , type = float , default =- 0.5 , help = 'Minimum Z value' ) parser.add_argument( '--RMIN' , type = float , default =- 0.5 , help = 'Minimum R value' ) parser.add_argument( '--tsnap' , type = float , default = 0.01 , help = 'Time snap' ) parser.add_argument( '--caseToProcess' , type = str , default = '../testCases/2-LidDrivenCavity-Newtonian-dyeInjection' , help = 'Case to process' ) parser.add_argument( '--folderToSave' , type = str , default = '2-LidDrivenCavity-Newtonian-dyeInjection' , help = 'Folder to save' ) args = parser.parse_args() num_processes = args.CPUs nGFS = args.nGFS tsnap = args.tsnap ZMAX = args.ZMAX RMAX = args.RMAX ZMIN = args.ZMIN RMIN = args.RMIN rmin, rmax, zmin, zmax = [RMIN, RMAX, ZMIN, ZMAX] GridsPerR = args.GridsPerR lw = 2 folder = args.folderToSave caseToProcess = args.caseToProcess if not os.path.isdir(folder): os.makedirs(folder) # Create a pool of worker processes with mp.Pool(processes = num_processes) as pool: # Create partial function with fixed arguments process_func = partial(process_timestep, caseToProcess = caseToProcess, folder = folder, tsnap = tsnap, GridsPerR = GridsPerR, rmin = rmin, rmax = rmax, zmin = zmin, zmax = zmax, lw = lw) # Map the process_func to all timesteps pool. map (process_func, range (nGFS)) if __name__ == \"__main__\" : main()",
+    "content": "It ensures that the output directory exists and then sets up a multiprocessing pool to concurrently process simulation data timesteps by mapping a worker function that generates visualizations. parser = argparse.ArgumentParser() parser.add_argument( '--CPUs' , type = int , default = mp.cpu_count(), help = 'Number of CPUs to use' ) parser.add_argument( '--nGFS' , type = int , default = 150 , help = 'Number of restart files to process' ) parser.add_argument( '--GridsPerR' , type = int , default = 512 , help = 'Number of grids per R' ) parser.add_argument( '--ZMAX' , type = float , default = 0.5 , help = 'Maximum Z value' ) parser.add_argument( '--RMAX' , type = float , default = 0.5 , help = 'Maximum R value' ) parser.add_argument( '--ZMIN' , type = float , default =- 0.5 , help = 'Minimum Z value' ) parser.add_argument( '--RMIN' , type = float , default =- 0.5 , help = 'Minimum R value' ) parser.add_argument( '--tsnap' , type = float , default = 0.01 , help = 'Time snap' ) parser.add_argument( '--caseToProcess' , type = str , default = '../simulationCases/2-LidDrivenCavity-Newtonian-dyeInjection' , help = 'Case to process' ) parser.add_argument( '--folderToSave' , type = str , default = '2-LidDrivenCavity-Newtonian-dyeInjection' , help = 'Folder to save' ) args = parser.parse_args() num_processes = args.CPUs nGFS = args.nGFS tsnap = args.tsnap ZMAX = args.ZMAX RMAX = args.RMAX ZMIN = args.ZMIN RMIN = args.RMIN rmin, rmax, zmin, zmax = [RMIN, RMAX, ZMIN, ZMAX] GridsPerR = args.GridsPerR lw = 2 folder = args.folderToSave caseToProcess = args.caseToProcess if not os.path.isdir(folder): os.makedirs(folder) # Create a pool of worker processes with mp.Pool(processes = num_processes) as pool: # Create partial function with fixed arguments process_func = partial(process_timestep, caseToProcess = caseToProcess, folder = folder, tsnap = tsnap, GridsPerR = GridsPerR, rmin = rmin, rmax = rmax, zmin = zmin, zmax = zmax, lw = lw) # Map the process_func to all timesteps pool. map (process_func, range (nGFS)) if __name__ == \"__main__\" : main()",
     "url": "https://test.comphy-lab.org/docs/postProcess/2-LidDrivenCavity-Newtonian-dyeInjection.py/",
     "type": "docs_content",
     "priority": 4
@@ -3301,92 +3308,99 @@
   },
   {
     "title": "postProcess/2-LidDrivenCavity-Newtonian-dyeInjection.py | Test documentation: Lid driven cavity using dye injection - Code Example: Context",
-    "content": "parser=argparse.ArgumentParser()parser.add_argument('--CPUs',type=int, default=mp.cpu_count(),help='Number of CPUs to use')parser.add_argument('--nGFS',type=int, default=150,help='Number of restart files to process')parser.add_argument('--GridsPerR',type=int, default=512,help='Number of grids per R')parser.add_argument('--ZMAX',type=float, default=0.5,help='Maximum Z value')parser.add_argument('--RMAX',type=float, default=0.5,help='Maximum R value')parser.add_argument('--ZMIN',type=float, default=-0.5,help='Minimum Z value')parser.add_argument('--RMIN',type=float, default=-0.5,help='Minimum R value')parser.add_argument('--tsnap',type=float, default=0.01,help='Time snap')parser.add_argument('--caseToProcess',type=str, default='../testCases/2-LidDrivenCavity-Newtonian-dyeInjection',help='Case to process')parser.add_argument('--folderToSave',type=str, default='2-LidDrivenCavity-Newtonian-dyeInjection',help='Folder to save')args=parser.parse_args()num_processes=args.CPUsnGFS=args.nGFStsnap=args.tsnapZMAX=args.ZMAXRMAX=args.RMAXZMIN=args.ZMINRMIN=args.RMINrmin, rmax, zmin, zmax=[RMIN, RMAX, ZMIN, ZMAX]GridsPerR=args.GridsPerRlw=2folder=args.folderToSavecaseToProcess=args.caseToProcessifnotos.path.isdir(folder):os.makedirs(folder)# Create a pool of worker processeswithmp.Pool(processes=num_processes)aspool:# Create partial function with fixed argumentsprocess_func=partial(process_timestep, caseToProcess=caseToProcess,folder=folder, tsnap=tsnap,GridsPerR=GridsPerR, rmin=rmin, rmax=rmax,zmin=zmin, zmax=zmax, lw=lw)# Map the process_func to all timestepspool.map(process_func,range(nGFS))if__name__==\"__main__\":main()",
+    "content": "parser=argparse.ArgumentParser()parser.add_argument('--CPUs',type=int, default=mp.cpu_count(),help='Number of CPUs to use')parser.add_argument('--nGFS',type=int, default=150,help='Number of restart files to process')parser.add_argument('--GridsPerR',type=int, default=512,help='Number of grids per R')parser.add_argument('--ZMAX',type=float, default=0.5,help='Maximum Z value')parser.add_argument('--RMAX',type=float, default=0.5,help='Maximum R value')parser.add_argument('--ZMIN',type=float, default=-0.5,help='Minimum Z value')parser.add_argument('--RMIN',type=float, default=-0.5,help='Minimum R value')parser.add_argument('--tsnap',type=float, default=0.01,help='Time snap')parser.add_argument('--caseToProcess',type=str, default='../simulationCases/2-LidDrivenCavity-Newtonian-dyeInjection',help='Case to process')parser.add_argument('--folderToSave',type=str, default='2-LidDrivenCavity-Newtonian-dyeInjection',help='Folder to save')args=parser.parse_args()num_processes=args.CPUsnGFS=args.nGFStsnap=args.tsnapZMAX=args.ZMAXRMAX=args.RMAXZMIN=args.ZMINRMIN=args.RMINrmin, rmax, zmin, zmax=[RMIN, RMAX, ZMIN, ZMAX]GridsPerR=args.GridsPerRlw=2folder=args.folderToSavecaseToProcess=args.caseToProcessifnotos.path.isdir(folder):os.makedirs(folder)# Create a pool of worker processeswithmp.Pool(processes=num_processes)aspool:# Create partial function with fixed argumentsprocess_func=partial(process_timestep, caseToProcess=caseToProcess,folder=folder, tsnap=tsnap,GridsPerR=GridsPerR, rmin=rmin, rmax=rmax,zmin=zmin, zmax=zmax, lw=lw)# Map the process_func to all timestepspool.map(process_func,range(nGFS))if__name__==\"__main__\":main()",
     "url": "https://test.comphy-lab.org/docs/postProcess/2-LidDrivenCavity-Newtonian-dyeInjection.py/",
     "type": "docs_code",
     "priority": 4
   },
   {
-    "title": "testCases/LidDrivenCavity-Newtonian-dyeInjection.c | Test documentation: Lid driven cavity using dye injection: Context",
-    "content": "testCases/LidDrivenCavity-Newtonian-dyeInjection.c Lid-Driven Cavity Flow of a Newtonian Fluid with dye Injection This simulation models a lid-driven cavity flow for a Newtonian fluid with constant viscosity and includes dye injection for flow visualization. This extends the classic benchmark case with a passive tracer to visualize flow patterns.",
-    "url": "https://test.comphy-lab.org/docs/testCases/LidDrivenCavity-Newtonian-dyeInjection.c/",
+    "title": "Simulation Cases | Documentation",
+    "content": "Simulation Cases LidDrivenCavity-Newtonian-dyeInjection.c Computational fluid dynamics simulations using Basilisk C framework.",
+    "url": "https://test.comphy-lab.org/docs/simulationCases/index/",
     "type": "docs_content",
     "priority": 4
   },
   {
-    "title": "testCases/LidDrivenCavity-Newtonian-dyeInjection.c | Test documentation: Lid driven cavity using dye injection: C/C++ Code",
+    "title": "simulationCases/LidDrivenCavity-Newtonian-dyeInjection.c | Test documentation: Lid driven cavity using dye injection: Context",
+    "content": "simulationCases/LidDrivenCavity-Newtonian-dyeInjection.c Lid-Driven Cavity Flow of a Newtonian Fluid with dye Injection This simulation models a lid-driven cavity flow for a Newtonian fluid with constant viscosity and includes dye injection for flow visualization. This extends the classic benchmark case with a passive tracer to visualize flow patterns.",
+    "url": "https://test.comphy-lab.org/docs/simulationCases/LidDrivenCavity-Newtonian-dyeInjection.c/",
+    "type": "docs_content",
+    "priority": 4
+  },
+  {
+    "title": "simulationCases/LidDrivenCavity-Newtonian-dyeInjection.c | Test documentation: Lid driven cavity using dye injection: C/C++ Code",
     "content": "Parameters Reynolds number: Re = \u03c1UL/\u03bc = 1/\u03bc (with \u03c1=1, U=1, L=1) We use \u03bc = 1.0 by default (Re = 1) dye injection at t=0.05 in the upper center of the cavity #include \"navier-stokes/centered.h\" #include \"dye-injection.h\" // Constants #define LEVEL 8 // Grid refinement level #define MAXDT ( 1e-4 ) // Maximum timestep // Global variables int imax = 1e5 ; // Maximum iterations double tmax = 1.0 ; // Maximum simulation time double tsnap = 0.01 ; // Time interval between snapshots double end = 2.0 ; // End time for simulation // Scalar field for convergence check scalar un []; // Previous x-velocity const face vector muv [] = { 1.0 , 1.0 }; // Face-centered viscosity field Boundary Conditions // Top moving wall (lid) u . t [ top ] = dirichlet ( 1 ); // Other no-slip boundaries u . t [ bottom ] = dirichlet ( 0 ); u . t [ left ] = dirichlet ( 0 ); u . t [ right ] = dirichlet ( 0 ); // uf.n[left] = 0; // uf.n[right] = 0; // uf.n[top] = 0; // uf.n[bottom] = 0; Initialization event init ( t = 0 ) { // Set constant viscosity for Newtonian fluid mu = muv ; // Initialize velocity field foreach () { u . x [] = 0 ; u . y [] = 0 ; un [] = 0 ; } dump ( file = \"start\" ); } Snapshot Generation Save snapshots at regular intervals for flow visualization event writingFiles ( t = 0. ; t += tsnap ; t < tmax + tsnap ) { char filename [ 100 ]; sprintf ( filename , \"intermediate/snapshot- %5.4f \" , t ); dump ( file = filename ); } Logs simulation progress and convergence details.",
-    "url": "https://test.comphy-lab.org/docs/testCases/LidDrivenCavity-Newtonian-dyeInjection.c/",
+    "url": "https://test.comphy-lab.org/docs/simulationCases/LidDrivenCavity-Newtonian-dyeInjection.c/",
     "type": "docs_content",
     "priority": 4
   },
   {
-    "title": "testCases/LidDrivenCavity-Newtonian-dyeInjection.c | Test documentation: Lid driven cavity using dye injection: On each iteration,...",
+    "title": "simulationCases/LidDrivenCavity-Newtonian-dyeInjection.c | Test documentation: Lid driven cavity using dye injection: On each iteration,...",
     "content": "On each iteration, this event updates the stored x-velocity field for convergence checking and logs the current iteration number, timestep (dt), simulation time (t), and the convergence error (difference between the current and previous x-velocity fields) to the log file. event logfile ( i ++; i <= imax ) { foreach () { un [] = u . x []; } fprintf ( ferr , \"i = %d : dt = %g , t = %g , err = %g\\n \" , i , dt , t , change ( u . x , un )); } Outputs final simulation results for visualization. When the simulation reaches the end time, this event outputs the final state of simulation fields to a file named \u201cresults\u201d for post-processing and visualization. event end ( t = end ) { // Output fields in a format suitable for visualization dump ( file = \"results\" ); } Entry point for the lid-driven cavity flow simulation with dye injection.",
-    "url": "https://test.comphy-lab.org/docs/testCases/LidDrivenCavity-Newtonian-dyeInjection.c/",
+    "url": "https://test.comphy-lab.org/docs/simulationCases/LidDrivenCavity-Newtonian-dyeInjection.c/",
     "type": "docs_content",
     "priority": 4
   },
   {
-    "title": "testCases/LidDrivenCavity-Newtonian-dyeInjection.c | Test documentation: Lid driven cavity using dye injection: Initializes the computational...",
+    "title": "simulationCases/LidDrivenCavity-Newtonian-dyeInjection.c | Test documentation: Lid driven cavity using dye injection: Initializes the computational...",
     "content": "Initializes the computational grid and simulation parameters (domain size, timestep, tolerance, and CFL condition), and stores the initial velocity field for convergence monitoring.",
-    "url": "https://test.comphy-lab.org/docs/testCases/LidDrivenCavity-Newtonian-dyeInjection.c/",
+    "url": "https://test.comphy-lab.org/docs/simulationCases/LidDrivenCavity-Newtonian-dyeInjection.c/",
     "type": "docs_content",
     "priority": 4
   },
   {
-    "title": "testCases/LidDrivenCavity-Newtonian-dyeInjection.c | Test documentation: Lid driven cavity using dye injection: Configures dye injection...",
+    "title": "simulationCases/LidDrivenCavity-Newtonian-dyeInjection.c | Test documentation: Lid driven cavity using dye injection: Configures dye injection...",
     "content": "Configures dye injection settings by defining the injection time and location, creates a directory for saving intermediate simulation snapshots, and triggers the simulation run. @return int Exit status code (typically 0 upon successful completion). int main () { // Initialize grid and parameters init_grid ( 1 << LEVEL ); L0 = 1.0 ; origin (- 0.5 , - 0.5 ); DT = MAXDT ; TOLERANCE = 1e-5 ; CFL = 0.25 ; // Store current velocity for convergence check foreach () { un [] = u . x []; } // dye injection parameters tInjection = 0.05 ; // Inject the dye after flow is established xInjection = 0.00 ; // X position (center of cavity) yInjection = 0.40 ; // Y position (center of cavity) // Create a folder named intermediate where all the simulation snapshots are stored. char comm [ 80 ]; sprintf ( comm , \"mkdir -p intermediate\" ); system ( comm ); // Run simulation run (); }",
-    "url": "https://test.comphy-lab.org/docs/testCases/LidDrivenCavity-Newtonian-dyeInjection.c/",
+    "url": "https://test.comphy-lab.org/docs/simulationCases/LidDrivenCavity-Newtonian-dyeInjection.c/",
     "type": "docs_content",
     "priority": 4
   },
   {
-    "title": "testCases/LidDrivenCavity-Newtonian-dyeInjection.c | Test documentation: Lid driven cavity using dye injection - C/C++ Code",
+    "title": "simulationCases/LidDrivenCavity-Newtonian-dyeInjection.c | Test documentation: Lid driven cavity using dye injection - C/C++ Code",
     "content": "#include\"navier-stokes/centered.h\"#include\"dye-injection.h\"// Constants#define LEVEL8// Grid refinement level#define MAXDT(1e-4)// Maximum timestep// Global variablesintimax=1e5;// Maximum iterationsdoubletmax=1.0;// Maximum simulation timedoubletsnap=0.01;// Time interval between snapshotsdoubleend=2.0;// End time for simulation// Scalar field for convergence checkscalar un[];// Previous x-velocityconstface vector muv[]={1.0,1.0};// Face-centered viscosity field",
-    "url": "https://test.comphy-lab.org/docs/testCases/LidDrivenCavity-Newtonian-dyeInjection.c/",
+    "url": "https://test.comphy-lab.org/docs/simulationCases/LidDrivenCavity-Newtonian-dyeInjection.c/",
     "type": "docs_code",
     "priority": 4
   },
   {
-    "title": "testCases/LidDrivenCavity-Newtonian-dyeInjection.c | Test documentation: Lid driven cavity using dye injection - Code Example",
+    "title": "simulationCases/LidDrivenCavity-Newtonian-dyeInjection.c | Test documentation: Lid driven cavity using dye injection - Code Example",
     "content": "// Top moving wall (lid)u.t[top]=dirichlet(1);// Other no-slip boundariesu.t[bottom]=dirichlet(0);u.t[left]=dirichlet(0);u.t[right]=dirichlet(0);// uf.n[left]   = 0;// uf.n[right]  = 0;// uf.n[top]    = 0;// uf.n[bottom] = 0;",
-    "url": "https://test.comphy-lab.org/docs/testCases/LidDrivenCavity-Newtonian-dyeInjection.c/",
+    "url": "https://test.comphy-lab.org/docs/simulationCases/LidDrivenCavity-Newtonian-dyeInjection.c/",
     "type": "docs_code",
     "priority": 4
   },
   {
-    "title": "testCases/LidDrivenCavity-Newtonian-dyeInjection.c | Test documentation: Lid driven cavity using dye injection - Code Example",
+    "title": "simulationCases/LidDrivenCavity-Newtonian-dyeInjection.c | Test documentation: Lid driven cavity using dye injection - Code Example",
     "content": "event init(t=0){// Set constant viscosity for Newtonian fluidmu=muv;// Initialize velocity fieldforeach(){u.x[]=0;u.y[]=0;un[]=0;}dump(file=\"start\");}",
-    "url": "https://test.comphy-lab.org/docs/testCases/LidDrivenCavity-Newtonian-dyeInjection.c/",
+    "url": "https://test.comphy-lab.org/docs/simulationCases/LidDrivenCavity-Newtonian-dyeInjection.c/",
     "type": "docs_code",
     "priority": 4
   },
   {
-    "title": "testCases/LidDrivenCavity-Newtonian-dyeInjection.c | Test documentation: Lid driven cavity using dye injection - Code Example",
+    "title": "simulationCases/LidDrivenCavity-Newtonian-dyeInjection.c | Test documentation: Lid driven cavity using dye injection - Code Example",
     "content": "event writingFiles(t=0.;t+=tsnap;t<tmax+tsnap){charfilename[100];sprintf(filename,\"intermediate/snapshot-%5.4f\",t);dump(file=filename);}",
-    "url": "https://test.comphy-lab.org/docs/testCases/LidDrivenCavity-Newtonian-dyeInjection.c/",
+    "url": "https://test.comphy-lab.org/docs/simulationCases/LidDrivenCavity-Newtonian-dyeInjection.c/",
     "type": "docs_code",
     "priority": 4
   },
   {
-    "title": "testCases/LidDrivenCavity-Newtonian-dyeInjection.c | Test documentation: Lid driven cavity using dye injection - Code Example",
+    "title": "simulationCases/LidDrivenCavity-Newtonian-dyeInjection.c | Test documentation: Lid driven cavity using dye injection - Code Example",
     "content": "event logfile(i++;i<=imax){foreach(){un[]=u.x[];}fprintf(ferr,\"i =%d: dt =%g, t =%g, err =%g\\n\",i,dt,t,change(u.x,un));}",
-    "url": "https://test.comphy-lab.org/docs/testCases/LidDrivenCavity-Newtonian-dyeInjection.c/",
+    "url": "https://test.comphy-lab.org/docs/simulationCases/LidDrivenCavity-Newtonian-dyeInjection.c/",
     "type": "docs_code",
     "priority": 4
   },
   {
-    "title": "testCases/LidDrivenCavity-Newtonian-dyeInjection.c | Test documentation: Lid driven cavity using dye injection - Code Example",
+    "title": "simulationCases/LidDrivenCavity-Newtonian-dyeInjection.c | Test documentation: Lid driven cavity using dye injection - Code Example",
     "content": "event end(t=end){// Output fields in a format suitable for visualizationdump(file=\"results\");}",
-    "url": "https://test.comphy-lab.org/docs/testCases/LidDrivenCavity-Newtonian-dyeInjection.c/",
+    "url": "https://test.comphy-lab.org/docs/simulationCases/LidDrivenCavity-Newtonian-dyeInjection.c/",
     "type": "docs_code",
     "priority": 4
   },
   {
-    "title": "testCases/LidDrivenCavity-Newtonian-dyeInjection.c | Test documentation: Lid driven cavity using dye injection - Code Example: intmain(){// Initialize grid...",
+    "title": "simulationCases/LidDrivenCavity-Newtonian-dyeInjection.c | Test documentation: Lid driven cavity using dye injection - Code Example: intmain(){// Initialize grid...",
     "content": "intmain(){// Initialize grid and parametersinit_grid(1<<LEVEL);L0=1.0;origin(-0.5,-0.5);DT=MAXDT;TOLERANCE=1e-5;CFL=0.25;// Store current velocity for convergence checkforeach(){un[]=u.x[];}// dye injection parameterstInjection=0.05;// Inject the dye after flow is establishedxInjection=0.00;// X position (center of cavity)yInjection=0.40;// Y position (center of cavity)// Create a folder named intermediate where all the simulation snapshots are stored.charcomm[80];sprintf(comm,\"mkdir -p intermediate\");system(comm);// Run simulationrun();}",
-    "url": "https://test.comphy-lab.org/docs/testCases/LidDrivenCavity-Newtonian-dyeInjection.c/",
+    "url": "https://test.comphy-lab.org/docs/simulationCases/LidDrivenCavity-Newtonian-dyeInjection.c/",
     "type": "docs_code",
     "priority": 4
   },
@@ -3409,6 +3423,13 @@
     "content": "#include\"tracer.h\"// dye tracer parameters (can be overridden by the user)doubletInjection=0.1;// Default injection timedoublexInjection=0.0;// Default X-position for injectiondoubleyInjection=0.0;// Default Y-position for injectiondoubledyeRadius=0.05;// Default radius of the circular dye// Define the scalar field for the dyescalar T[];scalar*tracers={T};// Initialize the dye tracer to zero everywhereevent init(t=0){foreach()T[]=0.0;}// Inject the dye at the specified timeevent inject_dye(t=tInjection){fprintf(stderr,\"Injecting dye at t =%g, position = (%g,%g), radius =%g\\n\",t,xInjection,yInjection,dyeRadius);// Set dye concentration to 1.0 within the circular regionforeach(){doubledist=sqrt(sq(x-xInjection)+sq(y-yInjection));if(dist<=dyeRadius)T[]=1.0;}}",
     "url": "https://test.comphy-lab.org/docs/src-local/dye-injection.h/",
     "type": "docs_code",
+    "priority": 4
+  },
+  {
+    "title": "Local Source Files | Documentation",
+    "content": "Local Source Files dye-injection.h Computational fluid dynamics simulations using Basilisk C framework.",
+    "url": "https://test.comphy-lab.org/docs/src-local/index/",
+    "type": "docs_content",
     "priority": 4
   },
   {
