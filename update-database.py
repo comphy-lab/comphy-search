@@ -279,7 +279,8 @@ def get_file_url(repo_config, file_path, permalink=None):
         dir_path, file_name = str(p.parent), p.name
         
         # Build, percent-encode and return the final URL
-        suffix = ".html"
+        # Only append .html if the file doesn't already end with it
+        suffix = "" if file_name.endswith('.html') else ".html"
         target = f"{dir_path}/{file_name}{suffix}" if dir_path != "." else f"{file_name}{suffix}"
         return f"{base_url}/{quote(target)}"
     
