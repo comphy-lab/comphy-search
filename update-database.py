@@ -8,6 +8,8 @@ from pathlib import Path
 import datetime
 import subprocess
 import shutil
+from pathlib import PurePosixPath
+from urllib.parse import quote
 
 # =====================================================================
 # CONFIGURATION - Modify these settings for your repositories
@@ -47,7 +49,7 @@ REPOSITORIES = [
     {
         "repo_url": "https://github.com/comphy-lab/documentationWeb",  # GitHub repository URL
         "path": "testCode",  # Local directory name
-        "url": "https://test.comphy-lab.org",  # URL where the blog is published
+        "url": "https://comphy-lab.org/documentationWeb",  # URL where the blog is published
         "type": "docs",  # Repository type
     },
 
@@ -161,15 +163,21 @@ def cleanup_repo(repo_config):
 # Get URL for a file within a repository
 def get_file_url(repo_config, file_path, permalink=None):
     """
-    Generate a URL for a file based on repository configuration and file path
+    Generates the public URL for a file based on repository configuration and file path.
+    
+    Handles different repository types ("blog", "website", "docs") with custom URL logic:
+    - For blogs, supports date-based URLs and permalinks.
+    - For websites, maps special directories and handles root files and redirects.
+    - For documentation, preserves folder structure and appends `.html` as needed.
+    - Falls back to a path-based URL for other types.
     
     Args:
-        repo_config: Repository configuration dictionary
-        file_path: Path to the file (Path object)
-        permalink: Optional permalink from frontmatter
-        
+        repo_config: Dictionary containing repository configuration, including type and base URL.
+        file_path: Path object representing the file's location within the repository.
+        permalink: Optional permalink string from frontmatter to override default URL generation.
+    
     Returns:
-        Full URL to the resource
+        The full public URL as a string for the given file.
     """
     base_url = repo_config["url"].rstrip('/')
     repo_dir = get_repo_dir(repo_config)
@@ -254,6 +262,27 @@ def get_file_url(repo_config, file_path, permalink=None):
             else:
                 # For about.md, news.md, etc. - they should be at the root URL with section
                 return f"{base_url}#{file_name.lower()}"
+    
+    elif repo_config["type"] == "docs":
+        # For documentation files, we want to preserve the full folder structure
+        # and generate URLs in the format base_url/FOLDER_NAME/filename.ext.html
+        
+        # Convert to POSIX path for consistent handling
+        path_str = rel_path.as_posix()
+        
+        # If the file is in a docs directory, remove that prefix
+        if path_str.startswith("docs/"):
+            path_str = path_str[len("docs/"):]
+            
+        # Use PurePosixPath for reliable path handling
+        p = PurePosixPath(path_str)
+        dir_path, file_name = str(p.parent), p.name
+        
+        # Build, percent-encode and return the final URL
+        # Only append .html if the file doesn't already end with it
+        suffix = "" if file_name.endswith('.html') else ".html"
+        target = f"{dir_path}/{file_name}{suffix}" if dir_path != "." else f"{file_name}{suffix}"
+        return f"{base_url}/{quote(target)}"
     
     # Default handling for other types
     path_no_ext = str(rel_path.with_suffix(''))
@@ -407,7 +436,11 @@ def generate_chunk_title(chunk_text, original_title=None):
         return "Content Section"
 
 def process_docs_html_file(repo_config, file_path, search_db):
-    """Process documentation HTML files (*.c.html, *.h.html, *.py.html, etc.)"""
+    """
+    Processes a documentation HTML file and adds its content and code blocks to the search database.
+    
+    Parses the HTML file to extract the main content and title, splits the content into searchable chunks, and generates entries for both text and code sections. Handles files with compound extensions (e.g., `.c.html`) and assigns appropriate entry types and priorities.
+    """
     print(f"  - {file_path.relative_to(get_repo_dir(repo_config))}")
     
     try:
@@ -418,9 +451,16 @@ def process_docs_html_file(repo_config, file_path, search_db):
         
         # Get title from HTML
         title_tag = soup.find('title')
-        title = title_tag.text.strip() if title_tag else file_path.stem.replace('.html', '').replace('-', ' ').capitalize()
+        # For files like example.c.html, remove both .html and keep the .c
+        base_name = file_path.stem  # removes .html
+        if '.' in base_name:
+            # This is a .c.html, .py.html, etc. file
+            title = title_tag.text.strip() if title_tag else base_name.replace('-', ' ').capitalize()
+        else:
+            # Regular HTML file
+            title = title_tag.text.strip() if title_tag else base_name.replace('-', ' ').capitalize()
         
-        # Generate URL for this file
+        # Generate URL for this file using get_file_url
         url = get_file_url(repo_config, file_path)
         
         # Extract main content
@@ -920,6 +960,11 @@ def should_exclude_file(file_path):
     return any(pattern in path_str for pattern in exclude_patterns)
 
 def process_repository(repo_config, search_db):
+    """
+    Processes a repository by type, extracting and indexing content for the search database.
+    
+    Depending on the repository type ('docs', 'blog', or 'website'), this function locates relevant content files (HTML or markdown), processes them using the appropriate handlers, and adds structured entries to the search database. After processing, the local repository directory is cleaned up.
+    """
     repo_dir = get_repo_dir(repo_config)
     
     print(f"Processing {repo_config['type']} repository at {repo_dir}")
@@ -933,50 +978,61 @@ def process_repository(repo_config, search_db):
         print(f"Repository directory not found: {repo_dir}")
         return
     
-    # Get all markdown files in the repository
-    if repo_config["type"] == "blog" and repo_config.get("blog_settings", {}).get("post_dir"):
-        # For blogs with posts directory structure
-        post_dir = repo_dir / repo_config["blog_settings"]["post_dir"]
-        if post_dir.exists():
-            md_files = list(post_dir.glob('**/*.md'))
-        else:
-            # Fallback to searching all markdown files
-            md_files = list(repo_dir.glob('**/*.md'))
-    else:
-        # For other repository types, get all markdown files
-        md_files = list(repo_dir.glob('**/*.md'))
-    
-    # Filter out README.md files and excluded files
-    md_files = [f for f in md_files if f.name.lower() != 'readme.md' and not should_exclude_file(f)]
-    
-    print(f"Found {len(md_files)} markdown files to process")
-    
-    # Process each markdown file
-    for file_path in md_files:
-        process_markdown_file(repo_config, file_path, search_db)
-    
-    # For website repositories, also process HTML files in the root directory
-    if repo_config["type"] == "website":
-        html_files = list(repo_dir.glob('*.html'))
-        # Filter out excluded files
-        html_files = [f for f in html_files if not should_exclude_file(f)]
-        print(f"Found {len(html_files)} HTML files in root directory to process")
-        
-        for file_path in html_files:
-            process_html_file(repo_config, file_path, search_db)
-    
-    # For documentation repositories, process HTML files in the docs directory
+    # Different processing based on repository type
     if repo_config["type"] == "docs":
+        # For documentation repositories, ONLY process HTML files in the docs directory
         docs_dir = repo_dir / "docs"
         if docs_dir.exists():
             # Find all HTML files in docs directory
             html_files = list(docs_dir.glob('**/*.html'))
             # Filter out excluded files
             html_files = [f for f in html_files if not should_exclude_file(f)]
-            print(f"Found {len(html_files)} documentation HTML files to process")
+            print(f"Found {len(html_files)} documentation HTML files in docs directory to process")
             
             for file_path in html_files:
                 process_docs_html_file(repo_config, file_path, search_db)
+        else:
+            print(f"Warning: docs directory not found in {repo_dir}")
+            cleanup_repo(repo_config)  # Clean up before returning
+            return  # Skip processing if docs directory doesn't exist
+            
+    elif repo_config["type"] == "blog":
+        # For blogs with posts directory structure
+        if repo_config.get("blog_settings", {}).get("post_dir"):
+            post_dir = repo_dir / repo_config["blog_settings"]["post_dir"]
+            if post_dir.exists():
+                md_files = list(post_dir.glob('**/*.md'))
+            else:
+                # Fallback to searching all markdown files
+                md_files = list(repo_dir.glob('**/*.md'))
+        else:
+            # For other repository types, get all markdown files
+            md_files = list(repo_dir.glob('**/*.md'))
+        
+        # Filter out README.md files and excluded files
+        md_files = [f for f in md_files if f.name.lower() != 'readme.md' and not should_exclude_file(f)]
+        print(f"Found {len(md_files)} markdown files to process")
+        
+        # Process each markdown file
+        for file_path in md_files:
+            process_markdown_file(repo_config, file_path, search_db)
+            
+    elif repo_config["type"] == "website":
+        # Process markdown files
+        md_files = list(repo_dir.glob('**/*.md'))
+        md_files = [f for f in md_files if f.name.lower() != 'readme.md' and not should_exclude_file(f)]
+        print(f"Found {len(md_files)} markdown files to process")
+        
+        for file_path in md_files:
+            process_markdown_file(repo_config, file_path, search_db)
+        
+        # Also process HTML files in the root directory
+        html_files = list(repo_dir.glob('*.html'))
+        html_files = [f for f in html_files if not should_exclude_file(f)]
+        print(f"Found {len(html_files)} HTML files in root directory to process")
+        
+        for file_path in html_files:
+            process_html_file(repo_config, file_path, search_db)
     
     # Clean up the repository after processing
     cleanup_repo(repo_config)
@@ -1142,11 +1198,15 @@ def deduplicate_entries(search_db):
 
 def fix_urls(search_db):
     """
-    Post-process URLs to fix common issues:
-    - Fix URLs with multiple hash symbols
-    - Handle special case for Aboutcomphy.md content
-    - Normalize URLs with section identifiers
-    - Fix team URLs to use proper anchor tags with hyphens
+    Cleans and normalizes URLs in the search database entries to ensure consistency.
+    
+    This function fixes common URL issues, including removing duplicate hash symbols, correcting special cases for AboutComphy content, normalizing section identifiers, updating team member anchors, removing trailing slashes from `.html` URLs, and standardizing encoded spaces in URL fragments.
+    
+    Args:
+        search_db: List of search database entries, each containing a 'url' key.
+    
+    Returns:
+        The updated search database with normalized URLs.
     """
     for entry in search_db:
         url = entry['url']
@@ -1187,6 +1247,10 @@ def fix_urls(search_db):
             # Default case - just remove the #index
             else:
                 entry['url'] = url.replace("#index", "")
+        
+        # Remove trailing slashes from HTML files
+        if url.endswith('.html/'):
+            entry['url'] = url[:-1]
         
         # Fix any remaining encoded space in URLs (convert %20 or + to hyphens in fragments)
         if ('#' in url) and ('+' in url or '%20' in url):
