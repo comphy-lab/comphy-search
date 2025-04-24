@@ -1,14 +1,13 @@
 [
   {
-    "title": "[15]Sanjay, V., & Lohse, D. Unifying theory of scaling in drop impact: Forces & maximum spreading diameter. Phys. Rev. Lett., 134, 104003 (2025).",
-    "content": "[15]Sanjay, V., & Lohse, D. Unifying theory of scaling in drop impact: Forces & maximum spreading diameter. Phys. Rev. Lett., 134, 104003 (2025).",
-    "url": "https://comphy-lab.org/research/#15",
+    "title": "[11]Sanjay, V., Chantelot, P., & Lohse, D. When does an impacting drop stop bouncing? J. Fluid Mech., 958, A26 (2023).",
+    "content": "[11]Sanjay, V., Chantelot, P., & Lohse, D. When does an impacting drop stop bouncing? J. Fluid Mech., 958, A26 (2023).",
+    "url": "https://comphy-lab.org/research/#11",
     "type": "paper",
     "tags": [
       "Drops",
+      "Bouncing",
       "Dissipative anomaly",
-      "Superamphiphobic-surfaces",
-      "Impact forces",
       "Featured"
     ],
     "priority": 1
@@ -315,6 +314,19 @@
     "priority": 1
   },
   {
+    "title": "[15]Sanjay, V., & Lohse, D. Unifying theory of scaling in drop impact: Forces & maximum spreading diameter. Phys. Rev. Lett., 134, 104003 (2025).",
+    "content": "[15]Sanjay, V., & Lohse, D. Unifying theory of scaling in drop impact: Forces & maximum spreading diameter. Phys. Rev. Lett., 134, 104003 (2025).",
+    "url": "https://comphy-lab.org/research/#15",
+    "type": "paper",
+    "tags": [
+      "Drops",
+      "Dissipative anomaly",
+      "Superamphiphobic-surfaces",
+      "Impact forces"
+    ],
+    "priority": 2
+  },
+  {
     "title": "[14]Sanjay, V., Zhang, B., Lv, C., & Lohse, D. The role of viscosity on drop impact forces on non-wetting surfaces. J. Fluid Mech., 1004, A6 (2025).",
     "content": "[14]Sanjay, V., Zhang, B., Lv, C., & Lohse, D. The role of viscosity on drop impact forces on non-wetting surfaces. J. Fluid Mech., 1004, A6 (2025).",
     "url": "https://comphy-lab.org/research/#14",
@@ -346,18 +358,6 @@
       "Non-Newtonian",
       "Jets",
       "Soft-matter-singularities"
-    ],
-    "priority": 2
-  },
-  {
-    "title": "[11]Sanjay, V., Chantelot, P., & Lohse, D. When does an impacting drop stop bouncing? J. Fluid Mech., 958, A26 (2023).",
-    "content": "[11]Sanjay, V., Chantelot, P., & Lohse, D. When does an impacting drop stop bouncing? J. Fluid Mech., 958, A26 (2023).",
-    "url": "https://comphy-lab.org/research/#11",
-    "type": "paper",
-    "tags": [
-      "Drops",
-      "Bouncing",
-      "Dissipative anomaly"
     ],
     "priority": 2
   },
