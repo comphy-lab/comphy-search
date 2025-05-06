@@ -3133,7 +3133,7 @@
   },
   {
     "title": "Test documentation: Lid driven cavity using dye injection | Test documentation: Lid driven cavity using dye injection: Context",
-    "content": "Acknowledgments S. Popinet & collaborators, Basilisk C, http://basilisk.fr (Last accessed: June 2025) (2013-2025) Generated Documentation Root Directory reset_install_requirements.sh postProcess postProcess/LidDrivenCavity-Newtonian-dyeInjection.ipynb postProcess/LidDrivenCavity-Newtonian-dyeInjection.py postProcess/getData-LidDriven.c simulationCases simulationCases/LidDrivenCavity-Newtonian-dyeInjection.c src-local src-local/dye-injection.h",
+    "content": "Acknowledgments S. Popinet & collaborators, Basilisk C, http://basilisk.fr (Last accessed: June 2025) (2013-2025) Generated Documentation Root Directory reset_install_requirements.sh postProcess postProcess/LidDrivenCavity-Newtonian-dyeInjection.ipynb postProcess/LidDrivenCavity-Newtonian-dyeInjection.py postProcess/getData-LidDriven.c simulationCases simulationCases/LidDrivenCavity-Newtonian-dyeInjection.c simulationCases/Makefile src-local src-local/dye-injection.h",
     "url": "https://comphy-lab.org/documentationWeb/index.html",
     "type": "docs_content",
     "priority": 4
@@ -3181,8 +3181,22 @@
     "priority": 4
   },
   {
+    "title": "simulationCases/Makefile | Test documentation: Lid driven cavity using dye injection",
+    "content": "simulationCases/Makefile # Check if .project_config exists ifeq ( $( wildcard ../.project_config ) , ) $( error \"../.project_config not found\" ) endif BASILISK := $( shell . ../.project_config && echo $$ BASILISK ) ifeq ( $( strip $( BASILISK )) , ) $( error \"BASILISK not set in .project_config\" ) endif CFLAGS += -O2 -disable-dimensions CFLAGS += -I $( PWD ) /src-local -I $( PWD ) /../src-local .PHONY: fix-permissions # Fix permissions for runtest script fix-permissions: @chmod +x $( BASILISK ) /src/runtest # Make all test targets depend on fix-permissions %.tst: fix-permissions include $( BASILISK ) /Makefile.defs",
+    "url": "https://comphy-lab.org/documentationWeb/simulationCases/Makefile.html",
+    "type": "docs_content",
+    "priority": 4
+  },
+  {
+    "title": "simulationCases/Makefile | Test documentation: Lid driven cavity using dye injection - Code Example: Context",
+    "content": "# Check if .project_config existsifeq($(wildcard../.project_config),)$(error\"../.project_config not found\")endifBASILISK:=$(shell. ../.project_config&&echo$$BASILISK)ifeq($(strip$(BASILISK)),)$(error\"BASILISK not set in .project_config\")endifCFLAGS+=-O2-disable-dimensionsCFLAGS+=-I$(PWD)/src-local-I$(PWD)/../src-local.PHONY:fix-permissions# Fix permissions for runtest scriptfix-permissions:@chmod+x$(BASILISK)/src/runtest# Make all test targets depend on fix-permissions%.tst:fix-permissionsinclude$(BASILISK)/Makefile.defs",
+    "url": "https://comphy-lab.org/documentationWeb/simulationCases/Makefile.html",
+    "type": "docs_code",
+    "priority": 4
+  },
+  {
     "title": "Simulation Cases | Documentation",
-    "content": "Simulation Cases LidDrivenCavity-Newtonian-dyeInjection.c Computational fluid dynamics simulations using Basilisk C framework.",
+    "content": "Simulation Cases LidDrivenCavity-Newtonian-dyeInjection.c Computational fluid dynamics simulations using Basilisk C framework. Makefile Computational fluid dynamics simulations using Basilisk C framework.",
     "url": "https://comphy-lab.org/documentationWeb/simulationCases/index.html",
     "type": "docs_content",
     "priority": 4
