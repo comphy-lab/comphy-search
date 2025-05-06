@@ -52,7 +52,24 @@ REPOSITORIES = [
         "url": "https://comphy-lab.org/documentationWeb",  # URL where the blog is published
         "type": "docs",  # Repository type
     },
-
+    {
+        "repo_url": "https://github.com/comphy-lab/Viscoelastic3D",  # GitHub repository URL
+        "path": "Viscoelastic3D",  # Local directory name
+        "url": "https://comphy-lab.org/Viscoelastic3D",  # URL where the blog is published
+        "type": "docs",  # Repository type
+    },
+    {
+        "repo_url": "https://github.com/comphy-lab/Viscoelastic-Worthington-jets-and-droplets-produced-by-bursting-bubbles",  # GitHub repository URL
+        "path": "Viscoelastic-Worthington-jets-and-droplets-produced-by-bursting-bubbles",  # Local directory name
+        "url": "https://comphy-lab.org/Viscoelastic-Worthington-jets-and-droplets-produced-by-bursting-bubbles",  # URL where the blog is published
+        "type": "docs",  # Repository type
+    },
+    {
+        "repo_url": "https://github.com/comphy-lab/BurstingBubble_Herschel-Bulkley",  # GitHub repository URL
+        "path": "BurstingBubble_Herschel-Bulkley",  # Local directory name
+        "url": "https://comphy-lab.org/BurstingBubble_Herschel-Bulkley",  # URL where the blog is published
+        "type": "docs",  # Repository type
+    },
     # Add more repositories as needed
     # Example for documentation site:
     # {
