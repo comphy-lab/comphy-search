@@ -70,6 +70,30 @@ REPOSITORIES = [
         "url": "https://comphy-lab.org/BurstingBubble_Herschel-Bulkley",  # URL where the blog is published
         "type": "docs",  # Repository type
     },
+    {
+        "repo_url": "https://github.com/comphy-lab/soapy",  # GitHub repository URL
+        "path": "soapy",  # Local directory name
+        "url": "https://comphy-lab.org/soapy",  # URL where the blog is published
+        "type": "docs",  # Repository type
+    },
+    {
+        "repo_url": "https://github.com/comphy-lab/HoleySheet",  # GitHub repository URL
+        "path": "HoleySheet",  # Local directory name
+        "url": "https://comphy-lab.org/HoleySheet",  # URL where the blog is published
+        "type": "docs",  # Repository type
+    },
+    {
+        "repo_url": "https://github.com/comphy-lab/MultiRheoFlow",
+        "path": "MultiRheoFlow",
+        "url": "https://comphy-lab.org/MultiRheoFlow",
+        "type": "docs"
+    },
+    {
+        "repo_url": "https://github.com/comphy-lab/fiber",
+        "path": "fiber",
+        "url": "https://comphy-lab.org/fiber",
+        "type": "docs"
+    },
     # Add more repositories as needed
     # Example for documentation site:
     # {
