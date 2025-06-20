@@ -94,6 +94,12 @@ REPOSITORIES = [
         "url": "https://comphy-lab.org/fiber",
         "type": "docs"
     },
+    {
+        "repo_url": "https://github.com/comphy-lab/JumpingBubbles",
+        "path": "JumpingBubbles",
+        "url": "https://comphy-lab.org/JumpingBubbles",
+        "type": "docs"
+    },
     # Add more repositories as needed
     # Example for documentation site:
     # {
