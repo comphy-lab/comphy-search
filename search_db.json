@@ -2412,51 +2412,275 @@
     "priority": 3
   },
   {
-    "title": "Lecture1 complementaryquestions answers - Lecture 1: Complementary Questions - Answers",
-    "content": "**Course:** Introduction to Soft Condensed Matter **Assignment Type:** Self-assessed questions ---",
-    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/Lecture1-ComplementaryQuestions-Answers/#lecture-1-complementary-questions---answers",
+    "title": "2 what is viscosity - Lecture 2: Viscosity and Momentum Diffusion",
+    "content": "Understanding viscosity as an emergent property arising from molecular collisions and free flights\u2014the diffusion of tangential momentum through a fluid. This lecture bridges [[1.5-Taylor-Culick-Paradox|Lecture 1.5]]'s resolution of the Taylor\u2013Culick paradox with the continuum mechanics framework needed to model soft matter flows. ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#lecture-2-viscosity-and-momentum-diffusion",
     "type": "blog_section",
     "priority": 3
   },
   {
-    "title": "Lecture1 complementaryquestions answers - Question 1: Why Soft Materials Have Small Moduli: **Question:** Explain in...",
-    "content": "**Question:** Explain in your own words why many soft materials (rubbers, gels, emulsions) have moduli that are orders of magnitude smaller than crystalline solids. **Answer:** In crystalline solids, stiffness arises from steep interatomic potentials acting at atomic spacing (~0.1 nm). The elastic energy density scales like $U/a^3$, which is why bulk and shear moduli reach GPa\u2013TPa scales for materials like diamond and steel. By contrast, in rubbers, gels, and many soft networks, the load-bearing modulus is largely **entropic**. Thermal fluctuations of network strands resist deformation, giving: $$G \\approx n k_B T \\sim \\frac{k_B T}{\\xi^3}$$ where $\\xi$ is a mesoscopic mesh size.",
-    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/Lecture1-ComplementaryQuestions-Answers/#question-1-why-soft-materials-have-small-moduli",
+    "title": "2 what is viscosity - Learning Goals:",
+    "content": "Have students understand these five core ideas by the end of the lecture: 1. **What viscosity is:** a coefficient quantifying the *diffusion of tangential momentum* 2. **Where it comes from (kinetics):** molecular collisions + free flights over the mean free path $\\lambda$ 3. **Why no-slip is natural:** collisions at a wall randomize tangential momentum \u2192 momentum sink \u2192 velocity gradient forms 4. **Two key scalings:** - $\\eta \\sim \\frac{1}{3}\\rho \\bar{c} \\lambda$ (viscosity; depends on density, speed, path length) - $\\nu = \\eta/\\rho \\sim \\frac{\\bar{c}\\lambda}{3}$ (kinematic viscosity = momentum diffusivity) 5. **Later connections:** Newtonian stress law in continuum mechanics; relaxation-function picture in rheology ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#learning-goals",
     "type": "blog_section",
     "priority": 3
   },
   {
-    "title": "Lecture1 complementaryquestions answers - Question 1: Why Soft Materials Have Small Moduli: Because $\\xi$ is...",
-    "content": "Because $\\xi$ is nm\u2013\u03bcm (not atomic scale), the energy per unit volume is tiny, so $G$ lands in the kPa\u2013MPa range: - $\\xi \\approx 10$ nm $\\Rightarrow G \\approx 4$ kPa - $\\xi \\approx 1$ nm $\\Rightarrow G \\approx 4$ MPa **Key insight:** Strong, short-range bond energetics at atomic scales versus thermal, entropic elasticity at mesoscopic scales explains the orders-of-magnitude gap in moduli. ---",
-    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/Lecture1-ComplementaryQuestions-Answers/#question-1-why-soft-materials-have-small-moduli",
+    "title": "2 what is viscosity - Opening: Write on board",
+    "content": "$$\\boxed{\\tau_{xy} = \\eta \\dot{\\gamma} = \\eta \\frac{\\partial u_x}{\\partial y}}$$ This is the **foundational definition** of a Newtonian fluid. Shear stress is proportional to shear rate, with a constant of proportionality\u2014the viscosity $\\eta$ (eta)\u2014that depends on the material and temperature, but *not* on how fast you shear it. ![](../../_Media/2-What-is-Viscosity-1761738216814.png)",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#opening-write-on-board",
     "type": "blog_section",
     "priority": 3
   },
   {
-    "title": "Lecture1 complementaryquestions answers - Question 2: Everyday Product Classification",
-    "content": "**Question:** Pick any everyday product and identify which class of soft matter it belongs to and which microstructural ingredient gives it function (1-2 sentences). **Answer:** **Shaving cream** is a **foam** (gas dispersed in liquid). Its function\u2014staying puffy yet shapeable\u2014comes from a network of thin, surfactant-stabilized gas\u2013liquid films and curved interfaces that store surface energy and give yield-like behavior. **Alternative examples:** - **Yogurt:** Gelled colloid with protein network trapping water - **Mayonnaise:** Emulsion with oil droplets stabilized by egg proteins - **Rubber band:** Cross-linked polymer network with entropic elasticity ---",
-    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/Lecture1-ComplementaryQuestions-Answers/#question-2-everyday-product-classification",
+    "title": "2 what is viscosity - Define the terms aloud and on the board",
+    "content": "- **Shear stress** $\\tau_{xy}$ (Pa = N/m$^2$): force per unit area acting tangentially on a fluid layer - **Shear rate** $\\dot{\\gamma} = \\partial u_x / \\partial y$ (s$^{-1}$): the spatial gradient of velocity; how quickly the velocity changes across the fluid - **Viscosity** $\\eta$ (Pa$\\cdot$s): the coupling; higher $\\eta$ means stickier fluid - **Kinematic viscosity** $\\nu = \\eta/\\rho$ (m$^2$/s): the \"speed\" at which momentum diffuses through the fluid ![](../../_Media/2-What-is-Viscosity-1761738244038.png) > [!important] Distinguish Newtonian vs. Non-Newtonian > > Many students conflate \"viscosity\" with \"thickness.\" Clarify: A Newtonian fluid has **constant $\\eta$ at fixed T**\u2014it doesn't matter if you shear slowly or fast. Ketchup, blood, and polymer solutions are *non-Newtonian* ($\\eta$ changes with $\\dot{\\gamma}$); we'll encounter that in Lecture 4. **One-liner for intuition:** \"Viscosity is like internal friction: it's the resistance of the fluid to shearing.\" ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#define-the-terms-aloud-and-on-the-board",
     "type": "blog_section",
     "priority": 3
   },
   {
-    "title": "Lecture1 complementaryquestions answers - Question 3: Entropic Restoring Force",
-    "content": "**Question:** A polymer coil in a good solvent is gently stretched and released. Why is the restoring force called **entropic**? **Answer:** A flexible polymer in a good solvent has an enormous number of random-coil configurations. When stretched, the number of accessible conformations decreases (entropy \u2193), raising the free energy. When released, the chain retracts to **maximize entropy**, so the macroscopic restoring force is entropic in origin\u2014it arises from the system's tendency to explore more configurations, not from bond stretching or potential energy changes. **Mathematical expression:** For a Gaussian chain, the restoring force is: $$F = -T \\frac{\\partial S}{\\partial x}$$ This is fundamentally different from a metal spring, where the force comes from atomic bond deformation (enthalpic). The polymer spring is driven by **statistics and thermal fluctuations**. ---",
-    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/Lecture1-ComplementaryQuestions-Answers/#question-3-entropic-restoring-force",
+    "title": "2 what is viscosity - The Big Idea (Say This Twice)",
+    "content": "**[Emphasis 1: Foundational]** Viscosity emerges because **molecules carry momentum across planes** during free flights between collisions. When the flow has a shear (velocity gradient), molecules from fast and slow regions mix, and this **diffuses momentum down the gradient.** ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#the-big-idea-say-this-twice",
     "type": "blog_section",
     "priority": 3
   },
   {
-    "title": "Lecture1 complementaryquestions answers - Question 4: Rayleigh\u2013Plateau Instability: **Question:** You slowly...",
-    "content": "**Question:** You slowly pour a thin stream of water; after a short distance the stream breaks into drops. Name the instability and the thermodynamic driver, and give one way engineers harness or avoid it. **Answer:** **Instability name:** Rayleigh\u2013Plateau instability of a liquid cylinder **Thermodynamic driver:** **Surface tension**\u2014the stream lowers its surface free energy by transforming a high-area cylinder into nearly spherical drops.",
-    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/Lecture1-ComplementaryQuestions-Answers/#question-4-rayleighplateau-instability",
+    "title": "2 what is viscosity - Setup: Simple Couette Flow",
+    "content": "![](../../_Media/2-What-is-Viscosity-1761738283101.png) - Steady shear: $u_x(y) = \\dot{\\gamma} \\cdot y$ (velocity grows linearly with height) - Mean free path: $\\lambda$ - Mean speed of molecules: $\\bar{c} = \\sqrt{8 k_B T / (\\pi m)}$ (monatomic gas) - Number density: $n$ **Narration:** \"In this geometry, molecules at height $y$ have average $x$-velocity $u_x(y)$. But they only came to height $y$ after traveling a distance $\\sim \\lambda$ through the fluid. So the $x$-momentum they carry reflects the conditions they saw $\\sim \\lambda$ away. That's where the gradient matters.\" ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#setup-simple-couette-flow",
     "type": "blog_section",
     "priority": 3
   },
   {
-    "title": "Lecture1 complementaryquestions answers - Question 4: Rayleigh\u2013Plateau Instability: Long-wavelength perturbations grow...",
-    "content": "Long-wavelength perturbations grow fastest because drops have less surface area than a cylinder of the same volume. **Engineering applications:** - **Harness:** Inkjet printers use controlled Rayleigh\u2013Plateau breakup to make monodisperse droplets with precise size control - **Avoid/suppress:** Increase viscosity or introduce polymer elasticity to slow the growth rate (viscous/elastic resistance increases the characteristic timescale for breakup), which helps keep threads intact in coating and microfluidic jets **Additional context:** The fastest-growing wavelength is $\\lambda \\approx 9R$ (where $R$ is jet radius), which determines the characteristic drop size. ---",
-    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/Lecture1-ComplementaryQuestions-Answers/#question-4-rayleighplateau-instability",
+    "title": "2 what is viscosity - Step 1: How many molecules cross a plane per unit area per unit time?",
+    "content": "**Write:** $$\\text{Number flux} \\quad J = \\frac{1}{4} n \\bar{c}$$ **Derivation sketch (choose one approach for your cohort):**",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#step-1-how-many-molecules-cross-a-plane-per-unit-area-per-unit-time",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - Quick Route (1 minute)",
+    "content": "\"For an isotropic gas, **half** the molecules move upward and **half** downward (factor 1/2). Of those moving upward, the average normal component of velocity is $\\bar{c}/2$ (because the mean direction makes a ~60\u00b0 angle to the normal). So $\\langle v_y^+ \\rangle = (1/2) \\times (1/2) \\bar{c} = \\bar{c}/4$. Thus $J = n \\bar{c}/4$.\"",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#quick-route-1-minute",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - Integral Route (if your class likes to see the math)",
+    "content": "For a fixed speed c, integrate over the hemisphere of upward directions: $$\\langle v_y^+ \\rangle_{\\text{dir}} = \\frac{1}{4\\pi} \\int_{\\text{hemisphere}} c \\cos\\theta \\, d\\Omega = \\frac{1}{4\\pi} \\int_0^{2\\pi} d\\phi \\int_0^{\\pi/2} c\\cos\\theta \\sin\\theta \\, d\\theta = \\frac{c}{4}$$ Average over speeds (use $\\bar{c}$ for a Maxwellian): $J = n \\bar{c}/4$. ![](../../_Media/2-What-is-Viscosity-1761738310141.png) ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#integral-route-if-your-class-likes-to-see-the-math",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - Step 2: What momentum do these molecules *carry*?",
+    "content": "**Narration:** \"A molecule crossing the plane upward was last hit $\\sim \\lambda$ below, so it carries the mean x-momentum from around $y-\\lambda$. A molecule crossing downward carries momentum from around $y+\\lambda$.\" ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#step-2-what-momentum-do-these-molecules-carry",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - Step 3: Calculate the net *downward* flux of x-momentum",
+    "content": "Write step-by-step: Downward momentum flux (from above): $$\\Phi_{x}^{\\text{down}} \\approx \\frac{n\\bar{c}}{4} \\cdot m \\cdot u_x(y+\\lambda)$$ Upward momentum flux (from below): $$\\Phi_{x}^{\\text{up}} \\approx \\frac{n\\bar{c}}{4} \\cdot m \\cdot u_x(y-\\lambda)$$ Net downward flux (down minus up): $$\\Phi_{x}^{\\text{net}} = \\frac{nm\\bar{c}}{4}\\left[ u_x(y+\\lambda) - u_x(y-\\lambda) \\right]$$ **Now linearize:** For small $\\lambda$, $$u_x(y\\pm\\lambda) \\approx u_x(y) \\pm \\lambda \\frac{\\partial u_x}{\\partial y}$$ So: $$u_x(y+\\lambda) - u_x(y-\\lambda) \\approx 2\\lambda \\frac{\\partial u_x}{\\partial y}$$ **Substitute:** $$\\boxed{\\Phi_{x}^{\\text{net}} \\approx \\frac{nm\\bar{c}}{4} \\cdot 2\\lambda \\frac{\\partial u_x}{\\partial y} = \\frac{1}{2} \\rho \\bar{c} \\lambda \\frac{\\partial u_x}{\\partial y}}$$ where we used $\\rho = nm$ (mass density). ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#step-3-calculate-the-net-downward-flux-of-x-momentum",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - Step 4: **Identify shear stress and extract viscosity**",
+    "content": "**Critical definition (say with emphasis):** **[Emphasis 2]** \"The *shear stress* in the continuum description is **minus** the downward flux of x-momentum (the minus sign accounts for the direction convention). The physics is: if molecules are flowing momentum downward (from fast to slow regions), that's a **stress** acting downward.\" **Write:** $$\\tau_{xy} = -\\Phi_{x}^{\\text{net}} = -\\frac{1}{2} \\rho \\bar{c} \\lambda \\frac{\\partial u_x}{\\partial y}$$ Compare with Newton's law: $$\\tau_{xy} = -\\eta \\frac{\\partial u_x}{\\partial y}$$ **Therefore:** $$\\boxed{\\eta \\sim C \\, \\rho \\, \\bar{c} \\, \\lambda, \\quad\\text{where } C = \\mathcal{O}(1)}$$ A more careful Chapman-Enskog theory gives $C \\approx 1/3$ for a monatomic gas, but the **scaling is what matters**. ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#step-4-identify-shear-stress-and-extract-viscosity",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - Step 5: Understand kinematic viscosity as a diffusivity",
+    "content": "**Write:** $$\\nu = \\frac{\\eta}{\\rho} \\sim C \\, \\bar{c} \\, \\lambda$$ **Say:** \"The kinematic viscosity $\\nu$ is the **diffusivity** for momentum. Just like thermal diffusivity ($\\alpha$) tells you how fast heat diffuses, $\\nu$ tells you how fast shear (tangential momentum) spreads. Dimension check: $[\\bar{c}][\\lambda] = \\text{m/s} \\times \\text{m} = \\text{m}^2/\\text{s}$. \u2713\" ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#step-5-understand-kinematic-viscosity-as-a-diffusivity",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - The Wall Picture",
+    "content": "Draw on the board: ``` GAS INTERIOR (u_x varies with y) ===================================================== incoming molecule hits wall re-emitted molecule (carries tangential (wall (carries zero mean momentum u_x,local) thermalizes u_x in wall frame) tangential motion) ===================================================== WALL (stationary: u_wall = 0) ```",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#the-wall-picture",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - What's happening physically",
+    "content": "**[Emphasis 3: This is crucial]** \"When a gas molecule collides with a stationary wall, the wall **randomizes** (thermalizes) its tangential velocity component. The molecule re-emits with **zero mean tangential velocity in the wall frame.** This is called **diffuse reflection with full tangential momentum accommodation.**\" **Say:** \"Think of the wall as a **sink of x-momentum.** Every molecule that hits the wall loses its tangential velocity. Just outside the wall, there's therefore a **deficit** in mean $u_x$ compared to the interior.\" ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#whats-happening-physically",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - How does the interior respond?",
+    "content": "**Write the momentum balance:** In steady state, the **viscous flux from the interior** must feed the **momentum sink at the wall**. Rate at which wall removes x-momentum (per unit area): $$\\text{Removal rate} \\sim \\underbrace{\\left(\\frac{1}{4}n\\bar{c}\\right)}_{\\text{collision rate}} \\times \\underbrace{m u_x(0^+)}_{\\text{momentum per molecule}}$$ where $u_x(0^+)$ is the fluid velocity just outside the wall. Rate at which interior supplies x-momentum via viscous diffusion: $$\\text{Supply rate} = -\\tau_{xy}\\big|_{\\text{wall}} = \\eta \\frac{\\partial u_x}{\\partial y}\\bigg|_{\\text{wall}}$$ **In steady shear:** $$\\eta \\frac{\\partial u_x}{\\partial y}\\bigg|_{\\text{wall}} \\sim \\frac{1}{4}n\\bar{c} \\, m \\, u_x(0^+)$$ For small $u_x(0^+)$ relative to the bulk (or if the wall is perfectly accommodating), this forces $u_x(0^+) \\to u_{\\text{wall}} = 0$. **Result:** $$\\boxed{u_{\\text{fluid}}(\\text{wall}) = u_{\\text{wall}} \\quad\\text{(no-slip condition)}}$$ ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#how-does-the-interior-respond",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - When does slip appear?",
+    "content": "**Say:** \"No-slip is the **continuum limit.** It works perfectly when the mean free path $\\lambda$ is much smaller than any relevant geometric length (Knudsen number $\\text{Kn} = \\lambda/L \\ll 1$).\" **For rarefied gases or special surfaces (non-accommodating):** The wall doesn't fully thermalize the tangential momentum. Instead, we get **partial slip**: $$u_{\\text{slip}} = u_{\\text{fluid}}(0) - u_{\\text{wall}} = b \\frac{\\partial u_x}{\\partial y}\\bigg|_{\\text{wall}}$$ where the **slip length** is $b \\sim \\mathcal{O}(\\lambda)$ (modulated by an accommodation coefficient). **Maxwell slip law:** $$\\boxed{b \\approx C_{\\text{acc}} \\lambda, \\quad C_{\\text{acc}} \\approx 1\\text{--}2}$$ ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#when-does-slip-appear",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - Connecting bulk viscosity to wall shear",
+    "content": "**Key insight (write as a box):** $$\\boxed{\\text{The same } \\eta \\text{ that represents bulk momentum diffusion also sets the wall shear rate:}}$$ $$\\boxed{\\tau_{\\text{wall}} = \\eta \\frac{\\partial u_x}{\\partial y}\\bigg|_{\\text{wall}} = \\text{rate at which wall removes x-momentum}}$$ ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#connecting-bulk-viscosity-to-wall-shear",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - Stokes' First Problem (Impulsive Start)",
+    "content": "**Setup:** A semi-infinite fluid at rest; suddenly the plate at y=0 moves with velocity U. **Initial conditions:** - $u_x(y, 0) = 0$ for all $y > 0$ - $u_x(0, t) = U$ (boundary condition) **Governing PDE (momentum diffusion):** $$\\boxed{\\frac{\\partial u_x}{\\partial t} = \\nu \\frac{\\partial^2 u_x}{\\partial y^2}}$$ where $\\nu = \\eta/\\rho$ is the kinematic viscosity (momentum diffusivity). **No need to solve\u2014just scale:** The momentum **penetrates** into the fluid over a diffusion layer of thickness: $$\\delta(t) \\sim \\sqrt{\\nu t}$$ **Say (with emphasis):** \"Look at this equation. It's *exactly* like heat diffusion or dye diffusion. Viscosity $\\nu$ plays the role of thermal or mass diffusivity. This confirms our kinetic picture: **viscosity is the diffusivity for momentum.**\" ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#stokes-first-problem-impulsive-start",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - Visual analogy (draw on board or show slide)",
+    "content": "``` t = 0: t = t_1: t = t_2 > t_1: | | | U ----- U ----- U ----- | | | momentum | penetrates | boundary | deeper | layer \u03b4(t_1) | \u03b4(t_2) > \u03b4(t_1) | | 0 ----- 0 ----- 0 ----- ``` ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#visual-analogy-draw-on-board-or-show-slide",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - Non-Newtonian fluids",
+    "content": "The Newtonian law $\\tau = \\eta \\dot{\\gamma}$ works when: - The fluid has **no internal structure** that deforms under shear - Or the structure **adapts quickly** compared to the flow timescale For polymer solutions, suspensions, or emulsions: - Microstructure (chains, particles) **realigns** under shear - Viscosity becomes a function of shear rate: $\\eta(\\dot{\\gamma})$ - You get phenomena like shear-thinning or shear-thickening > \"Today we derived why Newtonian behavior is natural for a dilute gas. But real soft-matter systems are more interesting because their microstructure evolves. That's where non-Newtonian rheology comes in.\" ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#non-newtonian-fluids",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - Reynolds number: Viscous vs. inertial",
+    "content": "$$\\text{Re} = \\frac{U L}{\\nu}$$ - $U L$: scale of *advection* (inertial effects) - $\\nu$: scale of *momentum diffusion* (viscous effects) **Say:** \"High Re = inertia dominates (turbulence, jets). Low Re = viscosity dominates (creeping flow, microfluidics). The transition is where things get interesting.\" ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#reynolds-number-viscous-vs-inertial",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - Summary: One Slide for Students (Chalkboard Summary)",
+    "content": "$$\\boxed{\\text{Newton's Law:} \\quad \\tau_{xy} = \\eta \\dot{\\gamma}}$$ $$\\boxed{\\text{Kinetic Picture:} \\quad \\eta \\sim \\frac{1}{3} \\rho \\bar{c} \\lambda, \\quad \\nu = \\frac{\\eta}{\\rho} \\sim \\frac{\\bar{c} \\lambda}{3}}$$ $$\\boxed{\\text{Wall Physics (No-Slip):} \\quad u_{\\text{fluid}}(\\text{wall}) = u_{\\text{wall}}}$$ (emerges when wall thermalizes momentum; fails at high Kn) $$\\boxed{\\text{Continuum Picture:} \\quad \\frac{\\partial u}{\\partial t} = \\nu \\frac{\\partial^2 u}{\\partial y^2} \\quad \\Rightarrow \\quad \\delta(t) \\sim \\sqrt{\\nu t}}$$ ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#summary-one-slide-for-students-chalkboard-summary",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - Conceptual Takeaway (Read Aloud at End)",
+    "content": "> **\"Viscosity is to momentum what diffusivity is to dye: it smooths out **gradients** in tangential velocity by spreading momentum from fast to slow regions. At the wall, the same microscopic physics\u2014collisional randomization of tangential momentum\u2014produces the **no-slip condition** in the continuum limit, and **predicts slip** when the mean free path is not tiny.\"** ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#conceptual-takeaway-read-aloud-at-end",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - What to say (not write):",
+    "content": "1. **On the empirical law:** \"Newton's law is **exact for dilute gases and low-Re flows**. It's our baseline for understanding viscosity.\" 2. **On the kinetic derivation:** \"The key insight is that **molecules carry momentum with them** during free flights. Shear exists $\\to$ momentum comes from different regions $\\to$ **diffusion.**\" 3. **On temperature scaling:** \"Gases get **stickier** as you heat them (faster molecules move momentum farther). Liquids usually get **less viscous** (cage-breaking dynamics). Watch for this flip!\" 4. **On no-slip:** \"The wall isn't magic. It's just a **momentum sink.** Molecules bounce off and lose their sideways velocity. The interior has to **feed this sink via a gradient.** Simple kinetics $\\to$ macroscopic no-slip.\" 5. **On continuum diffusion:** \"When you see $\\partial u/\\partial t = \\nu \\partial^2 u / \\partial y^2$, remember: **$\\nu$ is a diffusivity.** Shear spreads just like heat.\" ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#what-to-say-not-write",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - Common Student Misconceptions & Corrections: | Misconception |...",
+    "content": "| Misconception | Correction | |---|---| | \"Viscosity = thickness\" | Viscosity is internal friction (momentum transport). Tar is thick but has finite viscosity. Silly putty is stiff but has very low steady-state viscosity. | | \"All liquids get more viscous when heated\" | **Gases** get more viscous when heated (faster particles \u2192 larger $\\lambda \\times \\bar{c}$). **Liquids** usually get less viscous (activation, cage escape). Different mechanisms. | | \"No-slip is a fundamental law\" | No-slip is a *consequence* of efficient tangential momentum accommodation at the wall. It fails (partial slip) when Kn is large or the wall doesn't accommodate. | | \"Viscosity depends on shear rate for all fluids\" | Only for **non-Newtonian** fluids. Newtonian (simple gases, low-Re oil flows) have constant $\\eta$ at fixed T. | | \"The 1/4 in $J = n\\bar{c}/4$ is a Maxwellian fact\" | No\u2014it's **pure geometry**: (1/2 go upward) \u00d7 (1/2 average $\\cos\\theta$ in a hemisphere).",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#common-student-misconceptions-corrections",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - Common Student Misconceptions & Corrections: Works for *any*...",
+    "content": "Works for *any* isotropic speed distribution. | ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#common-student-misconceptions-corrections",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - 1. **Playing-card analogy**",
+    "content": "Stack a few cards and try to shear them by hand. - Pushing one card horizontally: you feel resistance (viscosity). - That resistance comes from **friction between layers** (like our molecular collisions). - The more layers (higher density) or faster motion (higher $\\bar{c}$), the more resistance. > *Takeaway:* \"Viscosity is the **microscopic friction** that emerges when you try to shear a fluid.\" ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#1-playing-card-analogy",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - 2. **Food dye in water vs. syrup**",
+    "content": "Pour a drop of food dye into a glass of water and a glass of corn syrup at the same temperature. - **Water:** dye spreads quickly (low $\\nu$). - **Syrup:** dye creeps slowly (high $\\nu$). > *Takeaway:* \"High viscosity = slow momentum diffusion. You can *see* the diffusion boundary layer taking its time.\" ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#2-food-dye-in-water-vs-syrup",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - 3. **Thought experiment: rarefied air**",
+    "content": "Imagine flying an airplane at sea level vs. at 40 km altitude. - At sea level: $n$ is high, $\\lambda$ is tiny \u2192 large $\\eta$. - At 40 km: $n$ is low, $\\lambda$ is huge \u2192 **but $\\eta$ barely changes!** (because the decrease in $n$ and increase in $\\lambda$ nearly cancel.) > *Takeaway:* \"Viscosity in gases is **nearly independent of pressure.** That's why airplane altimeters work.\" ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#3-thought-experiment-rarefied-air",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - Discussion Questions for Engagement",
+    "content": "1. **Why does viscosity increase with T in gases but decrease in liquids?** (Hint: different microscopic mechanisms.) 2. **Estimate the viscosity of air at room temperature.** Use $\\rho \\approx 1.2$ kg/m\u00b3, $\\bar{c} \\approx 500$ m/s, $\\lambda \\approx 70$ nm. 3. **What is the \"no-slip length\"** (slip length $b$) for air at 1 atm and room temperature? How does it compare to typical macroscopic dimensions? 4. **In a microfluidic device** (channels ~10 \u03bcm), when would you expect partial slip to become significant? (Consider Kn.) 5. **Sketch** the velocity profile $u_x(y, t)$ for Stokes' first problem at three different times. How does $\\nu$ affect the steepness of the profile? ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#discussion-questions-for-engagement",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - Primary Literature",
+    "content": "- **Chapman & Cowling (1970):** *The Mathematical Theory of Non-Uniform Gases.* (Classic kinetic theory; Sections 2\u20134 for viscosity.) - **Reif (1965):** *Fundamentals of Statistical and Thermal Physics.* (Clear kinetic-theory chapter.) - **Bird, Stewart & Lightfoot (2007):** *Transport Phenomena.* (Chapter 1: connection between kinetic theory and continuum viscosity.) - **Doi & Edwards (1986):** *The Theory of Polymer Dynamics.* (Rheology and the viscosity integral.)",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#primary-literature",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - Supplementary Materials",
+    "content": "- [What is Viscosity (PDF)](whatIsViscosity.pdf) \u2014 Comprehensive reference document on kinetic theory foundations ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#supplementary-materials",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - Connection to Lecture 3",
+    "content": "The viscosity framework we've developed\u2014understanding it as momentum diffusion\u2014directly connects to the **instabilities** and **singularities** that emerge in soft matter flows. In Lecture 3, we will see how surface tension and viscosity compete to either suppress or amplify perturbations at interfaces, leading to phenomena like the Rayleigh\u2013Plateau instability and capillary breakup. Understanding *why* momentum diffusion acts like a dissipative force (damping) is central to analyzing these instabilities. ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#connection-to-lecture-3",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - Key Takeaways: Context",
+    "content": "1. **Viscosity is momentum diffusion.** The same framework that describes heat spreading describes how shear spreads through a fluid. 2. **Kinetics connects to continuum.** A simple kinetic-theory argument ($\\eta \\sim \\rho \\bar{c} \\lambda$) bridges molecular collisions and macroscopic stress. 3. **No-slip emerges from momentum accommodation.** The wall isn't a boundary condition imposed from above\u2014it's a consequence of efficient tangential momentum randomization at collisions. 4. **Temperature effects differ.** Gases become more viscous when heated (faster molecules); liquids usually become less viscous (cage-breaking). Recognizing this inversion is important for intuition. 5. **Reynolds number quantifies the balance.** Re = (inertial effects) / (viscous effects). High Re: inertia dominates. Low Re: viscosity dominates.",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#key-takeaways",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - Key Takeaways: The transition is...",
+    "content": "The transition is where interesting physics happens. 6. **Continuum equation mirrors diffusion.** The PDE $\\partial u/\\partial t = \\nu \\partial^2 u/\\partial y^2$ is the Navier\u2013Stokes momentum equation in its simplest form. Recognizing $\\nu$ as a diffusivity (not just a material property) unifies understanding. ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#key-takeaways",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - Foundational Texts",
+    "content": "- **de Gennes, P.-G.** (1979). *Scaling Concepts in Polymer Physics*. Cornell University Press. \u2014 Soft matter perspective on viscosity - **Landau & Lifshitz** (1987). *Fluid Mechanics* (2nd ed.). Pergamon. \u2014 Classical continuum mechanics with kinetic theory foundations",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#foundational-texts",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - Advanced Topics",
+    "content": "- **Evans & Searles** (2002). \"The fluctuation theorem.\" *Advances in Physics*, **51**(7), 1529\u20131585. \u2014 Non-equilibrium statistical mechanics - **Kremer & Grest** (1990). \"Dynamics of entangled linear polymer melts.\" *The Journal of Chemical Physics*, **92**(8), 5057\u20135086. \u2014 Polymer rheology from kinetic theory",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#advanced-topics",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2 what is viscosity - Application Areas",
+    "content": "- **Doi, M. & Edwards, S. F.** (1986). *The Theory of Polymer Dynamics*. Oxford University Press. \u2014 Viscoelasticity and non-Newtonian viscosity --- > [!significance]- Metadata > Author:: [Vatsal Sanjay](https://vatsalsanjay.com) > Date published:: Oct 29, 2025 > Date modified:: Oct 29, 2025 > > Lecture note on viscosity as momentum diffusion, connecting kinetic theory to continuum mechanics and soft matter flows. > [!link] Back to main website > [Home](https://comphy-lab.org/), [Team](https://comphy-lab.org/team), [Research](https://comphy-lab.org/research), [Github](https://github.com/comphy-lab) > > \ud83d\udcdd [Edit this page on GitHub](https://github.com/comphy-lab/CoMPhy-Lab-Blogs/blob/main/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity.md)",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#application-areas",
     "type": "blog_section",
     "priority": 3
   },
@@ -2630,7 +2854,7 @@
   },
   {
     "title": "1 intro soft matter - Homework (Self-Assessed)",
-    "content": "> [!check] **Homework Questions** > > **Q1.** Explain, in your own words, why many soft materials have **shear moduli** orders of magnitude below crystalline solids. (Think about atomic vs mesoscopic length scales and energy sources.) > > **Q2.** Pick an everyday product and identify: > - Its **soft-matter classification** (foam, gel, polymer solution, colloid, etc.) > - The **microstructural ingredient** that gives it its desired function > > **Q3.** A polymer coil in a good solvent is stretched and released. Why is the restoring force **entropic** rather than from stiff bond stretching? > > **Q4.** A thin water stream breaks into drops. Name: > - The **instability** responsible > - Its **thermodynamic driver** (what energy is minimized?) > - One **engineering application** or **mitigation strategy** (e.g., in printing, mixing, coating) [[Lecture1-ComplementaryQuestions-Answers]] ---",
+    "content": "> [!check] **Homework Questions** > > **Q1.** Explain, in your own words, why many soft materials have **shear moduli** orders of magnitude below crystalline solids. (Think about atomic vs mesoscopic length scales and energy sources.) > > **Q2.** Pick an everyday product and identify: > - Its **soft-matter classification** (foam, gel, polymer solution, colloid, etc.) > - The **microstructural ingredient** that gives it its desired function > > **Q3.** A polymer coil in a good solvent is stretched and released. Why is the restoring force **entropic** rather than from stiff bond stretching? > > **Q4.** A thin water stream breaks into drops. Name: > - The **instability** responsible > - Its **thermodynamic driver** (what energy is minimized?) > - One **engineering application** or **mitigation strategy** (e.g., in printing, mixing, coating) [[1-Complementary-Questions-Answers]] ---",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/1-Intro-Soft-Matter/#homework-self-assessed",
     "type": "blog_section",
     "priority": 3
@@ -2699,6 +2923,55 @@
     "priority": 3
   },
   {
+    "title": "1 complementary questions answers - Lecture 1: Complementary Questions - Answers",
+    "content": "**Course:** Introduction to Soft Condensed Matter **Assignment Type:** Self-assessed questions ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/1-Complementary-Questions-Answers/#lecture-1-complementary-questions---answers",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "1 complementary questions answers - Question 1: Why Soft Materials Have Small Moduli: **Question:** Explain in...",
+    "content": "**Question:** Explain in your own words why many soft materials (rubbers, gels, emulsions) have moduli that are orders of magnitude smaller than crystalline solids. **Answer:** In crystalline solids, stiffness arises from steep interatomic potentials acting at atomic spacing (~0.1 nm). The elastic energy density scales like $U/a^3$, which is why bulk and shear moduli reach GPa\u2013TPa scales for materials like diamond and steel. By contrast, in rubbers, gels, and many soft networks, the load-bearing modulus is largely **entropic**. Thermal fluctuations of network strands resist deformation, giving: $$G \\approx n k_B T \\sim \\frac{k_B T}{\\xi^3}$$ where $\\xi$ is a mesoscopic mesh size.",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/1-Complementary-Questions-Answers/#question-1-why-soft-materials-have-small-moduli",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "1 complementary questions answers - Question 1: Why Soft Materials Have Small Moduli: Because $\\xi$ is...",
+    "content": "Because $\\xi$ is nm\u2013\u03bcm (not atomic scale), the energy per unit volume is tiny, so $G$ lands in the kPa\u2013MPa range: - $\\xi \\approx 10$ nm $\\Rightarrow G \\approx 4$ kPa - $\\xi \\approx 1$ nm $\\Rightarrow G \\approx 4$ MPa **Key insight:** Strong, short-range bond energetics at atomic scales versus thermal, entropic elasticity at mesoscopic scales explains the orders-of-magnitude gap in moduli. ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/1-Complementary-Questions-Answers/#question-1-why-soft-materials-have-small-moduli",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "1 complementary questions answers - Question 2: Everyday Product Classification",
+    "content": "**Question:** Pick any everyday product and identify which class of soft matter it belongs to and which microstructural ingredient gives it function (1-2 sentences). **Answer:** **Shaving cream** is a **foam** (gas dispersed in liquid). Its function\u2014staying puffy yet shapeable\u2014comes from a network of thin, surfactant-stabilized gas\u2013liquid films and curved interfaces that store surface energy and give yield-like behavior. **Alternative examples:** - **Yogurt:** Gelled colloid with protein network trapping water - **Mayonnaise:** Emulsion with oil droplets stabilized by egg proteins - **Rubber band:** Cross-linked polymer network with entropic elasticity ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/1-Complementary-Questions-Answers/#question-2-everyday-product-classification",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "1 complementary questions answers - Question 3: Entropic Restoring Force",
+    "content": "**Question:** A polymer coil in a good solvent is gently stretched and released. Why is the restoring force called **entropic**? **Answer:** A flexible polymer in a good solvent has an enormous number of random-coil configurations. When stretched, the number of accessible conformations decreases (entropy \u2193), raising the free energy. When released, the chain retracts to **maximize entropy**, so the macroscopic restoring force is entropic in origin\u2014it arises from the system's tendency to explore more configurations, not from bond stretching or potential energy changes. **Mathematical expression:** For a Gaussian chain, the restoring force is: $$F = -T \\frac{\\partial S}{\\partial x}$$ This is fundamentally different from a metal spring, where the force comes from atomic bond deformation (enthalpic). The polymer spring is driven by **statistics and thermal fluctuations**. ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/1-Complementary-Questions-Answers/#question-3-entropic-restoring-force",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "1 complementary questions answers - Question 4: Rayleigh\u2013Plateau Instability: **Question:** You slowly...",
+    "content": "**Question:** You slowly pour a thin stream of water; after a short distance the stream breaks into drops. Name the instability and the thermodynamic driver, and give one way engineers harness or avoid it. **Answer:** **Instability name:** Rayleigh\u2013Plateau instability of a liquid cylinder **Thermodynamic driver:** **Surface tension**\u2014the stream lowers its surface free energy by transforming a high-area cylinder into nearly spherical drops.",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/1-Complementary-Questions-Answers/#question-4-rayleighplateau-instability",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "1 complementary questions answers - Question 4: Rayleigh\u2013Plateau Instability: Long-wavelength perturbations grow...",
+    "content": "Long-wavelength perturbations grow fastest because drops have less surface area than a cylinder of the same volume. **Engineering applications:** - **Harness:** Inkjet printers use controlled Rayleigh\u2013Plateau breakup to make monodisperse droplets with precise size control - **Avoid/suppress:** Increase viscosity or introduce polymer elasticity to slow the growth rate (viscous/elastic resistance increases the characteristic timescale for breakup), which helps keep threads intact in coating and microfluidic jets **Additional context:** The fastest-growing wavelength is $\\lambda \\approx 9R$ (where $R$ is jet radius), which determines the characteristic drop size. ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/1-Complementary-Questions-Answers/#question-4-rayleighplateau-instability",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
     "title": "0 readme - Soft Condensed Matter: An Introduction",
     "content": "**Course Overview.** A journey through soft materials\u2014from everyday foams and gels to polymer networks and interfacial dynamics. We develop the conceptual and mathematical foundations to understand why soft matter behaves so differently from hard solids and liquids.",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/0-README/#soft-condensed-matter-an-introduction",
@@ -2714,7 +2987,7 @@
   },
   {
     "title": "0 readme - Course Structure (8+ Lectures + Bridges)",
-    "content": "- **Lecture 1:** [[1-Intro-Soft-Matter|Different Faces of Soft Condensed Matter]] \u2013 What is soft matter, why is it soft, and how do we measure softness? - **Lecture 1.5:** [[1.5-Taylor-Culick-Paradox|The Taylor\u2013Culick Paradox \u2014 Where Did the Energy Go?]] \u2013 Resolving a century-old paradox through proper energy accounting and momentum conservation - **Lecture 2:** Coarse-Grained Continuum Mechanics & Conservation Laws - **Lecture 3:** Soft Matter Instabilities - **Lecture 4:** Soft Matter Singularities - **Lecture 5:** Elastic vs Viscous vs Viscoelastic Behavior - **Lecture 6:** Rheology \u2013 Measuring \"Softness\" and Time-Dependent Response - **Lecture 7:** Advanced Topics & Research Frontiers - **Lecture 8:** Presentations (10:00\u201312:00)",
+    "content": "- **Lecture 1:** [[1-Intro-Soft-Matter|Different Faces of Soft Condensed Matter]] \u2013 What is soft matter, why is it soft, and how do we measure softness? - **Lecture 1.5:** [[1.5-Taylor-Culick-Paradox|The Taylor\u2013Culick Paradox \u2014 Where Did the Energy Go?]] \u2013 Resolving a century-old paradox through proper energy accounting and momentum conservation - **Lecture 2:** [[2-What-is-Viscosity|Viscosity and Momentum Diffusion]] \u2013 Viscosity as an emergent property from kinetic theory; the no-slip condition; continuum momentum transport - **Lecture 3:** Soft Matter Instabilities - **Lecture 4:** Soft Matter Singularities - **Lecture 5:** Elastic vs Viscous vs Viscoelastic Behavior - **Lecture 6:** Rheology \u2013 Measuring \"Softness\" and Time-Dependent Response - **Lecture 7:** Advanced Topics & Research Frontiers - **Lecture 8:** Presentations (10:00\u201312:00)",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/0-README/#course-structure-8-lectures-bridges",
     "type": "blog_section",
     "priority": 3
@@ -2798,7 +3071,7 @@
   },
   {
     "title": "1.5 taylor culick paradox - Rayleigh's Pioneering Work (1891)",
-    "content": "![](../../_Media/1.5-Taylor-Culick-01.png) John William Strutt, 2nd Baron Rayleigh, used instantaneous photography to capture the dynamics of liquid jets and interfaces. In a remarkable 1891 paper, he observed breaking jets and proposed an energy-balance argument for the speed of film retraction: > **Rate of surface energy decrease = Rate of kinetic energy increase** Mathematically: $$\\frac{d}{dt}\\left(\\frac{1}{2}mv^2\\right) = 2\\gamma_{fa}(2\\pi R) v$$ This yielded: $$v_{\\text{Rayleigh}} = \\sqrt{\\frac{4\\gamma_{fa}}{\\rho h_0}}$$",
+    "content": "![](../../_Media/1.5-Taylor-Culick-01.png) John William Strutt, 2nd Baron Rayleigh, used instantaneous photography to capture the dynamics of liquid jets and interfaces. In a remarkable 1891 paper, he observed breaking jets and proposed an energy-balance argument for the speed of film retraction: > **Rate of surface energy decrease = Rate of kinetic energy increase** Mathematically: $$\\frac{d}{dt}\\left(\\frac{1}{2}mv^2\\right) = 2\\gamma_{fa}(2\\pi R) v$$ This yielded: $$v_{\\text{Dupre-Rayleigh}} = \\sqrt{\\frac{4\\gamma_{fa}}{\\rho h_0}}$$",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/1.5-Taylor-Culick-Paradox/#rayleighs-pioneering-work-1891",
     "type": "blog_section",
     "priority": 3
@@ -2854,7 +3127,7 @@
   },
   {
     "title": "1.5 taylor culick paradox - Complete Energy Balance",
-    "content": "Let's now account for all energy flows: **Energy released by surface tension:** $$\\dot{E}_{released} = 2\\gamma_{fa} \\cdot 2\\pi R \\cdot v_f = 4\\pi \\gamma_{fa} R v_f$$ **Energy dissipated (inelastic collision):** $$\\dot{E}_{dissipated} = \\frac{1}{2}\\frac{dm}{dt}v_f^2 = \\frac{1}{2}\\rho (2\\pi R h_0) v_f \\cdot v_f^2 = \\pi \\rho R h_0 v_f^3$$ **Energy conservation (with dissipation):** $$\\dot{E}_{released} = \\dot{E}_{dissipated}$$ $$4\\pi \\gamma_{fa} R v_f = \\pi \\rho R h_0 v_f^3$$ $$4\\gamma_{fa} = \\rho h_0 v_f^2$$ $$\\boxed{v_f = \\sqrt{\\frac{4\\gamma_{fa}}{\\rho h_0}}} \\quad \\text{(Corrected energy prediction!)}$$ Wait\u2014this gives the Dupr\u00e9 prediction again, not Taylor's! Let me reconsider... ---",
+    "content": "Let's now account for all energy flows: **Energy released by surface tension:** $$\\dot{E}_{released} = 2\\gamma_{fa} \\cdot 2\\pi R \\cdot v_f = 4\\pi \\gamma_{fa} R v_f$$ **Energy dissipated (inelastic collision):** $$\\dot{E}_{dissipated} = \\frac{1}{2}\\frac{dm}{dt}v_f^2 = \\frac{1}{2}\\rho (2\\pi R h_0) v_f \\cdot v_f^2 = \\pi \\rho R h_0 v_f^3$$ **Energy conservation (with dissipation):** $$\\dot{E}_{released} = \\dot{E}_{dissipated} + \\dot{E}_{kinetic}$$ $$4\\pi \\gamma_{fa} R v_f = 2\\pi \\rho R h_0 v_f^3$$ $$2\\gamma_{fa} = \\rho h_0 v_f^2$$ $$\\boxed{v_f = \\sqrt{\\frac{2\\gamma_{fa}}{\\rho h_0}}} \\quad \\text{(Corrected energy prediction!)}$$ ---",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/1.5-Taylor-Culick-Paradox/#complete-energy-balance",
     "type": "blog_section",
     "priority": 3
@@ -2875,7 +3148,7 @@
   },
   {
     "title": "1.5 taylor culick paradox - Why the Original Energy Balance Failed",
-    "content": "The error in the Dupr\u00e9\u2013Rayleigh approach was assuming that **only kinetic energy matters**. They wrote: $$2\\gamma_{fa} \\cdot 2\\pi R \\cdot v_f = \\frac{d}{dt}\\left[\\frac{1}{2}m v_f^2\\right]$$ But this neglected the **internal deformation energy** as the film material is \"compressed\" into the rim. The correct energy balance is: $$2\\gamma_{fa} \\cdot 2\\pi R \\cdot v_f = \\frac{d}{dt}\\left[\\frac{1}{2}m v_f^2\\right] + \\dot{E}_{internal}$$ The \"missing\" energy $\\dot{E}_{internal}$ goes into: - **Deforming the fluid** from a thin film to the thicker rim - **Viscous dissipation** at high shear rates - **Acoustic waves** (shock waves in the fluid) ---",
+    "content": "The error in the Dupr\u00e9\u2013Rayleigh approach was assuming that **only kinetic energy matters**. $$2\\gamma_{fa} \\cdot 2\\pi R \\cdot v_f = \\frac{d}{dt}\\left[\\frac{1}{2}m v_f^2\\right]$$ But this neglected **dissipation** as the film material is \"compressed\" into the rim. The correct energy balance is: $$2\\gamma_{fa} \\cdot 2\\pi R \\cdot v_f = \\frac{d}{dt}\\left[\\frac{1}{2}m v_f^2\\right] + \\dot{E}_\\text{dissipation}$$ The \"missing\" energy $\\dot{E}_{internal}$ goes into: - **Deforming the fluid** from a thin film to the thicker rim - **Viscous dissipation** at high shear rates - **Acoustic waves** (shock waves in the fluid) ---",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/1.5-Taylor-Culick-Paradox/#why-the-original-energy-balance-failed",
     "type": "blog_section",
     "priority": 3
@@ -2917,15 +3190,15 @@
   },
   {
     "title": "1.5 taylor culick paradox - Primary Literature",
-    "content": "- **G. I. Taylor**, *Proc. R. Soc. A*, **253**, 313\u2013321 (1959) \u2014 Classic momentum-balance derivation - **F. E. C. Culick**, *J. Appl. Phys.*, **31**, 1128 (1960) \u2014 Experimental confirmation - **P.-G. de Gennes**, *Faraday Discuss.*, **104**, 1\u20138 (1996) \u2014 Energy dissipation and resolution - **N. Savva & O. R. Bush**, *J. Fluid Mech.*, **626**, 211\u2013240 (2009) \u2014 Modern computational studies",
+    "content": "- **G. I. Taylor**, *Proc. R. Soc. A*, **253**, 313\u2013321 (1959) \u2014 Classic momentum-balance derivation - **F. E. C. Culick**, *J. Appl. Phys.*, **31**, 1128 (1960) \u2014 Experimental confirmation - **P.-G. de Gennes**, *Faraday Discuss.*, **104**, 1\u20138 (1996) \u2014 Energy dissipation and resolution - **N. Savva & J. W. M. Bush**, *J. Fluid Mech.*, **626**, 211\u2013240 (2009) \u2014 Modern computational studies",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/1.5-Taylor-Culick-Paradox/#primary-literature",
     "type": "blog_section",
     "priority": 3
   },
   {
-    "title": "1.5 taylor culick paradox - Reviews",
-    "content": "- **J. C. Burton et al.**, *Phys. Rev. Lett.*, **109**, 064501 (2012) \u2014 High-speed imaging and instability - **M. Brenner et al.**, *Physics of Fluids*, **25**, 121704 (2013) \u2014 Viscoelastic film retraction ---",
-    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/1.5-Taylor-Culick-Paradox/#reviews",
+    "title": "1.5 taylor culick paradox - Supplementary Materials",
+    "content": "- [Dupr\u00e9\u2013Rayleigh paradox (PDF)](Dupre-Rayleigh-paradox.pdf) \u2014 Comprehensive reference document on the paradox resolution ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/1.5-Taylor-Culick-Paradox/#supplementary-materials",
     "type": "blog_section",
     "priority": 3
   },
@@ -2945,7 +3218,7 @@
   },
   {
     "title": "1.5 taylor culick paradox - Homework (Self-Assessed): Explain your reasoning...",
-    "content": "Explain your reasoning using scaling arguments. > > **Q4.** Design a thought experiment or simple calculation to estimate the fraction of released surface energy that goes into: > - (a) Kinetic energy of the rim > - (b) Dissipation (heating, deformation) > > (Hint: Use the Taylor speed and compare the kinetic energy flux $\\frac{1}{2}(\\dot{m})v^2$ with the released energy flux $2\\gamma A \\cdot v$.) --- > [!significance]- Metadata > Author:: [Vatsal Sanjay](https://vatsalsanjay.com) > Date published:: Oct 28, 2025 > Date modified:: Oct 28, 2025 > > Bridge lecture resolving the Dupr\u00e9\u2013Rayleigh paradox through modern understanding of energy dissipation and momentum conservation in soft matter flows. > [!link] Back to main website > [Home](https://comphy-lab.org/), [Team](https://comphy-lab.org/team), [Research](https://comphy-lab.org/research), [Github](https://github.com/comphy-lab) > > \ud83d\udcdd [Edit this page on GitHub](https://github.com/comphy-lab/CoMPhy-Lab-Blogs/blob/main/Lecture-Notes/Intro-Soft-Matter/1.5-Taylor-Culick-Paradox.md)",
+    "content": "Explain your reasoning using scaling arguments. > > **Q4.** Design a thought experiment or simple calculation to estimate the fraction of released surface energy that goes into: > - (a) Kinetic energy of the rim > - (b) Dissipation (heating, deformation) --- > [!significance]- Metadata > Author:: [Vatsal Sanjay](https://vatsalsanjay.com) > Date published:: Oct 28, 2025 > Date modified:: Oct 28, 2025 > > Bridge lecture resolving the Dupr\u00e9\u2013Rayleigh paradox through modern understanding of energy dissipation and momentum conservation in soft matter flows. > [!link] Back to main website > [Home](https://comphy-lab.org/), [Team](https://comphy-lab.org/team), [Research](https://comphy-lab.org/research), [Github](https://github.com/comphy-lab) > > \ud83d\udcdd [Edit this page on GitHub](https://github.com/comphy-lab/CoMPhy-Lab-Blogs/blob/main/Lecture-Notes/Intro-Soft-Matter/1.5-Taylor-Culick-Paradox.md)",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/1.5-Taylor-Culick-Paradox/#homework-self-assessed",
     "type": "blog_section",
     "priority": 3
