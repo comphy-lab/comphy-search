@@ -767,16 +767,37 @@
     "priority": 3
   },
   {
-    "title": "0_readme - Gauss' Law:",
-    "content": "2025-01-21 [[Gauss-law-of-Electrostatics]]: Analysis of electric field flux through different surfaces using Gauss's law, with visual demonstrations.",
-    "url": "https://blogs.comphy-lab.org/0_README/#gauss-law",
+    "title": "0_readme - Basilisk101",
+    "content": "[Basilisk101](Lecture-Notes/Basilisk101/0-README.md): Comprehensive course on computational fluid dynamics using the Basilisk C framework. Topics include: - Conservation laws and numerical solutions of Navier-Stokes equations - Transport equations and interface tracking methods - Non-Newtonian flows and viscoelasticity - Multi-phase flows and contact line dynamics - Hands-on coding assignments with practical implementations",
+    "url": "https://blogs.comphy-lab.org/0_README/#basilisk101",
     "type": "blog_section",
     "priority": 3
   },
   {
-    "title": "0_readme - Seminar-UIUC",
-    "content": "2025-01-19 [[Seminar-UIUC-abstract]]: UIUC fluid seminar abstract exploring polymeric flows as a tunable testbed for unsteady, nonlinear continuum mechanics.",
-    "url": "https://blogs.comphy-lab.org/0_README/#seminar-uiuc",
+    "title": "0_readme - Introduction to Soft Matter",
+    "content": "[Intro-Soft-Matter](Lecture-Notes/Intro-Soft-Matter/0-README.md): Graduate-level course exploring soft condensed matter physics. Course structure includes: - Fundamental concepts: What makes materials \"soft\"? - Viscosity and momentum diffusion from kinetic theory - Soft matter instabilities and singularities - Rheology and viscoelastic behavior - Weekly lectures with self-assessed homework and student presentations",
+    "url": "https://blogs.comphy-lab.org/0_README/#introduction-to-soft-matter",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "0_readme - Individual Lecture Notes:",
+    "content": "2025-01-21 [[Gauss-law-of-Electrostatics]]: Analysis of electric field flux through different surfaces using Gauss's law, with visual demonstrations.",
+    "url": "https://blogs.comphy-lab.org/0_README/#individual-lecture-notes",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "0_readme - Conference Presentations:",
+    "content": "2025-06-30 [[2025-06-30_Conference-VPflow-abstract]]: VPflow conference abstract on taming singularities through yield-stress regularization in bubble-bursting, exploring how viscoplasticity suppresses Worthington jetting.",
+    "url": "https://blogs.comphy-lab.org/0_README/#conference-presentations",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "0_readme - Seminar Presentations:",
+    "content": "2025-02-21 [[Seminar-Durham-abstract]]: Durham University seminar exploring polymeric flows as a tunable testbed for unsteady, nonlinear continuum mechanics. 2025-01-19 [[Seminar-UIUC-abstract]]: UIUC fluid seminar investigating how polymers modify classical hydrodynamic singularities in free-surface flows.",
+    "url": "https://blogs.comphy-lab.org/0_README/#seminar-presentations",
     "type": "blog_section",
     "priority": 3
   },
@@ -3757,7 +3778,7 @@
   },
   {
     "title": "1 intro soft matter - Mud Volcano at Yellowstone",
-    "content": "Mud is a viscoelastic soft material: - Behaves as solid over short times (can support surface bumps and cones) - Flows like liquid over long times (material spreads slowly) - Time-dependent response is essential to understanding behavior",
+    "content": "Mud is a elastoviscoplastic soft material: - Behaves as solid over short times (can support surface bumps and cones) - Flows like liquid over long times (material spreads slowly) - Time-dependent response is essential to understanding behavior",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/1-Intro-Soft-Matter/#mud-volcano-at-yellowstone",
     "type": "blog_section",
     "priority": 3
@@ -3911,7 +3932,14 @@
   },
   {
     "title": "0 readme - Course Structure (Lectures + Bridges): - Lecture 1:...",
-    "content": "- Lecture 1: [[1-Intro-Soft-Matter|Different Faces of Soft Condensed Matter]] \u2013 What is soft matter, why is it soft, and how do we measure softness? - [[1.5-Taylor-Culick-Paradox|Bridge 1.5: The Taylor\u2013Culick Paradox]] \u2013 Resolving a century-old paradox through proper energy accounting and momentum conservation - [[1.75-Complementary-Questions-Answers|Homework Solutions: Lecture 1]] \u2013 Self-assessed questions with model answers - Lecture 2: [[2-What-is-Viscosity|Viscosity and Momentum Diffusion]] \u2013 Viscosity as an emergent property from kinetic theory; the no-slip condition; continuum momentum transport - [[2.5-Conservation-Laws|Bridge 2.5: From Newton's Laws to Conservation Equations]] \u2013 Microscopic particle dynamics to continuum momentum balance and Cauchy stress - Lecture 3: Soft Matter Instabilities - Lecture 4: Soft Matter Singularities - Lecture 5: Elastic vs Viscous vs Viscoelastic Behavior - Lecture 6: Rheology \u2013 Measuring \"Softness\" and Time-Dependent Response - Lecture 7: Advanced Topics & Research Frontiers - Lecture 8: Presentations (10:00\u201312:00)",
+    "content": "- Lecture 1: [[1-Intro-Soft-Matter|Different Faces of Soft Condensed Matter]] \u2013 What is soft matter, why is it soft, and how do we measure softness? - [[1.5-Taylor-Culick-Paradox|Bridge 1.5: The Taylor\u2013Culick Paradox]] \u2013 Resolving a century-old paradox through proper energy accounting and momentum conservation - [[1.75-Complementary-Questions-Answers|Homework Solutions: Lecture 1]] \u2013 Self-assessed questions with model answers - Lecture 2: [[2-What-is-Viscosity|Viscosity and Momentum Diffusion]] \u2013 Viscosity as an emergent property from kinetic theory; the no-slip condition; continuum momentum transport - [[2.5-Conservation-Laws|Bridge 2.5: From Newton's Laws to Conservation Equations]] \u2013 Microscopic particle dynamics to continuum momentum balance and Cauchy stress - Lecture 3: [[3-Soft-Matter-Instabilities|Soft Matter Instabilities]] \u2013 Pattern formation through instability mechanisms: Rayleigh\u2013Plateau, Kelvin\u2013Helmholtz, Rayleigh\u2013Taylor, Faraday waves, Rayleigh\u2013B\u00e9nard\u2013Marangoni, Saffman\u2013Taylor fingering, and viscous coiling.",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/0-README/#course-structure-lectures-bridges",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "0 readme - Course Structure (Lectures + Bridges): Understanding how competing...",
+    "content": "Understanding how competing forces select characteristic length scales and how to harness instabilities for fabrication. - Lecture 4: Soft Matter Singularities - Lecture 5: Elastic vs Viscous vs Viscoelastic Behavior - Lecture 6: Rheology \u2013 Measuring \"Softness\" and Time-Dependent Response - Lecture 7: Advanced Topics & Research Frontiers - Lecture 8: Presentations (10:00\u201312:00)",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/0-README/#course-structure-lectures-bridges",
     "type": "blog_section",
     "priority": 3
@@ -3976,6 +4004,118 @@
     "title": "0 readme - Contact & Support",
     "content": "Instructor: Vatsal Sanjay Email: [vatsal.sanjay@durham.ac.uk](mailto:vatsal.sanjay@durham.ac.uk) Office Hours: Thu 14:00\u201316:00 (Ph255) Have questions? Come to office hours or send an email \u2014 I'm here to help! --- > [!significance]- Metadata > Author:: [Vatsal Sanjay](https://vatsalsanjay.com) > Date published:: Oct 14, 2025 > Date modified:: Oct 30, 2025 > [!link] Back to main website > [Home](https://comphy-lab.org/), [Team](https://comphy-lab.org/team), [Research](https://comphy-lab.org/research), [Github](https://github.com/comphy-lab) > > \ud83d\udcdd [Edit this page on GitHub](https://github.com/comphy-lab/CoMPhy-Lab-Blogs/blob/main/Lecture-Notes/Intro-Soft-Matter/0-README.md)",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/0-README/#contact-support",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "3 soft matter instabilities",
+    "content": "> [!info] \ud83d\udcc4 PDF Version > [Download PDF](./3-Soft-Matter-Instabilities.pdf)",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/3-Soft-Matter-Instabilities/",
+    "type": "blog_content",
+    "priority": 3
+  },
+  {
+    "title": "3 soft matter instabilities - 0) Why talk about instability?",
+    "content": "Patterns are everywhere: dunes and ripples, icicle ribs, dew beads on spider webs, hexagonal cracks in drying mud. Their regularity\u2014despite messy materials\u2014signals robust mechanisms. In fluids (and soft solids), instabilities often set the pattern scale and shape by amplifying tiny disturbances into organized structures. Our goal today is to recognize those mechanisms and the forces that select length and time scales. ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/3-Soft-Matter-Instabilities/#0-why-talk-about-instability",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "3 soft matter instabilities - 1) Stability in one picture",
+    "content": "Think of a bead in a landscape: at the bottom of a well (stable), on a flat shelf (neutral), or on a hilltop (unstable). ![](../../_Media/Lecture3-Instabilities-1761841931414.png) A \u201cstanding pencil\u201d fails in practice because the slightest perturbation makes it fall\u2014no physical system is perfectly disturbance\u2011free. We use this picture to interpret flows: _stable_ states damp disturbances; _unstable_ ones amplify them; _neutral_ ones neither grow nor decay until nonlinearities tip them. ![](../../_Media/Lecture3-Instabilities-1761841962795.png) Where do disturbances come from? Ambient vibrations, thermal fluctuations, surface roughness, composition heterogeneity, or imposed forcing (e.g. vibration). Even when continuum hypotheses hold (Knudsen number small), the flow \u201cfeels\u201d these small perturbations; if the base state cannot damp them, patterns emerge. ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/3-Soft-Matter-Instabilities/#1-stability-in-one-picture",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "3 soft matter instabilities - 2) What to identify in any instability",
+    "content": "1. Base state: the simplest flow/interface we\u2019d like to hold (a cylinder of liquid, a flat film, two fluids sliding past each other). 2. Competing forces: inertia, viscosity, gravity, surface tension, and sometimes elasticity (soft matter). 3. Positive feedback: does a perturbation increase the driving (pressure, buoyancy, shear) faster than restoring forces (surface tension, viscosity, elasticity) can oppose it? 4. Advection vs absolute growth: disturbances can be swept away while growing (_convective_) or grow in place and contaminate the whole domain (_absolute_). We\u2019ll use this language qualitatively in experiments. Rule of thumb: the same effect (surface tension, elasticity, gravity) that stabilizes short wavelengths often leaves a window of longer wavelengths free to grow\u2014yielding a _most unstable_ wavelength that sets the pattern spacing. In words of James Clerk Maxwell ![](../../_Media/Lecture3-Instabilities-1761842034192.png) ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/3-Soft-Matter-Instabilities/#2-what-to-identify-in-any-instability",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "3 soft matter instabilities - (i) Rayleigh\u2013Plateau (cylindrical thread \u2192 droplets)",
+    "content": "Mechanism. A small bulge on a liquid thread lowers capillary pressure locally; liquid is drawn from the necks toward the bulge, further enlarging it\u2014positive feedback. Surface tension itself is the _driver_ (seeking to reduce area) yet also damps very short ripples, so a fastest\u2011growing wavelength emerges and sets droplet spacing. In inviscid limits, that spacing is order\u2011ten radii (qualitative memory worth keeping). What to look for. On a dripping faucet, you see the regular drop train because this instability picks a wavelength/time scale of breakup. ![](../../_Media/Lecture3-Instabilities-1761842080703.png) Cressey, D. 365 days: Images of the year. Nature 516, 304\u2013309 (2014) - image taken at [Physics of Fluids Department, University of Twente](https://pof.tnw.utwente.nl/).",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/3-Soft-Matter-Instabilities/#i-rayleighplateau-cylindrical-thread-droplets",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "3 soft matter instabilities - (ii) Kelvin\u2013Helmholtz (shear across an interface \u2192 billows)",
+    "content": "Mechanism. Two fluids sliding past each other create a vorticity sheet at the interface. A ripple tilts that sheet and rolls it up into billows; shear feeding exceeds restoring forces. Surface tension and density contrast stabilize short waves and set a threshold for onset and a preferred scale. What to look for. In counter\u2011flowing layers (or the \u201cflag flapping\u201d movie on your slide set), once the interfacial shear is large enough, coherent vortical waves appear and then pair/roll up. ![](../../_Media/Lecture3-Instabilities-1761842604089.png)",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/3-Soft-Matter-Instabilities/#ii-kelvinhelmholtz-shear-across-an-interface-billows",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "3 soft matter instabilities - (iii) Rayleigh\u2013Taylor (heavy\u2011over\u2011light \u2192 spikes & bubbles)",
+    "content": "Mechanism. Gravity pulls a heavy fluid down through a light one; a downward dent increases the hydrostatic pressure drop there and accelerates further\u2014positive feedback. Surface tension stabilizes short waves; the competition picks a dominant wavelength. Thin\u2011film variants (heavy film above air) yield honeycomb/hexagonal hole patterns. ![](../../_Media/Lecture3-Instabilities-1761842685134.png) Image by Shengtai Li, Hui Li - \"Parallel AMR Code for Compressible MHD or HD Equations\", Attribution, Link",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/3-Soft-Matter-Instabilities/#iii-rayleightaylor-heavyoverlight-spikes-bubbles",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "3 soft matter instabilities - (iv) Faraday waves (vertical vibration \u2192 subharmonic surface patterns)",
+    "content": "Mechanism. Parametric forcing periodically modulates the effective gravity; the flat surface becomes unstable to standing waves at half the drive frequency. Hexagons/stripes are common near onset. Use this as a canonical example of parametric (not spontaneous) instability and _pattern selection near threshold_.",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/3-Soft-Matter-Instabilities/#iv-faraday-waves-vertical-vibration-subharmonic-surface-patterns",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "3 soft matter instabilities - (v) Rayleigh\u2013B\u00e9nard\u2013Marangoni (heated film \u2192 rolls/hexagons)",
+    "content": "Mechanism. Heating from below (buoyancy) or surface\u2011tension gradients along a free surface (Marangoni) drive cellular convection. Thin layers emphasize Marangoni; thicker ones emphasize buoyancy, flipping flow directions inside the cells. Amplitude/envelope equations near onset rationalize which planforms (rolls, hexagons) persist.",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/3-Soft-Matter-Instabilities/#v-rayleighb\u00e9nardmarangoni-heated-film-rollshexagons",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "3 soft matter instabilities - (vi) Saffman\u2013Taylor (viscous fingering in Hele\u2011Shaw cells)",
+    "content": "Mechanism. A less viscous fluid pushing a more viscous one creates a pressure\u2011gradient focusing at finger tips (\u201ctip effect\u201d). Any protrusion experiences larger local pressure gradient and advances faster\u2014runaway growth\u2014while surface tension blunts the tip and limits short waves. Capillary number ($Ca = \\eta U/\\gamma$) summarizes the competition; channel geometry further selects finger width and number. In radial injection, secondary instabilities (tip\u2011splitting/side\u2011branching) govern the branching morphology.",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/3-Soft-Matter-Instabilities/#vi-saffmantaylor-viscous-fingering-in-heleshaw-cells",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "3 soft matter instabilities - (vii) Viscous coiling & \u201cfluid mechanical sewing machine\u201d",
+    "content": "Mechanism. A falling viscous thread buckles and coils from a balance of gravity, bending, stretching, and surface tension; on a moving belt the contact\u2011point dynamics introduce memory and rich states (coils, meanders, W\u2011patterns). Linear stability alone is insufficient\u2014nonlinear, geometry\u2011driven dynamics dominate far from threshold. ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/3-Soft-Matter-Instabilities/#vii-viscous-coiling-fluid-mechanical-sewing-machine",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "3 soft matter instabilities - 4) How to \u201cpredict\u201d without doing heavy math: - Force balance...",
+    "content": "- Force balance & scales. Ask which pair of effects compete: inertia vs capillarity (Weber number), viscous vs capillarity (capillary number), inertia vs viscosity (Reynolds number), gravity vs capillarity (Bond number), elasticity vs capillarity (elastocapillary mumber) or inertia in soft materials (elasticity number). These dimensionless groups flag likely instabilities and the direction of selection. - Dispersion\u2011curve picture (qualitative). Most interfacial problems have a \u201cbell\u2011shaped\u201d growth\u2011rate vs wavelength: short waves stabilized by surface tension/viscosity, long waves limited by the finite driving (e.g. pressure or gravity). The peak sets the emergent spacing observed in your videos/demos. (Keep this as a mental model.) ![](../../_Media/3-Soft-Matter-Instabilities-1761860668972.png) Sketch of the interfacial instabilities discussed in F. Gallaire & P-T. Brun, Philos. Trans. R. Soc. A, 375:2093, 20160155 (2017).",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/3-Soft-Matter-Instabilities/#4-how-to-predict-without-doing-heavy-math",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "3 soft matter instabilities - 4) How to \u201cpredict\u201d without doing heavy math: Context",
+    "content": "DOI: [10.1098/rsta.2016.0155](https://doi.org/10.1098/rsta.2016.0155) The dispersion relation, $\\sigma$ is the growth rate and $k$ the wave vector, is provided when available. (a(i)\u2013a(iv)) Plateau\u2013Rayleigh instability, (b) Kelvin\u2013Helmoltz instability, (c(i),c(ii)) Rayleigh\u2013Taylor instability in two-phase flows and in a thin layer, (d) Faraday waves arising in a bath subject to periodic oscillatory forcing, (e) Rayleigh\u2013B\u00e9nard\u2013Marangoni instability obtained when heating up a thin layer of fluid, (\\*) hexagonal tilling, (f(i),f (ii)) plane and radial Saffman\u2013Taylor instability in a Hele\u2013Shaw cell, (g(i),g(ii)) capillary ridge instability and wine tears, (h) Kapitza waves and (i) viscous coiling, with the last three being examples of instabilities found in everyday life. (c(ii)),(d) and (e) typically arrange in patterns such as shown in (\\*). Taken from F. Gallaire & P-T. Brun, Philos. Trans. R. Soc. A, 375:2093, 20160155 (2017).",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/3-Soft-Matter-Instabilities/#4-how-to-predict-without-doing-heavy-math",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "3 soft matter instabilities - 4) How to \u201cpredict\u201d without doing heavy math: Context",
+    "content": "DOI: [10.1098/rsta.2016.0155](https://doi.org/10.1098/rsta.2016.0155) - Convective vs absolute. If a disturbance amplifies but is advected away, we get localized activity; if it grows in place, patterns fill the domain. This informs whether we expect clean, global patterns or drifting, patchy ones in experiments. ---",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/3-Soft-Matter-Instabilities/#4-how-to-predict-without-doing-heavy-math",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "3 soft matter instabilities - 5) From \u201cavoid\u201d to \u201cuse\u201d: harnessing instabilities: Engineers used to...",
+    "content": "Engineers used to fear instabilities as failure modes. Soft\u2011matter physics repurposes them as fabrication tools: microfluidic emulsification (controlled Rayleigh\u2013Plateau), capillarity\u2011guided assembly of nanopillars (elastocapillary coalescence), and other self\u2011organization pathways. The mindset shift is to select initial/boundary conditions so the _natural_ instability builds the desired pattern. The inverse problem\u2014choosing those conditions up\u2011front\u2014is still an open research space. See: P-T. Brun, Shape formation in interfacial flows, Phys. Rev.",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/3-Soft-Matter-Instabilities/#5-from-avoid-to-use-harnessing-instabilities",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "3 soft matter instabilities - 5) From \u201cavoid\u201d to \u201cuse\u201d: harnessing instabilities: Fluids, 9:11, 110501...",
+    "content": "Fluids, 9:11, 110501 (2024). [DOI: 10.1103/PhysRevFluids.9.110501](https://doi.org/10.1103/PhysRevFluids.9.110501) > [!significance]- Metadata > Author:: [Vatsal Sanjay](https://vatsalsanjay.com) > Date published:: Oct 30, 2025 > Date modified:: Oct 30, 2025 > [!link] Back to main website > [Home](https://comphy-lab.org/), [Team](https://comphy-lab.org/team), [Research](https://comphy-lab.org/research), [Github](https://github.com/comphy-lab) > > \ud83d\udcdd [Edit this page on GitHub](https://github.com/comphy-lab/CoMPhy-Lab-Blogs/blob/main/Lecture-Notes/Intro-Soft-Matter/3-Soft-Matter-Instabilities.md)",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/3-Soft-Matter-Instabilities/#5-from-avoid-to-use-harnessing-instabilities",
     "type": "blog_section",
     "priority": 3
   },
