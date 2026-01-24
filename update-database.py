@@ -48,12 +48,6 @@ REPOSITORIES = [
         }
     },
     {
-        "repo_url": "https://github.com/comphy-lab/documentationWeb",  # GitHub repository URL
-        "path": "testCode",  # Local directory name
-        "url": "https://comphy-lab.org/documentationWeb",  # URL where the blog is published
-        "type": "docs",  # Repository type
-    },
-    {
         "repo_url": "https://github.com/comphy-lab/Viscoelastic3D",  # GitHub repository URL
         "path": "Viscoelastic3D",  # Local directory name
         "url": "https://comphy-lab.org/Viscoelastic3D",  # URL where the blog is published
