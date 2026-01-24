@@ -100,6 +100,12 @@ REPOSITORIES = [
         "url": "https://comphy-lab.org/JumpingBubbles",
         "type": "docs"
     },
+    {
+        "repo_url": "https://github.com/comphy-lab/Drop-Impact",
+        "path": "Drop-Impact",
+        "url": "https://comphy-lab.org/Drop-Impact",
+        "type": "docs"
+    },
     # Add more repositories as needed
     # Example for documentation site:
     # {
