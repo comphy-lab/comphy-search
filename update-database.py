@@ -31,7 +31,8 @@ REPOSITORIES = [
         "directories": {
             "_team": "/team/",
             "_research": "/research/",
-            "_teaching": "/teaching/"
+            "_teaching": "/teaching/",
+            "_join-us": "/join/",
         }
     },
     {
