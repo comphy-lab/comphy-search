@@ -101,6 +101,12 @@ REPOSITORIES = [
         "url": "https://comphy-lab.org/Drop-Impact",
         "type": "docs"
     },
+    {
+        "repo_url": "https://github.com/comphy-lab/Asymmetries-in-coalescence",
+        "path": "Asymmetries-in-coalescence",
+        "url": "https://comphy-lab.org/Asymmetries-in-coalescence",
+        "type": "docs"
+    },
     # Add more repositories as needed
     # Example for documentation site:
     # {
