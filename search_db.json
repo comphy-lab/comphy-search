@@ -687,6 +687,83 @@
     "priority": 3
   },
   {
+    "title": "Agents - CLAUDE.md",
+    "content": "This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.",
+    "url": "https://blogs.comphy-lab.org/AGENTS/#claudemd",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "Agents - Repository Overview",
+    "content": "This is a research blog repository for the Computational Multiphase Physics (CoMPhy) Lab, containing academic content in Markdown format. The site is published at [blogs-comphy-lab.org](https://blogs-comphy-lab.org/).",
+    "url": "https://blogs.comphy-lab.org/AGENTS/#repository-overview",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "Agents - Content Structure",
+    "content": "- `Blog/` - Research blog posts and updates - `Code-Documentations/` - Technical documentation - `Lecture-Notes/` - Teaching materials and course content - `Talks/` - Presentation materials and abstracts - `_AtomicNotes/` - Atomic knowledge pieces (linked notes) - `_Media/` - Images and media files - `_scripts/` - Jupyter notebooks for generating figures",
+    "url": "https://blogs.comphy-lab.org/AGENTS/#content-structure",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "Agents - Markdown Files",
+    "content": "All content uses Markdown with YAML frontmatter: ```yaml --- created: YYYY-MM-DDThh:mm:ss+01:00 modified: YYYY-MM-DDThh:mm:ss+01:00 status: [Published/Working/Draft/done \u2705] website: https://blogs-comphy-lab.org/your-post-url --- ```",
+    "url": "https://blogs.comphy-lab.org/AGENTS/#markdown-files",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "Agents - Obsidian Features",
+    "content": "- Wiki-style links: `[[post-name]]` and `[[post-name|alias]]` - Image embedding: `![[_Media/filename.png]]` - Callouts: `> [!note]`, `> [!tldr]`, `> [!important]`",
+    "url": "https://blogs.comphy-lab.org/AGENTS/#obsidian-features",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "Agents - PDF Export",
+    "content": "Convert Markdown to PDF using the export script: ```bash ./.obsidian/scripts/export-pdf.sh \"filename.md\" ``` The script handles: - Obsidian syntax conversion to standard Markdown - Image path processing - Bibliography integration via Pandoc - LaTeX/XeLaTeX PDF generation",
+    "url": "https://blogs.comphy-lab.org/AGENTS/#pdf-export",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "Agents - Content Validation",
+    "content": "- Ensure all images exist in `_Media/` directory - Verify wiki links point to existing content - Check YAML frontmatter format",
+    "url": "https://blogs.comphy-lab.org/AGENTS/#content-validation",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "Agents - File Organization",
+    "content": "- Place new blog posts in `Blog/` - Store images in `_Media/` with descriptive names - Use atomic notes in `_AtomicNotes/` for reusable concepts",
+    "url": "https://blogs.comphy-lab.org/AGENTS/#file-organization",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "Agents - Mathematical Content",
+    "content": "- Use LaTeX syntax for equations: `$$equation$$` or `$inline$` - Include Jupyter notebooks in `_scripts/` for computational examples - Save generated plots to `_Media/`",
+    "url": "https://blogs.comphy-lab.org/AGENTS/#mathematical-content",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "Agents - Academic Standards",
+    "content": "- Include proper citations and references - Use descriptive filenames without spaces - Maintain consistent notation across related posts",
+    "url": "https://blogs.comphy-lab.org/AGENTS/#academic-standards",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "Agents - Publishing Workflow",
+    "content": "Content is managed through: 1. Obsidian vault for local editing 2. Git version control for collaboration 3. Website deployment at blogs-comphy-lab.org The repository supports both individual researchers and collaborative editing through GitHub's issue templates and pull request workflow.",
+    "url": "https://blogs.comphy-lab.org/AGENTS/#publishing-workflow",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
     "title": "0_readme - Computational Multiphase Physics <br> (CoMPhy)",
     "content": "Welcome to the CoMPhy Lab's documentation hub! We are based at the Physics of Fluids Department at the University of Twente, where we explore non-Newtonian free-surface flows and soft matter singularities.",
     "url": "https://blogs.comphy-lab.org/0_README/#computational-multiphase-physics-br-comphy",
@@ -879,83 +956,6 @@
     "title": "0_todo blog public - 2017",
     "content": "- [ ] **Formation of liquid chain by collision of two laminar jets** Link: [DOI](https://doi.org/10.1063/1.4998288) - [ ] **On air entrainment in a water pool by impingement of a jet** Link: [DOI](https://doi.org/10.1002/aic.15828) --- > [!meta] Back to main website > [Home](https://comphy-lab.org/), [Team](https://comphy-lab.org/team), [Research](https://comphy-lab.org/research), [Github](https://github.com/comphy-lab)",
     "url": "https://blogs.comphy-lab.org/0_ToDo-Blog-public/#2017",
-    "type": "blog_section",
-    "priority": 3
-  },
-  {
-    "title": "Claude - CLAUDE.md",
-    "content": "This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.",
-    "url": "https://blogs.comphy-lab.org/CLAUDE/#claudemd",
-    "type": "blog_section",
-    "priority": 3
-  },
-  {
-    "title": "Claude - Repository Overview",
-    "content": "This is a research blog repository for the Computational Multiphase Physics (CoMPhy) Lab, containing academic content in Markdown format. The site is published at [blogs-comphy-lab.org](https://blogs-comphy-lab.org/).",
-    "url": "https://blogs.comphy-lab.org/CLAUDE/#repository-overview",
-    "type": "blog_section",
-    "priority": 3
-  },
-  {
-    "title": "Claude - Content Structure",
-    "content": "- `Blog/` - Research blog posts and updates - `Code-Documentations/` - Technical documentation - `Lecture-Notes/` - Teaching materials and course content - `Talks/` - Presentation materials and abstracts - `_AtomicNotes/` - Atomic knowledge pieces (linked notes) - `_Media/` - Images and media files - `_scripts/` - Jupyter notebooks for generating figures",
-    "url": "https://blogs.comphy-lab.org/CLAUDE/#content-structure",
-    "type": "blog_section",
-    "priority": 3
-  },
-  {
-    "title": "Claude - Markdown Files",
-    "content": "All content uses Markdown with YAML frontmatter: ```yaml --- created: YYYY-MM-DDThh:mm:ss+01:00 modified: YYYY-MM-DDThh:mm:ss+01:00 status: [Published/Working/Draft/done \u2705] website: https://blogs-comphy-lab.org/your-post-url --- ```",
-    "url": "https://blogs.comphy-lab.org/CLAUDE/#markdown-files",
-    "type": "blog_section",
-    "priority": 3
-  },
-  {
-    "title": "Claude - Obsidian Features",
-    "content": "- Wiki-style links: `[[post-name]]` and `[[post-name|alias]]` - Image embedding: `![[_Media/filename.png]]` - Callouts: `> [!note]`, `> [!tldr]`, `> [!important]`",
-    "url": "https://blogs.comphy-lab.org/CLAUDE/#obsidian-features",
-    "type": "blog_section",
-    "priority": 3
-  },
-  {
-    "title": "Claude - PDF Export",
-    "content": "Convert Markdown to PDF using the export script: ```bash ./.obsidian/scripts/export-pdf.sh \"filename.md\" ``` The script handles: - Obsidian syntax conversion to standard Markdown - Image path processing - Bibliography integration via Pandoc - LaTeX/XeLaTeX PDF generation",
-    "url": "https://blogs.comphy-lab.org/CLAUDE/#pdf-export",
-    "type": "blog_section",
-    "priority": 3
-  },
-  {
-    "title": "Claude - Content Validation",
-    "content": "- Ensure all images exist in `_Media/` directory - Verify wiki links point to existing content - Check YAML frontmatter format",
-    "url": "https://blogs.comphy-lab.org/CLAUDE/#content-validation",
-    "type": "blog_section",
-    "priority": 3
-  },
-  {
-    "title": "Claude - File Organization",
-    "content": "- Place new blog posts in `Blog/` - Store images in `_Media/` with descriptive names - Use atomic notes in `_AtomicNotes/` for reusable concepts",
-    "url": "https://blogs.comphy-lab.org/CLAUDE/#file-organization",
-    "type": "blog_section",
-    "priority": 3
-  },
-  {
-    "title": "Claude - Mathematical Content",
-    "content": "- Use LaTeX syntax for equations: `$$equation$$` or `$inline$` - Include Jupyter notebooks in `_scripts/` for computational examples - Save generated plots to `_Media/`",
-    "url": "https://blogs.comphy-lab.org/CLAUDE/#mathematical-content",
-    "type": "blog_section",
-    "priority": 3
-  },
-  {
-    "title": "Claude - Academic Standards",
-    "content": "- Include proper citations and references - Use descriptive filenames without spaces - Maintain consistent notation across related posts",
-    "url": "https://blogs.comphy-lab.org/CLAUDE/#academic-standards",
-    "type": "blog_section",
-    "priority": 3
-  },
-  {
-    "title": "Claude - Publishing Workflow",
-    "content": "Content is managed through: 1. Obsidian vault for local editing 2. Git version control for collaboration 3. Website deployment at blogs-comphy-lab.org The repository supports both individual researchers and collaborative editing through GitHub's issue templates and pull request workflow.",
-    "url": "https://blogs.comphy-lab.org/CLAUDE/#publishing-workflow",
     "type": "blog_section",
     "priority": 3
   },
