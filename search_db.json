@@ -19217,13 +19217,6 @@
     "priority": 8
   },
   {
-    "title": "News - June",
-    "content": "- Jnandeep Talukdar graduated with a master's degree (Cum Laude - the highest grade in Dutch master's degree) from University of Twente. Thesis: Singularities with Surfactants",
-    "url": "https://comphy-lab.org#news",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
     "title": "Claude - CLAUDE.md",
     "content": "This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.",
     "url": "https://comphy-lab.org#claude",
