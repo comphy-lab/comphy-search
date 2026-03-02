@@ -633,14 +633,14 @@
   },
   {
     "title": "\"High-Fidelity Simulations Using Basilisk C\" - Think before you compute",
-    "content": "- **10:00-11:30** &nbsp;|&nbsp; **Lecture (1a)** - Conservation laws and the numerical solution of the Navier\u2013Stokes equations - **11:45-13:00** &nbsp;|&nbsp; **Lecture (1b)** - Transport equations - *Brief intro to Basilisk coding framework*",
+    "content": "- **10:00-11:30** &nbsp;|&nbsp; **Lecture (1a)** - Conservation laws and the numerical solution of the Navier\u2013Stokes equations - **11:45-13:00** &nbsp;|&nbsp; **Lecture (1b)** - Transport equations - _Brief intro to Basilisk coding framework_",
     "url": "https://comphy-lab.org/teaching/2025-Basilisk101-Madrid#think-before-you-compute",
     "type": "website_section",
     "priority": 3
   },
   {
     "title": "\"High-Fidelity Simulations Using Basilisk C\" - First coding steps",
-    "content": "- **15:00-18:00** &nbsp;|&nbsp; **Hybrid Session** - Implementing basic transport equations in Basilisk C. - Using headers in Basilisk, modular code structure, problem setup, and compilation - *Whiteboard + coding* - [1st Working Assignment](https://blogs.comphy-lab.org/Lecture-Notes/Basilisk101/1st-workingAssignment)",
+    "content": "- **15:00-18:00** &nbsp;|&nbsp; **Hybrid Session** - Implementing basic transport equations in Basilisk C. - Using headers in Basilisk, modular code structure, problem setup, and compilation - _Whiteboard + coding_ - [1st Working Assignment](https://blogs.comphy-lab.org/Lecture-Notes/Basilisk101/1st-workingAssignment)",
     "url": "https://comphy-lab.org/teaching/2025-Basilisk101-Madrid#first-coding-steps",
     "type": "website_section",
     "priority": 3
