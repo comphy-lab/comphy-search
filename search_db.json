@@ -315,6 +315,14 @@
     "priority": 1
   },
   {
+    "title": "[23]Jana, S., Kolinski, J., Lohse, D., &Sanjay, V.Impacting spheres: from liquid drops to elastic beads. Soft Matter, 22, 2226-2236 (2026).",
+    "content": "[23]Jana, S., Kolinski, J., Lohse, D., &Sanjay, V.Impacting spheres: from liquid drops to elastic beads. Soft Matter, 22, 2226-2236 (2026).",
+    "url": "https://comphy-lab.org/research/#23",
+    "type": "paper",
+    "tags": [],
+    "priority": 2
+  },
+  {
     "title": "[22]Dixit, A. K., Zhao, C., Zaleski, S., Lohse, D., &Sanjay, V.Holes in Sheets: Double-Threshold Rupture of Draining Liquid Films. Phys. Rev. Lett., 136, 084001 (2026).",
     "content": "[22]Dixit, A. K., Zhao, C., Zaleski, S., Lohse, D., &Sanjay, V.Holes in Sheets: Double-Threshold Rupture of Draining Liquid Films. Phys. Rev. Lett., 136, 084001 (2026).",
     "url": "https://comphy-lab.org/research/#22",
@@ -19535,6 +19543,13 @@
     "title": "Claude - /add-news: Save both files...",
     "content": "Save both files **Important notes:** - The pinned Durham announcement has no month/year header - News items start with \"- \" (dash and space) - Maintain blank lines between sections for proper formatting - In history.md, years are sorted descending (newest first) - Within a year, months appear in reverse chronological order",
     "url": "https://comphy-lab.org#claude",
+    "type": "website_section",
+    "priority": 8
+  },
+  {
+    "title": "News - March",
+    "content": "- [ Jana, S. , Kolinski, J., Lohse, D., & Sanjay, V. Impacting spheres: from liquid drops to elastic beads. Soft Matter, 22, 2226-2236 (2026), selected as the cover article.](/research#23) Download Cover View Paper",
+    "url": "https://comphy-lab.org#news",
     "type": "website_section",
     "priority": 8
   },
