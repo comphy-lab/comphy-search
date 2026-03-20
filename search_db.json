@@ -19281,6 +19281,13 @@
     "priority": 8
   },
   {
+    "title": "History - March",
+    "content": "- [ Jana, S. , Kolinski, J., Lohse, D., & Sanjay, V. Impacting spheres: from liquid drops to elastic beads. Soft Matter, 22, 2226-2236 (2026), selected as the cover article.](/research#23) Download Cover View Paper",
+    "url": "https://comphy-lab.org#history",
+    "type": "website_section",
+    "priority": 8
+  },
+  {
     "title": "History - February",
     "content": "- [ Dixit, A. K. , Zhao, C., Zaleski, S., Lohse, D., & Sanjay, V. Holes in Sheets: Double-Threshold Rupture of Draining Liquid Films. Phys. Rev. Lett., 136, 084001 (2026).](/research#22) - Ayush Dixit presents \"Simulating Respiratory Droplet Formation: The Role of Non-Newtonian Fluid Dynamics,\" showing via large-scale simulations that viscoelastic respiratory-fluid effects are essential for accurate droplet-size predictions in airborne transmission models. Video:",
     "url": "https://comphy-lab.org#history",
@@ -19591,20 +19598,6 @@
   {
     "title": "News - September",
     "content": "- [Saini, M., Sanjay, V. , Saade, Y., Lohse, D., & Popinet, S. Implementation of integral surface tension formulations in a volume of fluid framework and their applications to Marangoni flows. J. Comput. Phys., 542, 114348 (2025).](/research#18)",
-    "url": "https://comphy-lab.org#news",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
-    "title": "News - August",
-    "content": "- [Mclauchlan, J., Walker, J. S., Sanjay, V. , Jalaal, M., Reid, J. P., Squires, A. M., & Souslov, A. Bouncing microdroplets on hydrophobic surfaces. Proc. Natl. Acad. Sci., 122, e2507309122 (2025).](/research#19)",
-    "url": "https://comphy-lab.org#news",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
-    "title": "News - July",
-    "content": "- Saumili Jana received the award for best master's thesis from IIT Kharagpur. Thesis: Retract or Collapse? The Role of Viscosity and Viscoelasticity on Bubble Dynamics",
     "url": "https://comphy-lab.org#news",
     "type": "website_section",
     "priority": 8
