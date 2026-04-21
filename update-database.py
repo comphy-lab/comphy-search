@@ -124,6 +124,17 @@ OUTPUT_PATH = "search_db.json"
 # HELPER FUNCTIONS
 # =====================================================================
 
+POSTNOMINAL_RE = re.compile(r'(?i)\bF\.?\s*R\.?\s*S\.?\b')
+
+
+def strip_postnominals(text):
+    """Remove display suffixes we do not want in search titles/anchors."""
+    cleaned = POSTNOMINAL_RE.sub('', text)
+    cleaned = re.sub(r'\s{2,}', ' ', cleaned)
+    cleaned = re.sub(r'\s+([,.;:])', r'\1', cleaned)
+    return cleaned.strip()
+
+
 # Helper function to generate proper anchor links
 def generate_anchor(text):
     """
@@ -135,8 +146,9 @@ def generate_anchor(text):
     Returns:
         A string containing the anchor ID
     """
-    # Remove date prefix if present (e.g., "2025-01-21 ")
-    text = re.sub(r'^\d{4}-\d{2}-\d{2}\s+', '', text)
+    text = strip_postnominals(text)
+
+    # Remove date prefix if present (e.g., "2025-01-21 ")    text = re.sub(r'^\d{4}-\d{2}-\d{2}\s+', '', text)
     
     # Remove markdown link syntax if present [[text]]
     text = re.sub(r'\[\[(.*?)\]\]', r'\1', text)
@@ -702,12 +714,13 @@ def process_markdown_file(repo_config, file_path, search_db):
                 clean_content = re.sub(r'<[^>]+>', ' ', section_content)
                 clean_content = re.sub(r'\s+', ' ', clean_content).strip()
                 
+                display_header = strip_postnominals(header)
+
                 # Generate anchor ID for section header
-                anchor = generate_anchor(header)
+                anchor = generate_anchor(display_header)
                 
                 # Base section title
-                section_title = f"{page_title} - {header}"
-                
+                section_title = f"{page_title} - {display_header}"                
                 # Special handling for team members and collaborators
                 section_url = f"{url}#{anchor}"
                 if is_team_index:
@@ -1287,9 +1300,8 @@ def fix_urls(search_db):
             # Extract proper anchor from title if available
             if 'title' in entry and ' - ' in entry['title']:
                 # Title format is typically "Our Team & Collaborators - Person Name (Role)"
-                person_part = entry['title'].split(' - ', 1)[1]
-                # Generate anchor from person name using Jekyll-style formatting
-                anchor = generate_anchor(person_part)
+                person_part = strip_postnominals(entry['title'].split(' - ', 1)[1])
+                # Generate anchor from person name using Jekyll-style formatting                anchor = generate_anchor(person_part)
                 entry['url'] = url.replace("#index", f"#{anchor}")
             # Special case for section headers
             elif 'title' in entry and entry['title'] == "Our Team & Collaborators - Present Team":
