@@ -126,6 +126,19 @@ OUTPUT_PATH = "search_db.json"
 
 POSTNOMINAL_RE = re.compile(r'(?i)\bF\.?\s*R\.?\s*S\.?\b')
 
+PUBLIC_BLOG_INTERNAL_PATH_RE = re.compile(
+    r'(^|/)(Private|0_ToDo|Admin|Medical|Personal)(/|[-_]|$)|'
+    r'\b(NHS|medical|health|clinic|prescription|appointment|registration)\b',
+    re.IGNORECASE,
+)
+
+PUBLIC_BLOG_INTERNAL_ENTRY_RE = re.compile(
+    r'https://blogs\.comphy-lab\.org/'
+    r'(?:Private|0_ToDo|Admin|Medical|Personal)(?:/|[-_]|$)|'
+    r'\b(NHS|medical|health|clinic|prescription|appointment|registration)\b',
+    re.IGNORECASE,
+)
+
 
 def strip_postnominals(text):
     """Remove display suffixes we do not want in search titles/anchors."""
@@ -133,6 +146,28 @@ def strip_postnominals(text):
     cleaned = re.sub(r'\s{2,}', ' ', cleaned)
     cleaned = re.sub(r'\s+([,.;:])', r'\1', cleaned)
     return cleaned.strip()
+
+
+def is_public_blog_repo(repo_config):
+    """Return True for the public CoMPhy blog repository."""
+    return repo_config.get("url", "").rstrip("/") == "https://blogs.comphy-lab.org"
+
+
+def should_exclude_public_blog_file(repo_config, file_path):
+    """Keep public-blog internal/admin paths out of generated search indexes."""
+    if not is_public_blog_repo(repo_config):
+        return False
+
+    rel_path = file_path.relative_to(get_repo_dir(repo_config)).as_posix()
+    return bool(PUBLIC_BLOG_INTERNAL_PATH_RE.search(rel_path))
+
+
+def is_internal_public_blog_entry(entry):
+    """Catch private/admin blog entries that slip through URL normalisation."""
+    identity = " ".join(
+        str(entry.get(key, "")) for key in ("title", "url") if entry.get(key)
+    )
+    return bool(PUBLIC_BLOG_INTERNAL_ENTRY_RE.search(identity))
 
 
 # Helper function to generate proper anchor links
@@ -1004,7 +1039,7 @@ def process_docs_specific(repo_config, file_path, front_matter, content, search_
     pass
     
 # Process files from a repository
-def should_exclude_file(file_path):
+def should_exclude_file(file_path, repo_config=None):
     """
     Check if a file should be excluded from processing.
     
@@ -1024,7 +1059,12 @@ def should_exclude_file(file_path):
         'basilisk/', # Basilisk code directory
     ]
     
-    return any(pattern in path_str for pattern in exclude_patterns)
+    if any(pattern in path_str for pattern in exclude_patterns):
+        return True
+
+    return bool(
+        repo_config and should_exclude_public_blog_file(repo_config, file_path)
+    )
 
 def process_repository(repo_config, search_db):
     """
@@ -1053,7 +1093,9 @@ def process_repository(repo_config, search_db):
             # Find all HTML files in docs directory
             html_files = list(docs_dir.glob('**/*.html'))
             # Filter out excluded files
-            html_files = [f for f in html_files if not should_exclude_file(f)]
+            html_files = [
+                f for f in html_files if not should_exclude_file(f, repo_config)
+            ]
             print(f"Found {len(html_files)} documentation HTML files in docs directory to process")
             
             for file_path in html_files:
@@ -1077,7 +1119,11 @@ def process_repository(repo_config, search_db):
             md_files = list(repo_dir.glob('**/*.md'))
         
         # Filter out README.md files and excluded files
-        md_files = [f for f in md_files if f.name.lower() != 'readme.md' and not should_exclude_file(f)]
+        md_files = [
+            f for f in md_files
+            if f.name.lower() != 'readme.md'
+            and not should_exclude_file(f, repo_config)
+        ]
         print(f"Found {len(md_files)} markdown files to process")
         
         # Process each markdown file
@@ -1087,7 +1133,11 @@ def process_repository(repo_config, search_db):
     elif repo_config["type"] == "website":
         # Process markdown files
         md_files = list(repo_dir.glob('**/*.md'))
-        md_files = [f for f in md_files if f.name.lower() != 'readme.md' and not should_exclude_file(f)]
+        md_files = [
+            f for f in md_files
+            if f.name.lower() != 'readme.md'
+            and not should_exclude_file(f, repo_config)
+        ]
         print(f"Found {len(md_files)} markdown files to process")
         
         for file_path in md_files:
@@ -1095,7 +1145,9 @@ def process_repository(repo_config, search_db):
         
         # Also process HTML files in the root directory
         html_files = list(repo_dir.glob('*.html'))
-        html_files = [f for f in html_files if not should_exclude_file(f)]
+        html_files = [
+            f for f in html_files if not should_exclude_file(f, repo_config)
+        ]
         print(f"Found {len(html_files)} HTML files in root directory to process")
         
         for file_path in html_files:
@@ -1363,6 +1415,11 @@ def main():
         
         # Post-process to fix URLs
         search_db = fix_urls(search_db)
+
+        search_db = [
+            entry for entry in search_db
+            if not is_internal_public_blog_entry(entry)
+        ]
         
         # Sort the database by priority (lower numbers = higher priority)
         search_db = sorted(search_db, key=lambda x: x.get('priority', 10))
