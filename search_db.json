@@ -1595,7 +1595,7 @@
   },
   {
     "title": "2025 herschel\u2013bulkley formulation - Herschel\u2013Bulkley formulation for non-Newtonian flows",
-    "content": "> [!tldr] TL;DR > The Herschel\u2013Bulkley model unifies Newtonian, Bingham, and power-law fluids via a yield stress and a strain-rate-dependent viscosity. An \ufffc$\\epsilon$-regularization ensures stable computations and recovers simpler models (Newtonian, Bingham) by tuning model parameters. Dimensionless groups (e.g., the plasto-capillary number \ufffc and the effective Ohnesorge) capture the interplay of fluid rheology, capillarity, and flow scales. Implementation details are provided, along with references, open-source code, and demonstrations of bubble-burst simulations in viscoplastic media.",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/Code-Documentations/2025-Herschel\u2013Bulkley-formulation.pdf|Download this page as PDF]] > [!tldr] TL;DR > The Herschel\u2013Bulkley model unifies Newtonian, Bingham, and power-law fluids via a yield stress and a strain-rate-dependent viscosity. An \ufffc$\\epsilon$-regularization ensures stable computations and recovers simpler models (Newtonian, Bingham) by tuning model parameters. Dimensionless groups (e.g., the plasto-capillary number \ufffc and the effective Ohnesorge) capture the interplay of fluid rheology, capillarity, and flow scales. Implementation details are provided, along with references, open-source code, and demonstrations of bubble-burst simulations in viscoplastic media.",
     "url": "https://blogs.comphy-lab.org/Code-Documentations/2025-Herschel\u2013Bulkley-formulation/#herschelbulkley-formulation-for-non-newtonian-flows",
     "type": "blog_section",
     "priority": 3
@@ -2084,6 +2084,13 @@
     "priority": 3
   },
   {
+    "title": "0 readme",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/Lecture-Notes/Basilisk101/0-README.pdf|Download this page as PDF]]",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Basilisk101/0-README/",
+    "type": "blog_content",
+    "priority": 3
+  },
+  {
     "title": "0 readme - Think before you compute",
     "content": "- Conservation laws and the numerical solution of the Navier\u2013Stokes equations - Transport equations - *Brief intro to Basilisk coding framework*",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Basilisk101/0-README/#think-before-you-compute",
@@ -2127,7 +2134,7 @@
   },
   {
     "title": "2nd workingassignment - Computational Fluid Dynamics with Basilisk: From Poiseuille Flow to Rayleigh-B\u00e9nard Convection",
-    "content": "> [!tldr] TL;DR > This assignment explores fundamental fluid dynamics problems using Basilisk, progressing from simple Poiseuille flow to complex Rayleigh-B\u00e9nard convection. We study both Newtonian and non-Newtonian (Bingham) fluids, examine lid-driven cavity flow with flow visualization, and conclude with thermal convection simulation. The hands-on exercises with incrementally complex implementations help develop practical CFD skills while exploring rich physical phenomena, all through Basilisk's efficient simulation framework.",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/Lecture-Notes/Basilisk101/2nd-workingAssignment.pdf|Download this page as PDF]] > [!tldr] TL;DR > This assignment explores fundamental fluid dynamics problems using Basilisk, progressing from simple Poiseuille flow to complex Rayleigh-B\u00e9nard convection. We study both Newtonian and non-Newtonian (Bingham) fluids, examine lid-driven cavity flow with flow visualization, and conclude with thermal convection simulation. The hands-on exercises with incrementally complex implementations help develop practical CFD skills while exploring rich physical phenomena, all through Basilisk's efficient simulation framework.",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Basilisk101/2nd-workingAssignment/#computational-fluid-dynamics-with-basilisk-from-poiseuille-flow-to-rayleigh-b\u00e9nard-convection",
     "type": "blog_section",
     "priority": 3
@@ -2253,7 +2260,7 @@
   },
   {
     "title": "1 conduction takeaways - Advantages of Basilisk Over Vanilla C for Computational Fluid Dynamics",
-    "content": "After examining the implementation of heat conduction problems in both vanilla C and Basilisk, several significant advantages of using Basilisk become apparent. This document outlines these benefits to help new users understand why Basilisk is a powerful tool for computational fluid dynamics (CFD) simulations.",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/Lecture-Notes/Basilisk101/1-conduction-takeaways.pdf|Download this page as PDF]] After examining the implementation of heat conduction problems in both vanilla C and Basilisk, several significant advantages of using Basilisk become apparent. This document outlines these benefits to help new users understand why Basilisk is a powerful tool for computational fluid dynamics (CFD) simulations.",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Basilisk101/1-conduction-takeaways/#advantages-of-basilisk-over-vanilla-c-for-computational-fluid-dynamics",
     "type": "blog_section",
     "priority": 3
@@ -2325,6 +2332,13 @@
     "title": "1 conduction takeaways - Conclusion",
     "content": "The Basilisk computational environment provides significant advantages over vanilla C for fluid dynamics simulations. By abstracting away the implementation details of grid management, boundary conditions, and numerical methods, Basilisk allows researchers and engineers to focus on the physics of their problems rather than the computational details. This leads to more readable, maintainable, and correct code with significantly less development effort. The comparison of the heat conduction examples shows that equivalent problems can be solved with much less code in Basilisk, while simultaneously providing a more intuitive and robust framework for extending to more complex physical phenomena.",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Basilisk101/1-conduction-takeaways/#conclusion",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "1st workingassignment - Heat Conduction Simulation: From Vanilla C to Basilisk C",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/Lecture-Notes/Basilisk101/1st-workingAssignment.pdf|Download this page as PDF]]",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Basilisk101/1st-workingAssignment/#heat-conduction-simulation-from-vanilla-c-to-basilisk-c",
     "type": "blog_section",
     "priority": 3
   },
@@ -2532,8 +2546,15 @@
     "priority": 3
   },
   {
-    "title": "4th workingassignment - Non-Newtonian flows with Basilisk",
-    "content": "> [!tldr] TL;DR > This assignment explores computational approaches to viscoelastic fluid dynamics using Basilisk. We investigate four advanced multiphase flow phenomena involving complex rheology: bursting bubbles in polymer solutions, viscoplastic drop impact, soft material impacts, and Taylor-Culick retraction of viscoelastic filaments. Each simulation incorporates non-Newtonian behavior characterized by dimensionless parameters including Weissenberg, Deborah, Ohnesorge, and elasto-capillary numbers. Through these simulations, we develop practical skills in implementing log-conformation formulations for numerical stability, handling complex interfaces with adaptive mesh refinement, and visualizing rheologically complex flows. This assignment represents the culmination of our computational fluid dynamics progression, building on earlier work with heat conduction, single-phase flows, and simple multiphase systems.",
+    "title": "4th workingassignment - Non-Newtonian flows with Basilisk: > [!pdf] PDF...",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/Lecture-Notes/Basilisk101/4th-workingAssignment.pdf|Download this page as PDF]] > [!tldr] TL;DR > This assignment explores computational approaches to viscoelastic fluid dynamics using Basilisk. We investigate four advanced multiphase flow phenomena involving complex rheology: bursting bubbles in polymer solutions, viscoplastic drop impact, soft material impacts, and Taylor-Culick retraction of viscoelastic filaments. Each simulation incorporates non-Newtonian behavior characterized by dimensionless parameters including Weissenberg, Deborah, Ohnesorge, and elasto-capillary numbers. Through these simulations, we develop practical skills in implementing log-conformation formulations for numerical stability, handling complex interfaces with adaptive mesh refinement, and visualizing rheologically complex flows.",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Basilisk101/4th-workingAssignment/#non-newtonian-flows-with-basilisk",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "4th workingassignment - Non-Newtonian flows with Basilisk: This assignment represents...",
+    "content": "This assignment represents the culmination of our computational fluid dynamics progression, building on earlier work with heat conduction, single-phase flows, and simple multiphase systems.",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Basilisk101/4th-workingAssignment/#non-newtonian-flows-with-basilisk",
     "type": "blog_section",
     "priority": 3
@@ -2820,7 +2841,7 @@
   },
   {
     "title": "3rd workingassignment - Computational Multiphase Flows with Basilisk: From Champagne Bubbles to Drop Impact",
-    "content": "> [!tldr] TL;DR > This tutorial explores computational approaches to multiphase flow phenomena using Basilisk's axisymmetric framework. We examine five progressively complex simulations: bubble bursting, drop impact on pools, drop impact on solid surfaces, liquid lens equilibrium, and heated drop impact. Each simulation incorporates different physical aspects \u2013 surface tension, inertia, viscosity, thermal effects \u2013 characterized by dimensionless parameters including Ohnesorge, Bond, Weber, and Froude numbers. Through these simulations, we develop practical skills in handling complex interfaces, implementing boundary conditions, and visualizing flow features using adaptive mesh refinement techniques specifically designed for multiphase problems.",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/Lecture-Notes/Basilisk101/3rd-workingAssignment.pdf|Download this page as PDF]] > [!tldr] TL;DR > This tutorial explores computational approaches to multiphase flow phenomena using Basilisk's axisymmetric framework. We examine five progressively complex simulations: bubble bursting, drop impact on pools, drop impact on solid surfaces, liquid lens equilibrium, and heated drop impact. Each simulation incorporates different physical aspects \u2013 surface tension, inertia, viscosity, thermal effects \u2013 characterized by dimensionless parameters including Ohnesorge, Bond, Weber, and Froude numbers. Through these simulations, we develop practical skills in handling complex interfaces, implementing boundary conditions, and visualizing flow features using adaptive mesh refinement techniques specifically designed for multiphase problems.",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Basilisk101/3rd-workingAssignment/#computational-multiphase-flows-with-basilisk-from-champagne-bubbles-to-drop-impact",
     "type": "blog_section",
     "priority": 3
@@ -3002,7 +3023,7 @@
   },
   {
     "title": "0 readme - Soft Condensed Matter: An Introduction",
-    "content": "Course Overview. A journey through soft materials\u2014from everyday foams and gels to polymer networks and interfacial dynamics. We develop the conceptual and mathematical foundations to understand why soft matter behaves so differently from hard solids and liquids.",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/Lecture-Notes/Intro-Soft-Matter/0-README.pdf|Download this page as PDF]] Course Overview. A journey through soft materials\u2014from everyday foams and gels to polymer networks and interfacial dynamics. We develop the conceptual and mathematical foundations to understand why soft matter behaves so differently from hard solids and liquids.",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/0-README/#soft-condensed-matter-an-introduction",
     "type": "blog_section",
     "priority": 3
@@ -3100,7 +3121,7 @@
   },
   {
     "title": "1 intro soft matter - Lecture 1: Different Faces of Soft Condensed Matter",
-    "content": "An introduction to soft materials, why they're soft, and how we measure softness. See [[0-README|course overview and structure]] for context. ---",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/Lecture-Notes/Intro-Soft-Matter/1-Intro-Soft-Matter.pdf|Download this page as PDF]] An introduction to soft materials, why they're soft, and how we measure softness. See [[0-README|course overview and structure]] for context. ---",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/1-Intro-Soft-Matter/#lecture-1-different-faces-of-soft-condensed-matter",
     "type": "blog_section",
     "priority": 3
@@ -3344,6 +3365,13 @@
     "priority": 3
   },
   {
+    "title": "5 viscoelasticity - Lecture 5: Elastic vs Viscous vs Viscoelastic Behavior",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/Lecture-Notes/Intro-Soft-Matter/5-Viscoelasticity.pdf|Download this page as PDF]]",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/5-Viscoelasticity/#lecture-5-elastic-vs-viscous-vs-viscoelastic-behavior",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
     "title": "5 viscoelasticity - How Materials Deform",
     "content": "Contrasting three fundamental behaviors: 1. **Elastic Solids** - Store energy, recover shape 2. **Viscous Fluids** - Dissipate energy, flow continuously 3. **Viscoelastic Materials** - Combine both behaviors",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/5-Viscoelasticity/#how-materials-deform",
@@ -3576,7 +3604,7 @@
   },
   {
     "title": "1.5 taylor culick paradox - Lecture 1.5: The Taylor\u2013Culick Paradox \u2014 Where Did the Energy Go?",
-    "content": "Resolving the Dupr\u00e9\u2013Rayleigh paradox through proper energy accounting and momentum conservation. This lecture bridges [[1-Intro-Soft-Matter|Lecture 1]]'s introduction to the paradox with a complete resolution. ![](../../_Media/1.5-Taylor-Culick-03.png) ---",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/Lecture-Notes/Intro-Soft-Matter/1.5-Taylor-Culick-Paradox.pdf|Download this page as PDF]] Resolving the Dupr\u00e9\u2013Rayleigh paradox through proper energy accounting and momentum conservation. This lecture bridges [[1-Intro-Soft-Matter|Lecture 1]]'s introduction to the paradox with a complete resolution. ![](../../_Media/1.5-Taylor-Culick-03.png) ---",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/1.5-Taylor-Culick-Paradox/#lecture-15-the-taylorculick-paradox-where-did-the-energy-go",
     "type": "blog_section",
     "priority": 3
@@ -3757,6 +3785,13 @@
     "priority": 3
   },
   {
+    "title": "2.75 complementary questions answers - Lecture 2 -",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/Lecture-Notes/Intro-Soft-Matter/2.75-Complementary-Questions-Answers.pdf|Download this page as PDF]]",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2.75-Complementary-Questions-Answers/#lecture-2--",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
     "title": "2.75 complementary questions answers - Question 1: Coarse-Graining in Practice: Question: Explain what...",
     "content": "Question: Explain what \"coarse-graining\" means and why it lets us treat soft matter as a continuum. Pick one system (foam, polymer solution, emulsion) and say when this breaks down (give a specific length scale or condition). Answer: Coarse-graining means averaging over many microscopic constituents (molecules, droplets, bubbles, chains) to define smooth, space- and time-dependent fields like density, velocity, and stress. When the averaging volume is large compared to the microstructure, local fluctuations cancel and the material can be modeled as a continuous medium obeying conservation laws. **Example (emulsion):** If droplets have diameter $d \\sim 10\\,\\mu\\text{m}$, a pipe flow with gradients varying over millimeters contains thousands of droplets per \"fluid element,\" so a single-phase continuum with effective properties is accurate. The approximation **breaks down** when: 1.",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2.75-Complementary-Questions-Answers/#question-1-coarse-graining-in-practice",
@@ -3842,7 +3877,7 @@
   },
   {
     "title": "1.75 complementary questions answers - Lecture 1: Complementary Questions - Answers",
-    "content": "Course: Introduction to Soft Condensed Matter Assignment Type: Self-assessed questions ---",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/Lecture-Notes/Intro-Soft-Matter/1.75-Complementary-Questions-Answers.pdf|Download this page as PDF]] Course: Introduction to Soft Condensed Matter Assignment Type: Self-assessed questions ---",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/1.75-Complementary-Questions-Answers/#lecture-1-complementary-questions---answers",
     "type": "blog_section",
     "priority": 3
@@ -3894,6 +3929,13 @@
     "content": "> [!info] \ud83d\udcc4 PDF Version > [Download PDF](./7-8-Student-Presentations.pdf)",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/7-8-Student-Presentations/",
     "type": "blog_content",
+    "priority": 3
+  },
+  {
+    "title": "7 8 student presentations - Lectures 7-8: Student Presentations of Foundational and Recent Papers",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/Lecture-Notes/Intro-Soft-Matter/7-8-Student-Presentations.pdf|Download this page as PDF]]",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/7-8-Student-Presentations/#lectures-7-8-student-presentations-of-foundational-and-recent-papers",
+    "type": "blog_section",
     "priority": 3
   },
   {
@@ -4065,6 +4107,13 @@
     "priority": 3
   },
   {
+    "title": "3 soft matter instabilities - Lecture 3 \u2014",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/Lecture-Notes/Intro-Soft-Matter/3-Soft-Matter-Instabilities.pdf|Download this page as PDF]]",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/3-Soft-Matter-Instabilities/#lecture-3-",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
     "title": "3 soft matter instabilities - 0) Why talk about instability?",
     "content": "Patterns are everywhere: dunes and ripples, icicle ribs, dew beads on spider webs, hexagonal cracks in drying mud. Their regularity\u2014despite messy materials\u2014signals robust mechanisms. In fluids (and soft solids), instabilities often set the pattern scale and shape by amplifying tiny disturbances into organized structures. Our goal today is to recognize those mechanisms and the forces that select length and time scales. ---",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/3-Soft-Matter-Instabilities/#0-why-talk-about-instability",
@@ -4174,6 +4223,13 @@
     "content": "> [!info] \ud83d\udcc4 PDF Version > [Download PDF](./7.5-Presentation-Paper-Topics.pdf)",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/7.5-Presentation-Paper-Topics/",
     "type": "blog_content",
+    "priority": 3
+  },
+  {
+    "title": "7.5 presentation paper topics - Student Presentation Topics - Foundational and Recent Papers",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/Lecture-Notes/Intro-Soft-Matter/7.5-Presentation-Paper-Topics.pdf|Download this page as PDF]]",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/7.5-Presentation-Paper-Topics/#student-presentation-topics---foundational-and-recent-papers",
+    "type": "blog_section",
     "priority": 3
   },
   {
@@ -4611,6 +4667,13 @@
     "priority": 3
   },
   {
+    "title": "4 soft matter singularities - Lecture 4 \u2014",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/Lecture-Notes/Intro-Soft-Matter/4-Soft-Matter-Singularities.pdf|Download this page as PDF]]",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/4-Soft-Matter-Singularities/#lecture-4-",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
     "title": "4 soft matter singularities - Soft Matter Singularities",
     "content": "> [!tldr] TL;DR > A singularity is when a smooth physical process \u201cblows up\u201d $\u2014$ something finite becomes infinite in a finite time or at a finite place. ![](../../_Media/4-Soft-Matter-Singularities-1762960099435.png) *A water droplet detaching from a faucet forms a thinning neck that will pinch off. Just before separation, the neck radius shrinks rapidly and the curvature (and capillary pressure) blows up. The pinch-off singularity produces one main drop and often a tiny satellite drop left behind.[^dripping-image]*",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/4-Soft-Matter-Singularities/#soft-matter-singularities",
@@ -4832,6 +4895,13 @@
     "content": "> [!info] \ud83d\udcc4 PDF Version > [Download PDF](./2.5-Conservation-Laws.pdf)",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2.5-Conservation-Laws/",
     "type": "blog_content",
+    "priority": 3
+  },
+  {
+    "title": "2.5 conservation laws - Lecture 2 -",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/Lecture-Notes/Intro-Soft-Matter/2.5-Conservation-Laws.pdf|Download this page as PDF]]",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2.5-Conservation-Laws/#lecture-2--",
+    "type": "blog_section",
     "priority": 3
   },
   {
@@ -5094,6 +5164,13 @@
     "priority": 3
   },
   {
+    "title": "6 rheology - Lecture 6: Rheology \u2013 Measuring \"Softness\" and Time-Dependent Response",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/Lecture-Notes/Intro-Soft-Matter/6-Rheology.pdf|Download this page as PDF]]",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/6-Rheology/#lecture-6-rheology-measuring-softness-and-time-dependent-response",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
     "title": "6 rheology - What is Rheology?",
     "content": "**Definition:** The study of flow and deformation of matter **Central Question:** How do we quantify the softness or flow behavior of a material? **Focus:** - Experimental rheology - Storage and loss moduli (G', G\") - Viscosity as function of shear rate or frequency - Relaxation timescales",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/6-Rheology/#what-is-rheology",
@@ -5326,7 +5403,7 @@
   },
   {
     "title": "2 what is viscosity - Lecture 2: Viscosity and Momentum Diffusion",
-    "content": "Understanding viscosity as an emergent property arising from molecular collisions and free flights\u2014the diffusion of tangential momentum through a fluid. This lecture bridges [[1.5-Taylor-Culick-Paradox|Lecture 1.5]]'s resolution of the Taylor\u2013Culick paradox with the continuum mechanics framework needed to model soft matter flows. ---",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity.pdf|Download this page as PDF]] Understanding viscosity as an emergent property arising from molecular collisions and free flights\u2014the diffusion of tangential momentum through a fluid. This lecture bridges [[1.5-Taylor-Culick-Paradox|Lecture 1.5]]'s resolution of the Taylor\u2013Culick paradox with the continuum mechanics framework needed to model soft matter flows. ---",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Intro-Soft-Matter/2-What-is-Viscosity/#lecture-2-viscosity-and-momentum-diffusion",
     "type": "blog_section",
     "priority": 3
@@ -5584,36 +5661,43 @@
     "priority": 3
   },
   {
-    "title": "Seminar coalescence with surfactants - To merge or not to merge?: > [!significance] Authors...",
-    "content": "> [!significance] Authors > Jnandeep Talukdar, Duarte Rocha, Christian Diddens, Jacco Snoeijer, Detlef Lohse, and [Vatsal Sanjay*](https://comphy-lab.org) ![[Seminar-Coalescence-with-Surfactants-1767795012556.png|To merge or not to merge]] Coalescence of two sessile drops is initiated by a topological transition at first contact: a microscopic liquid bridge nucleates and grows from a vanishing initial length scale, launching the canonical coalescence singularity. For clean interfaces this bridge expansion is symmetric, but the outcome can flip when one drop carries surfactant and the other is clean: rather than merging, one drop can push the other aside. This matters because coalescence outcomes directly control pattern fidelity in inkjet printing, mixing efficiency in microfluidic handling, and emulsion stability, yet the earliest surfactant-mediated dynamics at first contact remain poorly characterised.",
+    "title": "Seminar coalescence with surfactants - To merge or not to merge?: > [!pdf] PDF...",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/Talks/Seminar-Coalescence-with-Surfactants.pdf|Download this page as PDF]] > [!significance] Authors > Jnandeep Talukdar, Duarte Rocha, Christian Diddens, Jacco Snoeijer, Detlef Lohse, and [Vatsal Sanjay*](https://comphy-lab.org) ![[Seminar-Coalescence-with-Surfactants-1767795012556.png|To merge or not to merge]] Coalescence of two sessile drops is initiated by a topological transition at first contact: a microscopic liquid bridge nucleates and grows from a vanishing initial length scale, launching the canonical coalescence singularity. For clean interfaces this bridge expansion is symmetric, but the outcome can flip when one drop carries surfactant and the other is clean: rather than merging, one drop can push the other aside.",
     "url": "https://blogs.comphy-lab.org/Talks/Seminar-Coalescence-with-Surfactants/#to-merge-or-not-to-merge",
     "type": "blog_section",
     "priority": 3
   },
   {
-    "title": "Seminar coalescence with surfactants - To merge or not to merge?: This talk shows...",
-    "content": "This talk shows how insoluble surfactants modify this earliest stage in an asymmetric configuration where one sessile drop is initially coated (concentration $\\Gamma_0$) and the other is clean. Using a long-wave lubrication model coupled to surfactant transport, together with asymptotic analysis and high-resolution simulations, we map regimes in surfactant strength $\\beta$, surface Peclet number $Pe$ (interfacial advection relative to surface diffusion), and contact angle $\\theta$. In the rapid-diffusion limit ($Pe \\to 0$), surfactant quickly homogenises near the neck, so the bridge height follows the clean-drop similarity with renormalised capillary driving, $h_0 \\simeq 0.272(1-\\beta\\Gamma_0/2)\\theta^4 t$, while transient Marangoni stresses break symmetry and drive a drift $x_0 \\propto t^{3/2}$ with a diffusion-controlled maximum excursion $x_f \\sim \\beta Pe$.",
+    "title": "Seminar coalescence with surfactants - To merge or not to merge?: This matters because...",
+    "content": "This matters because coalescence outcomes directly control pattern fidelity in inkjet printing, mixing efficiency in microfluidic handling, and emulsion stability, yet the earliest surfactant-mediated dynamics at first contact remain poorly characterised. This talk shows how insoluble surfactants modify this earliest stage in an asymmetric configuration where one sessile drop is initially coated (concentration $\\Gamma_0$) and the other is clean. Using a long-wave lubrication model coupled to surfactant transport, together with asymptotic analysis and high-resolution simulations, we map regimes in surfactant strength $\\beta$, surface Peclet number $Pe$ (interfacial advection relative to surface diffusion), and contact angle $\\theta$.",
     "url": "https://blogs.comphy-lab.org/Talks/Seminar-Coalescence-with-Surfactants/#to-merge-or-not-to-merge",
     "type": "blog_section",
     "priority": 3
   },
   {
-    "title": "Seminar coalescence with surfactants - To merge or not to merge?: In the slow-diffusion...",
-    "content": "In the slow-diffusion limit ($Pe \\to \\infty$), surfactant remains sharply segregated and sharp fronts develop; the dynamics are organised by a critical strength $\\beta_c \\approx 0.15$: above $\\beta_c$, Marangoni stresses suppress vertical bridge growth and sustain a translating, weakly coalescent state, whereas below $\\beta_c$ drift arrests via vorticity generation. In the purely advective limit, the surfactant field develops Burgers-type kinematic shocks. Overall, these results provide a regime map for surfactant-mediated sessile-drop coalescence at first contact. [[Seminar-Coalescence-with-Surfactants.pdf|this page in .pdf]]",
+    "title": "Seminar coalescence with surfactants - To merge or not to merge?: In the rapid-diffusion...",
+    "content": "In the rapid-diffusion limit ($Pe \\to 0$), surfactant quickly homogenises near the neck, so the bridge height follows the clean-drop similarity with renormalised capillary driving, $h_0 \\simeq 0.272(1-\\beta\\Gamma_0/2)\\theta^4 t$, while transient Marangoni stresses break symmetry and drive a drift $x_0 \\propto t^{3/2}$ with a diffusion-controlled maximum excursion $x_f \\sim \\beta Pe$. In the slow-diffusion limit ($Pe \\to \\infty$), surfactant remains sharply segregated and sharp fronts develop; the dynamics are organised by a critical strength $\\beta_c \\approx 0.15$: above $\\beta_c$, Marangoni stresses suppress vertical bridge growth and sustain a translating, weakly coalescent state, whereas below $\\beta_c$ drift arrests via vorticity generation. In the purely advective limit, the surfactant field develops Burgers-type kinematic shocks.",
     "url": "https://blogs.comphy-lab.org/Talks/Seminar-Coalescence-with-Surfactants/#to-merge-or-not-to-merge",
     "type": "blog_section",
     "priority": 3
   },
   {
-    "title": "Seminar singularities - Singularities in soft matter systems: > [!significance] Speaker...",
-    "content": "> [!significance] Speaker > [Vatsal Sanjay](https://vatsalsanjay.com) ([CoMPhy Lab](https://comphy-lab.org)) Soft matter flows frequently exhibit hydrodynamic singularities arising from the interplay of capillarity, inertia, viscosity, and elasticity. This talk explores such singularities across drops, bubbles, and thin films, combining experiments, direct numerical simulations, and theory. First, we investigate Worthington jets produced by drop impacts on superhydrophobic substrates, where discrete peaks in normal force mark singular events [1]. Next, we examine bursting bubbles in Newtonian and viscoelastic media, connecting elastic and viscous stresses to jet formation and droplet ejection [2]. Finally, for retracting liquid films, we demonstrate that classical Taylor\u2013Culick dynamics harbours singular limits: a viscous anomaly in the Newtonian case and elastic stress blow-up in the viscoelastic regime [3].",
+    "title": "Seminar coalescence with surfactants - To merge or not to merge?: Results",
+    "content": "Overall, these results provide a regime map for surfactant-mediated sessile-drop coalescence at first contact. [[Seminar-Coalescence-with-Surfactants.pdf|this page in .pdf]]",
+    "url": "https://blogs.comphy-lab.org/Talks/Seminar-Coalescence-with-Surfactants/#to-merge-or-not-to-merge",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "Seminar singularities - Singularities in soft matter systems: > [!pdf] PDF...",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/Talks/Seminar-Singularities.pdf|Download this page as PDF]] > [!significance] Speaker > [Vatsal Sanjay](https://vatsalsanjay.com) ([CoMPhy Lab](https://comphy-lab.org)) Soft matter flows frequently exhibit hydrodynamic singularities arising from the interplay of capillarity, inertia, viscosity, and elasticity. This talk explores such singularities across drops, bubbles, and thin films, combining experiments, direct numerical simulations, and theory. First, we investigate Worthington jets produced by drop impacts on superhydrophobic substrates, where discrete peaks in normal force mark singular events [1]. Next, we examine bursting bubbles in Newtonian and viscoelastic media, connecting elastic and viscous stresses to jet formation and droplet ejection [2].",
     "url": "https://blogs.comphy-lab.org/Talks/Seminar-Singularities/#singularities-in-soft-matter-systems",
     "type": "blog_section",
     "priority": 3
   },
   {
-    "title": "Seminar singularities - Singularities in soft matter systems: JavaScript",
-    "content": "By exploring this multidimensional phase space, we uncover new physical insights into these systems. The findings carry direct implications for manufacturing processes, droplet transport, and pathogen dispersal mitigation. ![[_Media/Seminar-Singularities-1767636732618.png]]",
+    "title": "Seminar singularities - Singularities in soft matter systems: Finally, for retracting...",
+    "content": "Finally, for retracting liquid films, we demonstrate that classical Taylor\u2013Culick dynamics harbours singular limits: a viscous anomaly in the Newtonian case and elastic stress blow-up in the viscoelastic regime [3]. By exploring this multidimensional phase space, we uncover new physical insights into these systems. The findings carry direct implications for manufacturing processes, droplet transport, and pathogen dispersal mitigation. ![[_Media/Seminar-Singularities-1767636732618.png]]",
     "url": "https://blogs.comphy-lab.org/Talks/Seminar-Singularities/#singularities-in-soft-matter-systems",
     "type": "blog_section",
     "priority": 3
