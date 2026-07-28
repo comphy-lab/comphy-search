@@ -139,6 +139,18 @@ PUBLIC_BLOG_INTERNAL_ENTRY_RE = re.compile(
     re.IGNORECASE,
 )
 
+PUBLIC_BLOG_PRIVATE_CONTENT_RE = re.compile(
+    r'\bPrivate-ToDo(?:-Blog-public)?\.md\b|'
+    r'\b(?:iCloud\s+)?MedicalStuff\b|'
+    r"\bprivate Obsidian vault\b",
+    re.IGNORECASE,
+)
+
+NON_CONTENT_FILENAMES = {
+    "agents.md",
+    "claude.md",
+}
+
 
 def strip_postnominals(text):
     """Remove display suffixes we do not want in search titles/anchors."""
@@ -167,7 +179,15 @@ def is_internal_public_blog_entry(entry):
     identity = " ".join(
         str(entry.get(key, "")) for key in ("title", "url") if entry.get(key)
     )
-    return bool(PUBLIC_BLOG_INTERNAL_ENTRY_RE.search(identity))
+    content = " ".join(
+        str(entry.get(key, ""))
+        for key in ("content", "excerpt")
+        if entry.get(key)
+    )
+    return bool(
+        PUBLIC_BLOG_INTERNAL_ENTRY_RE.search(identity)
+        or PUBLIC_BLOG_PRIVATE_CONTENT_RE.search(content)
+    )
 
 
 # Helper function to generate proper anchor links
@@ -1049,6 +1069,9 @@ def should_exclude_file(file_path, repo_config=None):
     Returns:
         bool: True if file should be excluded, False otherwise
     """
+    if file_path.name.lower() in NON_CONTENT_FILENAMES:
+        return True
+
     # Convert to string for easier path checking
     path_str = str(file_path)
     
