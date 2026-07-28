@@ -404,90 +404,6 @@
     "priority": 3
   },
   {
-    "title": "Agents - CLAUDE.md",
-    "content": "This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.",
-    "url": "https://blogs.comphy-lab.org/AGENTS/#claudemd",
-    "type": "blog_section",
-    "priority": 3
-  },
-  {
-    "title": "Agents - Repository Overview",
-    "content": "This is a research blog repository for the Computational Multiphase Physics (CoMPhy) Lab, containing academic content in Markdown format. The site is published at [blogs-comphy-lab.org](https://blogs-comphy-lab.org/).",
-    "url": "https://blogs.comphy-lab.org/AGENTS/#repository-overview",
-    "type": "blog_section",
-    "priority": 3
-  },
-  {
-    "title": "Agents - Privacy Boundary",
-    "content": "Treat this repository as public and publishable. Do not add personal admin notes, medical records, GP/NHS material, appointment details, identifiers, addresses, travel documents, finance paperwork, or private tasks here. `Private-ToDo-Blog-public.md` may be read as an input surface for public-safe blog work, but automation must not write private/admin/medical material into it or normalise private notes inside this repo. Route medical documents to iCloud `MedicalStuff`; route private notes/tasks to Vatsal's private Obsidian vault.",
-    "url": "https://blogs.comphy-lab.org/AGENTS/#privacy-boundary",
-    "type": "blog_section",
-    "priority": 3
-  },
-  {
-    "title": "Agents - Content Structure",
-    "content": "- `Blog/` - Research blog posts and updates - `Code-Documentations/` - Technical documentation - `Lecture-Notes/` - Teaching materials and course content - `Talks/` - Presentation materials and abstracts - `_AtomicNotes/` - Atomic knowledge pieces (linked notes) - `_Media/` - Images and media files - `_scripts/` - Jupyter notebooks for generating figures",
-    "url": "https://blogs.comphy-lab.org/AGENTS/#content-structure",
-    "type": "blog_section",
-    "priority": 3
-  },
-  {
-    "title": "Agents - Markdown Files",
-    "content": "All content uses Markdown with YAML frontmatter: ```yaml --- created: YYYY-MM-DDThh:mm:ss+01:00 modified: YYYY-MM-DDThh:mm:ss+01:00 status: [Published/Working/Draft/done \u2705] website: https://blogs-comphy-lab.org/your-post-url --- ```",
-    "url": "https://blogs.comphy-lab.org/AGENTS/#markdown-files",
-    "type": "blog_section",
-    "priority": 3
-  },
-  {
-    "title": "Agents - Obsidian Features",
-    "content": "- Wiki-style links: `[[post-name]]` and `[[post-name|alias]]` - Image embedding: `![[_Media/filename.png]]` - Callouts: `> [!note]`, `> [!tldr]`, `> [!important]`",
-    "url": "https://blogs.comphy-lab.org/AGENTS/#obsidian-features",
-    "type": "blog_section",
-    "priority": 3
-  },
-  {
-    "title": "Agents - PDF Export",
-    "content": "Convert Markdown to PDF using the export script: ```bash ./.obsidian/scripts/export-pdf.sh \"filename.md\" ``` The script handles: - Obsidian syntax conversion to standard Markdown - Image path processing - Bibliography integration via Pandoc - LaTeX/XeLaTeX PDF generation",
-    "url": "https://blogs.comphy-lab.org/AGENTS/#pdf-export",
-    "type": "blog_section",
-    "priority": 3
-  },
-  {
-    "title": "Agents - Content Validation",
-    "content": "- Ensure all images exist in `_Media/` directory - Verify wiki links point to existing content - Check YAML frontmatter format",
-    "url": "https://blogs.comphy-lab.org/AGENTS/#content-validation",
-    "type": "blog_section",
-    "priority": 3
-  },
-  {
-    "title": "Agents - File Organization",
-    "content": "- Place new blog posts in `Blog/` - Store images in `_Media/` with descriptive names - Use atomic notes in `_AtomicNotes/` for reusable concepts",
-    "url": "https://blogs.comphy-lab.org/AGENTS/#file-organization",
-    "type": "blog_section",
-    "priority": 3
-  },
-  {
-    "title": "Agents - Mathematical Content",
-    "content": "- Use LaTeX syntax for equations: `$$equation$$` or `$inline$` - Include Jupyter notebooks in `_scripts/` for computational examples - Save generated plots to `_Media/`",
-    "url": "https://blogs.comphy-lab.org/AGENTS/#mathematical-content",
-    "type": "blog_section",
-    "priority": 3
-  },
-  {
-    "title": "Agents - Academic Standards",
-    "content": "- Include proper citations and references - Use descriptive filenames without spaces - Maintain consistent notation across related posts",
-    "url": "https://blogs.comphy-lab.org/AGENTS/#academic-standards",
-    "type": "blog_section",
-    "priority": 3
-  },
-  {
-    "title": "Agents - Publishing Workflow",
-    "content": "Content is managed through: 1. Obsidian vault for local editing 2. Git version control for collaboration 3. Website deployment at blogs-comphy-lab.org The repository supports both individual researchers and collaborative editing through GitHub's issue templates and pull request workflow.",
-    "url": "https://blogs.comphy-lab.org/AGENTS/#publishing-workflow",
-    "type": "blog_section",
-    "priority": 3
-  },
-  {
     "title": "0_readme - Computational Multiphase Physics <br> (CoMPhy)",
     "content": "Welcome to the CoMPhy Lab's documentation hub! We are based at the Physics of Fluids Department at the University of Twente, where we explore non-Newtonian free-surface flows and soft matter singularities.",
     "url": "https://blogs.comphy-lab.org/0_README/#computational-multiphase-physics-br-comphy",
@@ -5906,8 +5822,8 @@
     "priority": 3
   },
   {
-    "title": "2025 jfm viscous drop impact - The role of viscosity on drop impact forces on non-wetting surfaces: From Raindrops to Inkjet Printing: When a liquid...",
-    "content": "When a liquid drop hits a surface, the impact creates fascinating fluid dynamics that are crucial for applications ranging from inkjet printing to agricultural sprays. In this work, we uncover how a liquid's viscosity dramatically affects the forces generated during these impacts. Let's explore the key findings. ![[_Media/JFM-viscous-drop-impact-blog-1740211822831.png]] > [!tldr] TL;DR > Viscosity alters the forces a liquid drop exerts when it strikes a non-wetting surface, shifting the balance from inertia-dominated (like water) to enhanced viscous effects (like honey). Two force peaks arise: one at the initial impact and another tied to the Worthington jet just before bounce. Dimensionless numbers (Weber and Ohnesorge) govern these regimes, showing why higher-viscosity drops can yield unexpectedly large forces.",
+    "title": "2025 jfm viscous drop impact - The role of viscosity on drop impact forces on non-wetting surfaces: From Raindrops to Inkjet Printing: > [!pdf] PDF...",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/2025-JFM-viscous-drop-impact.pdf|Download this page as PDF]] When a liquid drop hits a surface, the impact creates fascinating fluid dynamics that are crucial for applications ranging from inkjet printing to agricultural sprays. In this work, we uncover how a liquid's viscosity dramatically affects the forces generated during these impacts. Let's explore the key findings. ![[_Media/JFM-viscous-drop-impact-blog-1740211822831.png]] > [!tldr] TL;DR > Viscosity alters the forces a liquid drop exerts when it strikes a non-wetting surface, shifting the balance from inertia-dominated (like water) to enhanced viscous effects (like honey). Two force peaks arise: one at the initial impact and another tied to the Worthington jet just before bounce. Dimensionless numbers (Weber and Ohnesorge) govern these regimes, showing why higher-viscosity drops can yield unexpectedly large forces.",
     "url": "https://blogs.comphy-lab.org/Blog/2025-JFM-viscous-drop-impact/#the-role-of-viscosity-on-drop-impact-forces-on-non-wetting-surfaces-from-raindrops-to-inkjet-printing",
     "type": "blog_section",
     "priority": 3
@@ -5990,8 +5906,8 @@
     "priority": 3
   },
   {
-    "title": "2026 why polymers arrest drops but not bubbles - Why Dilute Polymers Arrest a Pinching Drop but Not a Bubble: Add a minute...",
-    "content": "Add a minute amount of long polymer to water and a pinching drop stops behaving like water. The liquid neck refuses to snap, leaving a thin filament that can survive long enough to form the familiar beads-on-a-string structure. A dilute bubble neck looks like the same problem with air and liquid exchanged, yet it still collapses almost as if the polymers were absent.",
+    "title": "2026 why polymers arrest drops but not bubbles - Why Dilute Polymers Arrest a Pinching Drop but Not a Bubble: > [!pdf] PDF...",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/2026-Why-Polymers-Arrest-Drops-but-Not-Bubbles.pdf|Download this page as PDF]] Add a minute amount of long polymer to water and a pinching drop stops behaving like water. The liquid neck refuses to snap, leaving a thin filament that can survive long enough to form the familiar beads-on-a-string structure. A dilute bubble neck looks like the same problem with air and liquid exchanged, yet it still collapses almost as if the polymers were absent.",
     "url": "https://blogs.comphy-lab.org/Blog/2026-Why-Polymers-Arrest-Drops-but-Not-Bubbles/#why-dilute-polymers-arrest-a-pinching-drop-but-not-a-bubble",
     "type": "blog_section",
     "priority": 3
@@ -6439,7 +6355,7 @@
   },
   {
     "title": "2025 why double\u2011network hydrogels dont shatter - Why Double-Network Hydrogels Don\u2019t Shatter \u2014 and What That Teaches Us About Tough Design",
-    "content": "> [!summary] TL;DR > A minimal *mesoscale* model shows why double-network (DN) hydrogels are both stiff and hard to break: the soft matrix *screens* stress released by broken sacrificial bonds, halting the crack-propagating cascade that plagues single networks. Screening $\\neq$ dissipation: dissipation is the *cost* when a bond breaks; screening is the *redistribution* that stops one break from triggering the next. The model also maps a practical trade-off: more (or stiffer) matrix boosts failure strain but erodes stiffness\u2014revealing a sweet spot.",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/2025-Why-Double\u2011Network-Hydrogels-Dont-Shatter.pdf|Download this page as PDF]] > [!summary] TL;DR > A minimal *mesoscale* model shows why double-network (DN) hydrogels are both stiff and hard to break: the soft matrix *screens* stress released by broken sacrificial bonds, halting the crack-propagating cascade that plagues single networks. Screening $\\neq$ dissipation: dissipation is the *cost* when a bond breaks; screening is the *redistribution* that stops one break from triggering the next. The model also maps a practical trade-off: more (or stiffer) matrix boosts failure strain but erodes stiffness\u2014revealing a sweet spot.",
     "url": "https://blogs.comphy-lab.org/Blog/2025-Why-Double\u2011Network-Hydrogels-Dont-Shatter/#why-double-network-hydrogels-dont-shatter-and-what-that-teaches-us-about-tough-design",
     "type": "blog_section",
     "priority": 3
@@ -6553,6 +6469,13 @@
     "title": "2025 why double\u2011network hydrogels dont shatter - Tags",
     "content": "#hydrogels #double-network #fracture-mechanics #soft-materials #modeling #elastic-screening #polymer-physics > [!significance]- Metadata > Author:: [Vatsal Sanjay](https://comphy-lab.org/VatsalSy) > Date published:: Oct 31, 2025 > [!meta] Back to main website > [Home](https://comphy-lab.org/), [Team](https://comphy-lab.org/team), [Research](https://comphy-lab.org/research), [Github](https://github.com/comphy-lab), [Blogs](https://blogs.comphy-lab.org) > > \ud83d\udcdd [Edit this page on GitHub](https://github.com/comphy-lab/CoMPhy-Lab-Blogs/blob/main/Blog/2025-Why-Double\u2011Network-Hydrogels-Dont-Shatter.md)",
     "url": "https://blogs.comphy-lab.org/Blog/2025-Why-Double\u2011Network-Hydrogels-Dont-Shatter/#tags",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2025 emmy noether symmetry conservation - What Did Emmy Noether Reveal About the Universe?",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/2025-Emmy-Noether-Symmetry-Conservation.pdf|Download this page as PDF]]",
+    "url": "https://blogs.comphy-lab.org/Blog/2025-Emmy-Noether-Symmetry-Conservation/#what-did-emmy-noether-reveal-about-the-universe",
     "type": "blog_section",
     "priority": 3
   },
@@ -6756,6 +6679,13 @@
     "title": "2025 emmy noether symmetry conservation - Tags & Categories",
     "content": "#biography #mathematics #physics #symmetry #conservation-laws #women-in-science #history-of-science #theoretical-physics #abstract-algebra --- Note: This blog post is part of the CoMPhy Lab's profile series celebrating influential scientists and their contributions to our understanding of the universe. Emmy Noether's story reminds us that the greatest discoveries often come from those who refuse to be silenced by systemic barriers. > [!significance]- Metadata > Author:: [Vatsal Sanjay](https://comphy-lab.org/VatsalSy) > Date published:: Oct 24, 2025 > [!meta] Back to main website > [Home](https://comphy-lab.org/), [Team](https://comphy-lab.org/team), [Research](https://comphy-lab.org/research), [Github](https://github.com/comphy-lab), [Blogs](https://blogs.comphy-lab.org) > > \ud83d\udcdd [Edit this page on GitHub](https://github.com/comphy-lab/CoMPhy-Lab-Blogs/blob/main/Blog/2025-Emmy-Noether-Symmetry-Conservation.md)",
     "url": "https://blogs.comphy-lab.org/Blog/2025-Emmy-Noether-Symmetry-Conservation/#tags-categories",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "2025 arrowheads in elastoinertial turbulence - Reflections about arrowhead (narwhals) Structures in Elastoinertial Turbulence",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/2025-Arrowheads-in-elastoinertial-turbulence.pdf|Download this page as PDF]]",
+    "url": "https://blogs.comphy-lab.org/Blog/2025-Arrowheads-in-elastoinertial-turbulence/#reflections-about-arrowhead-narwhals-structures-in-elastoinertial-turbulence",
     "type": "blog_section",
     "priority": 3
   },
@@ -7125,7 +7055,7 @@
   },
   {
     "title": "2025 visual pdes - Visual PDE: Where mathematics becomes art you can paint with your fingers",
-    "content": "VisualPDE lets anyone\u2014students, teachers, and researchers\u2014simulate rich partial differential equation (PDE) models directly in the browser, in real time, no coding or installs. Under the hood it turns your device\u2019s GPU into a math engine, so patterns bloom and waves ripple as fast as you can drag a slider or draw with your finger. It\u2019s \u201cDesmos for PDEs,\u201d except the plots are alive. > [!summary] TL;DR > Open visualpde.com, pick an example (or type your own equations), then paint initial conditions, adjust sliders, and share a link or embed the live sim. It runs on laptops, tablets, and phones, with GPU\u2011accelerated timestepping delivering tens of thousands of steps per second on typical demos.",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/2025-visual-pdes.pdf|Download this page as PDF]] VisualPDE lets anyone\u2014students, teachers, and researchers\u2014simulate rich partial differential equation (PDE) models directly in the browser, in real time, no coding or installs. Under the hood it turns your device\u2019s GPU into a math engine, so patterns bloom and waves ripple as fast as you can drag a slider or draw with your finger. It\u2019s \u201cDesmos for PDEs,\u201d except the plots are alive. > [!summary] TL;DR > Open visualpde.com, pick an example (or type your own equations), then paint initial conditions, adjust sliders, and share a link or embed the live sim. It runs on laptops, tablets, and phones, with GPU\u2011accelerated timestepping delivering tens of thousands of steps per second on typical demos.",
     "url": "https://blogs.comphy-lab.org/Blog/2025-visual-pdes/#visual-pde-where-mathematics-becomes-art-you-can-paint-with-your-fingers",
     "type": "blog_section",
     "priority": 3
@@ -7229,15 +7159,15 @@
     "priority": 3
   },
   {
-    "title": "2025 features of capillary waves during asymmetric bubble coalescence - Features of capillary waves during asymmetric bubble coalescence: > [!tldr] TL;DR...",
-    "content": "> [!tldr] TL;DR > During the coalescence of bubbles with different sizes, the speed of the ensuing capillary waves remains almost unchanged and scales with the inertio\u2010capillary velocity. However, the strength (or curvature) of these waves depends on the bubble size ratio. In the equal\u2010sized case, the wave curvature diminishes and then plateaus, whereas for highly asymmetric (large vs. tiny) bubbles, the curvature initially decreases but then rebounds sharply due to the changing geometry. Two approximate scaling laws emerge for the strongest wave curvature: \ufffc in the low\u2010viscosity limit and \ufffc in the moderate\u2010to\u2010higher viscosity regime. Experimental data diverge somewhat from these simple power laws, indicating a need for refined models to explain the distinct curvature behavior at low Ohnesorge numbers. ![Fig-1_schematic](_Media/20250112214056729_Features-of-capillary-waves-during-asymmetric-bubble-coalescence.png) Figure 1. Schematic of asymmetric coalescence of bubbles.",
+    "title": "2025 features of capillary waves during asymmetric bubble coalescence - Features of capillary waves during asymmetric bubble coalescence: > [!pdf] PDF...",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/2025-Features-of-capillary-waves-during-asymmetric-bubble-coalescence.pdf|Download this page as PDF]] > [!tldr] TL;DR > During the coalescence of bubbles with different sizes, the speed of the ensuing capillary waves remains almost unchanged and scales with the inertio\u2010capillary velocity. However, the strength (or curvature) of these waves depends on the bubble size ratio. In the equal\u2010sized case, the wave curvature diminishes and then plateaus, whereas for highly asymmetric (large vs. tiny) bubbles, the curvature initially decreases but then rebounds sharply due to the changing geometry. Two approximate scaling laws emerge for the strongest wave curvature: \ufffc in the low\u2010viscosity limit and \ufffc in the moderate\u2010to\u2010higher viscosity regime.",
     "url": "https://blogs.comphy-lab.org/Blog/2025-Features-of-capillary-waves-during-asymmetric-bubble-coalescence/#features-of-capillary-waves-during-asymmetric-bubble-coalescence",
     "type": "blog_section",
     "priority": 3
   },
   {
-    "title": "2025 features of capillary waves during asymmetric bubble coalescence - Features of capillary waves during asymmetric bubble coalescence: Following the coalescnece,...",
-    "content": "Following the coalescnece, train of capillary waves travel on the surface of both bubbles.",
+    "title": "2025 features of capillary waves during asymmetric bubble coalescence - Features of capillary waves during asymmetric bubble coalescence: Experimental data diverge...",
+    "content": "Experimental data diverge somewhat from these simple power laws, indicating a need for refined models to explain the distinct curvature behavior at low Ohnesorge numbers. ![Fig-1_schematic](_Media/20250112214056729_Features-of-capillary-waves-during-asymmetric-bubble-coalescence.png) Figure 1. Schematic of asymmetric coalescence of bubbles. Following the coalescnece, train of capillary waves travel on the surface of both bubbles.",
     "url": "https://blogs.comphy-lab.org/Blog/2025-Features-of-capillary-waves-during-asymmetric-bubble-coalescence/#features-of-capillary-waves-during-asymmetric-bubble-coalescence",
     "type": "blog_section",
     "priority": 3
@@ -7335,7 +7265,7 @@
   },
   {
     "title": "2025 curvature inversion in laser\u2011struck droplets - Curvature Inversion in Laser\u2011Struck Droplets",
-    "content": "> [!cite] > H. Fran\u00e7a, H. Schubert, O. Versolato & M. Jalaal, Laser-Induced Droplet Deformation: Curvature Inversion Explained from Instantaneous Pressure Impulse, J. Fluid Mech., 1020, A21 (2025). [DOI (OA): 10.1017/jfm.2025.10665](https://doi.org/10.1017/jfm.2025.10665)",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/2025-Curvature-Inversion-in-Laser\u2011Struck-Droplets.pdf|Download this page as PDF]] > [!cite] > H. Fran\u00e7a, H. Schubert, O. Versolato & M. Jalaal, Laser-Induced Droplet Deformation: Curvature Inversion Explained from Instantaneous Pressure Impulse, J. Fluid Mech., 1020, A21 (2025). [DOI (OA): 10.1017/jfm.2025.10665](https://doi.org/10.1017/jfm.2025.10665)",
     "url": "https://blogs.comphy-lab.org/Blog/2025-Curvature-Inversion-in-Laser\u2011Struck-Droplets/#curvature-inversion-in-laserstruck-droplets",
     "type": "blog_section",
     "priority": 3
@@ -19960,209 +19890,6 @@
     "url": "https://comphy-lab.org/Asymmetries-in-coalescence/simulationCases/coalescenceBubble-tag.c.html",
     "type": "docs_code",
     "priority": 4
-  },
-  {
-    "title": "Agents - AGENTS.md",
-    "content": "Operating notes for AI coding assistants (Claude Code, Codex, etc.) working in this repository. Treated as canonical; `CLAUDE.md` defers here.",
-    "url": "https://comphy-lab.org#agents",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
-    "title": "Agents - Repository overview",
-    "content": "Static Jekyll site for the CoMPhy (Computational Multiphase Physics) Lab \u2014 research publications, team profiles, teaching materials, lab news. Hosted on GitHub Pages at .",
-    "url": "https://comphy-lab.org#agents",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
-    "title": "Agents - v2 design system",
-    "content": "The site is mid-migration to a \"v2\" design language: - **`assets/css/tokens.css`** \u2014 design tokens (`--c-*` brand colours, `--t-*` typography, `--s-*` spacing, `--r-*` radii). Single source of truth. - **`assets/css/bridge.css`** \u2014 loaded **after** `tokens.css` and `styles.css` so its `:root` declarations win. Maps legacy `--color-*`/`--font-*`/`--shadow-*` names onto v2 tokens, declares shared component primitives (panel, eyebrow, lede, chip, btn-ghost, paper-card, news-row, team-tile). - **v2 page stylesheets** \u2014 `home.css`, `team-v2.css`, `research-v2.css`, `footer-v2.css`, `about-layout.css`, `shared-news-history.css`, `join-us.css`. Coexist with legacy `styles.css`, `research.css`, `team.css`, `teaching.css`. When adding a new v2 page, prefer composing from bridge primitives over duplicating styles. Page-specific files only for genuinely page-specific rules.",
-    "url": "https://comphy-lab.org#agents",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
-    "title": "Agents - Data-driven pages",
-    "content": "Several pages render from YAML rather than handwritten HTML: - **`_data/hero.yml`** \u2014 homepage hero section (slides, copy, eyebrow). - **`_data/news.yml`** \u2014 news items shown on the homepage and `/news/` archive (date, kind, title, meta, action). - **`_data/team.yml`** \u2014 present members, collaborators, alumni for the team page (name, role, photo, bio). - **`_data/research_themes.yml`** \u2014 research-themes block. The Jekyll collections (`_research/`, `_team/`, `_teaching/`, `_join-us/`) still drive their own pages. Team is the one with both a YAML feed and a collection, and `_team/index.md` is the rendered surface \u2014 the YAML is the content.",
-    "url": "https://comphy-lab.org#agents",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
-    "title": "Agents - Layouts and includes",
-    "content": "- `_layouts/default.html` \u2014 base layout, used by everything except the collection-specific layouts below. - `_layouts/research.html`, `team.html`, `teaching.html`, `teaching-course.html`, `join-us.html`, `history.html` \u2014 collection / page layouts. - `_includes/footer-v2.html` \u2014 site footer (v2 footer is the only footer). - `_includes/theme-init.html`, `tokens-bridge.html`, `tokens-head.html` \u2014 early-load fragments for theme persistence and token wiring.",
-    "url": "https://comphy-lab.org#agents",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
-    "title": "Agents - Command palette and search",
-    "content": "- `command-palette.js` must load **before** `command-data.js` (dependency order; `scripts/fix-script-order.sh` enforces this). - Fuse.js powers fuzzy search. - Search database (`search_db.json`) is generated and updated daily from the [comphy-lab/comphy-search](https://github.com/comphy-lab/comphy-search) repository via GitHub Actions; not edited by hand here. - Keyboard shortcut: \u2318K (Mac) / Ctrl+K (Windows).",
-    "url": "https://comphy-lab.org#agents",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
-    "title": "Agents - Theme system",
-    "content": "- CSS variables in `:root` for light, overridden under `[data-theme=\"dark\"]`. - Theme persisted in `localStorage`, applied early via `theme-init.html` to avoid FOUC.",
-    "url": "https://comphy-lab.org#agents",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
-    "title": "Agents - Research tag filtering",
-    "content": "- Client-side JS filtering plus pre-generated tag pages for SEO. - Tags must use ` TagName ` in `_research/index.md`.",
-    "url": "https://comphy-lab.org#agents",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
-    "title": "Agents - Redirect pages",
-    "content": "- `about.html` \u2014 Jekyll permalink `/about/`, redirects to `/`. Plain JS redirect with visible fallback link, mirrors the `contact.html` pattern. - `contact.html` \u2014 Jekyll permalink `/contact/`, redirects to `/join`.",
-    "url": "https://comphy-lab.org#agents",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
-    "title": "Agents - Tests",
-    "content": "npm test npm test -- --coverage npm test -- command-data.test.js",
-    "url": "https://comphy-lab.org#agents",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
-    "title": "Agents - Targeted fixers",
-    "content": "./scripts/fix-script-order.sh # enforces command-palette.js first ./scripts/fix-js-line-length.sh # 80-char enforcement ./scripts/fix-quotes.sh # standardises to double quotes",
-    "url": "https://comphy-lab.org#agents",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
-    "title": "Agents - Lint teaching markdown locally (mirrors CI gate)",
-    "content": "npx markdownlint-cli2 --config .markdownlint-cli2.jsonc \\ \"_teaching/**/*.md\" \"assets/images/teaching/README.md\" npx prettier --check \"_teaching/**/*.md\" \"assets/images/teaching/README.md\" ```",
-    "url": "https://comphy-lab.org#agents",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
-    "title": "Agents - Adding research papers",
-    "content": "Add to `_research/index.md` in this exact form: ```markdown [NUMBER] Author1, A., **Author2, B.**, & Author3, C. Title. _Journal_, Volume, Pages (Year). Tag1 Tag2 Featured [![Badge](https://img.shields.io/static/v1.svg?style=flat-square&label=LABEL&message=MESSAGE&color=COLOR)](URL) ``` - Use `**Name**` for lab members. - Add ` Featured ` to display on the homepage (max 2). - The `id` attribute enables direct linking: `/research/#NUMBER`.",
-    "url": "https://comphy-lab.org#agents",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
-    "title": "Agents - Team members",
-    "content": "Edit `_data/team.yml`. The team page (`_team/index.md` + `team.html` layout) renders from this data. Photo files live under `assets/images/team/` (1:1 crop, used at `--r-md` radius). Bio lines are line-clamped per section (3 lines for present, 4 for collaborators, unset for alumni).",
-    "url": "https://comphy-lab.org#agents",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
-    "title": "Agents - News",
-    "content": "- **Slash command**: `/add-news \"Your news content here\"` \u2014 see \"Custom slash commands\" below. - **Manual**: edit `_data/news.yml` (the source of truth for the homepage feed and `/news/` archive), then mirror to `News.md` and `history.md`. `News.md` keeps only the 5 most recent legacy items plus the pinned Durham announcement; older items live on in `history.md` and `_data/news.yml`. - Format: `- News content` under `### Month Year` headers; pinned items have no header. Months are reverse-chronological within each year.",
-    "url": "https://comphy-lab.org#agents",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
-    "title": "Agents - Teaching",
-    "content": "- Main page: `_teaching/index.md` (uses the `teaching` layout, sorts and filters courses). - Course pages: `_teaching/YYYY-CourseName-Location.md` (uses `teaching-course` layout). - Images: `/assets/images/teaching/` \u2014 600x400 for cards, 1200x400 for banners.",
-    "url": "https://comphy-lab.org#agents",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
-    "title": "Agents - Script dependencies",
-    "content": "Enforced by `lint-check.sh`, but worth keeping in mind: - Fuse.js loads before any search code. - `command-palette.js` loads before `command-data.js`. - `theme-init.html` runs as early as possible to avoid theme flash.",
-    "url": "https://comphy-lab.org#agents",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
-    "title": "Agents - Pre-commit hooks",
-    "content": "Installed by `setup.sh` via Husky: - ESLint with auto-fix for JS. - Prettier for JS/CSS/JSON/YAML formatting. - markdownlint-cli2 for Markdown. - Only staged files are checked. - Bypass with `git commit --no-verify` only in real emergencies.",
-    "url": "https://comphy-lab.org#agents",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
-    "title": "Agents - Search database updates",
-    "content": "Maintained externally in [comphy-lab/comphy-search](https://github.com/comphy-lab/comphy-search). Updated daily via GitHub Actions and pulled into `assets/js/search_db.json`. Includes blog content from blogs.comphy-lab.org. Manual trigger available in the Actions tab.",
-    "url": "https://comphy-lab.org#agents",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
-    "title": "Agents - Content-rules CI",
-    "content": "The `content-rules` workflow validates `history.md` chronological ordering and `_research/index.md` tag markup. Trigger paths must match the validated-file set; `scripts/check-content-rules-trigger-parity.py` enforces this. If you add a new file to the validator, also add its path to `.github/workflows/content-rules-checks.yml`.",
-    "url": "https://comphy-lab.org#agents",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
-    "title": "Agents - Coverage areas",
-    "content": "- Command palette (navigation, search, keyboard shortcuts). - Line-breaking utilities (80-char enforcement). - Platform detection (Mac vs Windows shortcuts). - Teaching page sorting. - Featured-papers homepage media handling regression. - Browser API mocks in `tests/setup.js`.",
-    "url": "https://comphy-lab.org#agents",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
-    "title": "Agents - Running specific tests",
-    "content": "```bash npm test -- command-data.test.js npm test -- --watch node scripts/simple-test.js # quick validation without Jest ```",
-    "url": "https://comphy-lab.org#agents",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
-    "title": "Agents - Build process",
-    "content": "`scripts/build.sh` runs (in order): 1. Jekyll build (production env). 2. Search database fetch (in CI only). 3. SEO tag generation. 4. Filtered research tag pages.",
-    "url": "https://comphy-lab.org#agents",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
-    "title": "Agents - Asset optimisation",
-    "content": "- WebP where possible; optimise before adding. - Lazy loading on images. - CSS organised by breakpoint (1700, 1300, 900, 768, 500) for cache hits.",
-    "url": "https://comphy-lab.org#agents",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
-    "title": "Agents - File management",
-    "content": "- ALWAYS prefer editing existing files over creating new ones. - Developer docs (READMEs, CONTRIBUTING) are not created unless asked. - Site content follows its specific workflow (research / news / teaching / team \u2014 see \"Content management\" above).",
-    "url": "https://comphy-lab.org#agents",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
-    "title": "Agents - Code style",
-    "content": "- 80-char line limit for JavaScript. - Double quotes for strings. - ES6+ (arrow functions, const/let, async/await). - Mobile-first CSS; min-width media queries. - BEM naming for CSS classes (`.s-header__nav-list`, `.news-item__body`). - Compose from `bridge.css` primitives where possible.",
-    "url": "https://comphy-lab.org#agents",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
-    "title": "Agents - Git workflow",
-    "content": "- Work on feature branches. - Run `./scripts/lint-check.sh` and `npm test` before committing. - Reference issue numbers in commits where relevant. - Don't bypass hooks (`--no-verify`) unless explicitly authorised.",
-    "url": "https://comphy-lab.org#agents",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
-    "title": "Agents - Custom slash commands",
-    "content": "The canonical definitions for `/add-news` and the other content skills live outside this repository (in the agent system that invoked them). The repo previously contained an `.agents/skills/` mirror, which was removed deliberately to avoid drift. The notes below describe the expected behaviour so non-agent contributors can follow the same recipe manually.",
-    "url": "https://comphy-lab.org#agents",
-    "type": "website_section",
-    "priority": 8
-  },
-  {
-    "title": "Agents - /add-news",
-    "content": "Adds a news item to `_data/news.yml`, `News.md`, and `history.md` while maintaining the 5-item limit on `News.md`. `_data/news.yml` is the visible source for the homepage and `/news/`. **Workflow**: 1. Add a structured item to `_data/news.yml` in reverse-chronological position with `date`, `kind`, `title`, `meta`, `action_label`, `action_href`. 2. Add the item to the matching `### Month Year` section in `history.md`. 3. Add the item to `News.md` in the same section. 4. If the count of non-pinned items in `News.md` exceeds 5, remove the oldest from `News.md` only (`history.md` keeps everything). 5. Save all three files. **Rules**: - The pinned Durham announcement has no month/year header \u2014 preserve it. - News items use the `- News content` bullet form (dash + space + text). - Maintain blank lines between sections. - Years descend in `history.md`; months descend within each year.",
-    "url": "https://comphy-lab.org#agents",
-    "type": "website_section",
-    "priority": 8
   },
   {
     "title": "News - May",
