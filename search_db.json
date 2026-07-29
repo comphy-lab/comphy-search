@@ -1664,8 +1664,8 @@
     "priority": 3
   },
   {
-    "title": "Gauss law of electrostatics - Gauss law of electrostatics: > [!important]- Pre-requisites...",
-    "content": "> [!important]- Pre-requisites > I assume a working knowledge of > * Electric field $\\vec{E}$. > * [[Geometric-description-of-electric-field]] > * [[What-is-electric-field-flux?]] > * What is the electric field created by a point change $q$? > $E = q/(4\\pi\\varepsilon_0r^2)$ > * [[Principle-of-superposition-of-electric-fields]] > [!tldr] TL;DR > Gauss\u2019 law states that the net electric flux through any closed surface is proportional to the total charge enclosed inside it. Its integral form, $\\oint \\vec{E} \\cdot d\\vec{A} = q_{\\text{in}}/\\varepsilon_0$, is most practically used with high\u2010symmetry geometries (spherical, cylindrical, planar). Even though it might seem universal, using it directly for complex geometries often requires additional methods. The differential form, $\\vec{\\nabla} \\cdot \\vec{E} = \\rho/\\varepsilon_0$, underpins charge\u2010field relationships in Maxwell\u2019s equations.",
+    "title": "Gauss law of electrostatics - Gauss law of electrostatics: > [!pdf] PDF...",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/Lecture-Notes/Gauss-law-of-Electrostatics.pdf|Download this page as PDF]] > [!important]- Pre-requisites > I assume a working knowledge of > * Electric field $\\vec{E}$. > * [[Geometric-description-of-electric-field]] > * [[What-is-electric-field-flux?]] > * What is the electric field created by a point change $q$? > $E = q/(4\\pi\\varepsilon_0r^2)$ > * [[Principle-of-superposition-of-electric-fields]] > [!tldr] TL;DR > Gauss\u2019 law states that the net electric flux through any closed surface is proportional to the total charge enclosed inside it. Its integral form, $\\oint \\vec{E} \\cdot d\\vec{A} = q_{\\text{in}}/\\varepsilon_0$, is most practically used with high\u2010symmetry geometries (spherical, cylindrical, planar). Even though it might seem universal, using it directly for complex geometries often requires additional methods. The differential form, $\\vec{\\nabla} \\cdot \\vec{E} = \\rho/\\varepsilon_0$, underpins charge\u2010field relationships in Maxwell\u2019s equations.",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Gauss-law-of-Electrostatics/#gauss-law-of-electrostatics",
     "type": "blog_section",
     "priority": 3
@@ -2031,6 +2031,13 @@
     "title": "Surface parameterization - Further reading",
     "content": "[1] > [!significance]- Metadata > Author:: [Vatsal Sanjay](https://vatsalsanjay.com) > Date published:: Mar 11, 2025 > Date modified:: Mar 11, 2025 at 14:26 CET > [!meta] Back to main website > [Home](https://comphy-lab.org/), [Team](https://comphy-lab.org/team), [Research](https://comphy-lab.org/research), [Github](https://github.com/comphy-lab)",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Surface-parameterization/#further-reading",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "Slender jets ve order 0 - Viscoelastic Slender Jets",
+    "content": "> [!pdf] PDF version > [[_Media/PDF/Lecture-Notes/Slender-Jets/slender-jets-VE-order-0.pdf|Download this page as PDF]]",
+    "url": "https://blogs.comphy-lab.org/Lecture-Notes/Slender-Jets/slender-jets-VE-order-0/#viscoelastic-slender-jets",
     "type": "blog_section",
     "priority": 3
   },
