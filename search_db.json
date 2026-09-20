@@ -741,7 +741,7 @@
   },
   {
     "title": "Gauss law of electrostatics - For $r < a$:",
-    "content": "* *Shell:* Charge enclosed inside the shell for $r [!note] Note > To play with the above plots, see: [[Gauss-law-of-electrostatics.ipynb]]",
+    "content": "* *Shell:* Charge enclosed inside the shell for $r [!note] Note > To play with the above plots, see: [Gauss-law-of-electrostatics.ipynb](https://github.com/comphy-lab/CoMPhy-Lab-Blogs/blob/main/_scripts/Gauss-law-of-electrostatics.ipynb)",
     "url": "https://blogs.comphy-lab.org/Lecture-Notes/Gauss-law-of-Electrostatics/#for-r-a",
     "type": "blog_section",
     "priority": 3
@@ -5417,7 +5417,7 @@
   },
   {
     "title": "Moving delta identity - Pitfall 2: \"Shouldn't $\\nabla$ act on $\\boldsymbol{v}_i$ too?\"",
-    "content": "The question: When you write $\\partial_t \\delta_i = -\\boldsymbol{v}_i \\cdot \\nabla \\delta_i$, why doesn't the gradient hit the velocity? The answer: $\\nabla$ is the Eulerian gradient\u2014it differentiates w.r.t. the field coordinate $\\boldsymbol{r}$, not w.r.t. the particle position $\\boldsymbol{r}_i$. The velocity $\\boldsymbol{v}_i = \\dot{\\boldsymbol{r}}_i(t)$ is a *Lagrangian* quantity (it depends on $t$ and the particle index $i$, not on the field point $\\boldsymbol{r}$). So $\\nabla_{\\boldsymbol{r}} \\boldsymbol{v}_i = 0$. See [[Lecture2-DyadicConversion|the dyadic note]] for more on this distinction. ---",
+    "content": "The question: When you write $\\partial_t \\delta_i = -\\boldsymbol{v}_i \\cdot \\nabla \\delta_i$, why doesn't the gradient hit the velocity? The answer: $\\nabla$ is the Eulerian gradient\u2014it differentiates w.r.t. the field coordinate $\\boldsymbol{r}$, not w.r.t. the particle position $\\boldsymbol{r}_i$. The velocity $\\boldsymbol{v}_i = \\dot{\\boldsymbol{r}}_i(t)$ is a *Lagrangian* quantity (it depends on $t$ and the particle index $i$, not on the field point $\\boldsymbol{r}$). So $\\nabla_{\\boldsymbol{r}} \\boldsymbol{v}_i = 0$. See [[Dyadic-conversion|the dyadic note]] for more on this distinction. ---",
     "url": "https://blogs.comphy-lab.org/_AtomicNotes/Moving-Delta-identity/#pitfall-2-shouldnt-nabla-act-on-boldsymbolvi-too",
     "type": "blog_section",
     "priority": 3
@@ -6025,51 +6025,72 @@
     "priority": 3
   },
   {
+    "title": "Publishing - Publishing the CoMPhy Lab blog",
+    "content": "The repository is the publication source. Obsidian remains a Markdown editor; Obsidian Publish is not the HTML host. Quartz reads this vault directly and emits only Markdown pages with `publish: true`. Linked `_AtomicNotes` pages keep their routes even though they are hidden from the primary navigation. Tracked media, including existing PDFs, is copied into the static site.",
+    "url": "https://blogs.comphy-lab.org/docs/publishing/#publishing-the-comphy-lab-blog",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "Publishing - Production build",
+    "content": "The `comphy-blogs` Cloudflare Worker serves Quartz's static assets. Configure native Cloudflare Workers Builds against this repository with Node 22, root directory `_quartz`, dependency installation `npm ci`, build command `npm run build:cloudflare`, and output directory `public` as declared by `wrangler.jsonc`. A push to `main` is the production build trigger. The Worker and its domain are Cloudflare configuration; repository changes alone do not prove a deployment or domain cutover.",
+    "url": "https://blogs.comphy-lab.org/docs/publishing/#production-build",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "Publishing - Canonical domain and redirects: Context",
+    "content": "`https://blogs.comphy-lab.org` is a custom domain of the `comphy-blogs` Worker, declared in `_quartz/wrangler.jsonc`. Cloudflare manages its DNS record; do not restore the former Obsidian CNAME or add a second origin for this hostname. The legacy `https://blogs-comphy-lab.org` hostname retains a permanent redirect to the canonical hostname, preserving paths and query strings. Keep that redirect when changing build or deployment settings so existing links continue to work. `build:cloudflare` installs Playwright Chromium and verifies it can launch before restoring the plugins pinned in `quartz.lock.json`, running an uncached TypeScript check and unit tests, and building Quartz. Workers Builds uses an unprivileged build user. On its Ubuntu 24.04 x64 image, the script uses APT's signed package indexes and dependency resolver to download missing Chromium runtime packages into `.quartz-cache/browser-runtime`, then extracts them without installing packages or changing the system.",
+    "url": "https://blogs.comphy-lab.org/docs/publishing/#canonical-domain-and-redirects",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "Publishing - Canonical domain and redirects: Results",
+    "content": "Only browser processes receive the resulting library and font configuration paths. Unsupported build images fail before compilation. GitHub Actions explicitly sets `PLAYWRIGHT_INSTALL_SYSTEM_DEPS=1` to install system dependencies on its runner. It starts the pinned local Wrangler preview on a free loopback port, renders PDFs from that preview into `public/_Media/PDF/`, and adds missing PDF links to generated HTML. It then stops and restarts Wrangler on the same port so its asset snapshot contains the PDFs and updated pages before the full browser suite runs. It terminates its own preview process in a `finally` block. Any failed step exits nonzero, preventing Workers Builds from publishing that artifact. The script never calls `wrangler deploy`. Plugin restoration builds at most three independent plugins at once, then checks all results before generating the plugin index.",
+    "url": "https://blogs.comphy-lab.org/docs/publishing/#canonical-domain-and-redirects",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "Publishing - Canonical domain and redirects: Node.js",
+    "content": "Set `QUARTZ_PLUGIN_BUILD_CONCURRENCY` to an integer from 1 to 4 to tune a build environment without changing the pinned versions or dropping validation. The separate native deploy command is `npm run deploy`. Before invoking the pinned Wrangler CLI, it requires `public/build-info.json` to name local HEAD and to report `dirty: false`, checks that the local worktree is still clean, and reads `origin/main` afresh with `git ls-remote`. It refuses to deploy an older queued build once `main` has moved. This is a stale-build guard, not an atomic compare-and-swap across the subsequent Wrangler API call. It suppresses Git error output that could expose credentials; Wrangler keeps its deployment diagnostics visible. After Quartz builds, the gate writes `public/build-info.json` with the full Git commit SHA, UTC generation time and a dirty-worktree flag. The browser suite checks the file as a generated asset.",
+    "url": "https://blogs.comphy-lab.org/docs/publishing/#canonical-domain-and-redirects",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "Publishing - Canonical domain and redirects: After deployment, read...",
+    "content": "After deployment, read it from the live site and compare `commit` with the intended `main` SHA; a successful build log alone does not prove which version the custom domain serves. From a local checkout, the same gate is: ```bash cd _quartz npm ci npm run build:cloudflare ``` The **Blog site** GitHub Actions workflow separately verifies pushes and pull requests and retains browser/site artifacts for review. It does not deploy. Use Cloudflare's build and deployment receipt plus a live check of `blogs.comphy-lab.org` to confirm production, including the expected commit, published routes, graph assets, PDF downloads, and the 404 response. Keep the previous Worker version available for rollback if a live check fails.",
+    "url": "https://blogs.comphy-lab.org/docs/publishing/#canonical-domain-and-redirects",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
+    "title": "Publishing - PDFs",
+    "content": "The source repository retains its existing `_Media/PDF/` copies. Each `build:cloudflare` run regenerates PDFs for published pages in `Blog/`, `Code-Documentations/`, `Lecture-Notes/` and `Talks/` from the local Quartz HTML. Blog PDF URLs keep their flat paths; other sections mirror the source path. Rendering and any missing download-link injection change only generated `public/` output. The final browser suite checks each linked PDF response and the relevant page layout; source Markdown is unchanged. The former `_scripts/blog-pdf/publish-with-pdfs.sh` entrypoint fails closed and cannot publish HTML to the old service. Site presentation lives in `_quartz/quartz.config.yaml` and `_quartz/quartz/styles/`. Cloudflare response headers and domain redirects are managed on Cloudflare; see [browser security](browser-security.md) for the boundary between repository content and live platform configuration.",
+    "url": "https://blogs.comphy-lab.org/docs/publishing/#pdfs",
+    "type": "blog_section",
+    "priority": 3
+  },
+  {
     "title": "Browser security - Browser security boundary",
-    "content": "This note records the live browser-security boundary observed on 7 September 2026. It does not change production headers or close GitHub Issue [#3](https://github.com/comphy-lab/comphy-lab-blogs/issues/3).",
+    "content": "Quartz builds the HTML, JavaScript and CSS from this repository. Cloudflare Workers serves the static output at `blogs.comphy-lab.org` after the domain cutover. Obsidian remains an editor; its former Publish application and Content Security Policy are no longer the site's security boundary. The old `blogs-comphy-lab.org` hostname redirects to the canonical hostname. The repository owns Markdown, media, Quartz components and any static response header file deliberately placed in the Worker asset bundle. Cloudflare owns the Worker, custom domain, and separately managed edge response-header rules. An edge rule is effective only if its expression matches the blog hostname and live readback returns the expected header. In the cutover audit, the observed zone response-header transform applied to the main `comphy-lab.org` hostname, not the blog, and no blog-specific override was found. That observation is not a substitute for post-cutover readback.",
     "url": "https://blogs.comphy-lab.org/docs/browser-security/#browser-security-boundary",
     "type": "blog_section",
     "priority": 3
   },
   {
-    "title": "Browser security - Service and ownership: Context",
-    "content": "`https://blogs.comphy-lab.org/` is the canonical site and returns the Obsidian Publish application. `https://blogs-comphy-lab.org/` redirects permanently to the canonical hostname. The boundary has three owners: - This repository owns published Markdown, local media, `publish.css`, and any deliberately added root `publish.js`. Obsidian documents those two root files as the supported CSS and JavaScript customization points in its [Publish customization guide](https://obsidian.md/help/publish/customize). - Obsidian Publish owns the generated HTML application, feature scripts and baseline Content Security Policy. Repository content changes do not directly rewrite that provider policy. - Cloudflare owns the proxied custom-domain edge. It can add, replace or remove browser response headers through separately managed [Response Header Transform Rules](https://developers.cloudflare.com/rules/transform/response-header-modification/).",
-    "url": "https://blogs.comphy-lab.org/docs/browser-security/#service-and-ownership",
+    "title": "Browser security - Historical baseline",
+    "content": "The 7 September 2026 audit recorded a broad CSP and HSTS on the former Obsidian Publish response. Those provider headers are historical evidence, not the policy to copy to the Worker. In particular, a policy allowing `'unsafe-eval'`, wide `https://*:*` sources and arbitrary frames should not be adopted merely to make the migration pass.",
+    "url": "https://blogs.comphy-lab.org/docs/browser-security/#historical-baseline",
     "type": "blog_section",
     "priority": 3
   },
   {
-    "title": "Browser security - Service and ownership: A rule is...",
-    "content": "A rule is effective only after live readback proves that it matches this hostname and returns the intended header.",
-    "url": "https://blogs.comphy-lab.org/docs/browser-security/#service-and-ownership",
-    "type": "blog_section",
-    "priority": 3
-  },
-  {
-    "title": "Browser security - Observed response policy: The canonical homepage...",
-    "content": "The canonical homepage returned `200`. Its Content Security Policy was: ```text default-src 'self' *.obsidian.md; script-src 'self' 'unsafe-inline' 'unsafe-eval' *.obsidian.md blob: https://*:*; frame-src 'self' https://*:* http://127.0.0.1:*; child-src 'self' * blob:; style-src 'self' 'unsafe-inline' https://*:* http://127.0.0.1:*; font-src * https://*:* data: blob:; img-src * data: blob:; media-src * data: blob:; connect-src 'self' 'unsafe-eval' ws://*:* http://*:* ``` This is a broad compatibility policy. In particular, it permits inline and evaluated scripts and wide network, frame, image, media and font sources. The snapshot does not establish that every allowed source is needed or safe. The response also included: - `Strict-Transport-Security: max-age=15552000; includeSubDomains`; - `X-Content-Type-Options: nosniff`. It did not include `X-Frame-Options`, `Referrer-Policy` or `Permissions-Policy`.",
-    "url": "https://blogs.comphy-lab.org/docs/browser-security/#observed-response-policy",
-    "type": "blog_section",
-    "priority": 3
-  },
-  {
-    "title": "Browser security - Observed response policy: Framing protection also...",
-    "content": "Framing protection also was not present as a `frame-ancestors` directive in the observed CSP. The path `/.well-known/security.txt` returned the Publish HTML application rather than an [RFC 9116](https://www.rfc-editor.org/rfc/rfc9116.html) security contact document. These are tracked limitations. They are not evidence of a demonstrated attack, and no stricter production policy has yet passed compatibility testing.",
-    "url": "https://blogs.comphy-lab.org/docs/browser-security/#observed-response-policy",
-    "type": "blog_section",
-    "priority": 3
-  },
-  {
-    "title": "Browser security - Required staged hardening work: Before changing the...",
-    "content": "Before changing the production CSP or adding a second policy at Cloudflare: 1. Map each Publish feature and repository customization to the script, style, connection, image, media and frame sources it actually uses. Record provider shell sources separately from repository-owned sources. 2. Capture a reproducible baseline for homepage and representative nested pages. Exercise search, mathematical rendering, internal and external links, local and remote images, supported embeds, downloads, navigation, theme and mobile layout. 3. Test one restriction at a time on a non-production or otherwise isolated surface. Inspect browser console violations and network failures across desktop and mobile engines. Do not infer safety from a page merely loading. 4. Remember that a second enforced CSP combines with the provider policy; it does not simply replace it. Re-run the complete baseline after each change. 5. Define rollback before deployment.",
-    "url": "https://blogs.comphy-lab.org/docs/browser-security/#required-staged-hardening-work",
-    "type": "blog_section",
-    "priority": 3
-  },
-  {
-    "title": "Browser security - Required staged hardening work: Preserve the prior...",
-    "content": "Preserve the prior rule, deploy the smallest reviewed change, read the live headers back, and restore the prior rule if any required feature regresses. The missing `Referrer-Policy`, framing control, `Permissions-Policy` and valid `security.txt` each need an explicit owner and delivery route. Cloudflare may be appropriate for response headers, but the final choice must account for Obsidian's generated application and be verified at the canonical hostname. Issue #3 remains incomplete until the feature-to-source map, staged browser matrix, selected provider or edge configuration, rollback plan, live deployment and post-deployment readback all exist.",
-    "url": "https://blogs.comphy-lab.org/docs/browser-security/#required-staged-hardening-work",
+    "title": "Browser security - Header changes",
+    "content": "Do not add or weaken a broad CSP or Cloudflare header transform as a shortcut for the cutover. First identify the sources needed by Quartz search, MathJax, same-origin graph libraries, popovers, images, PDFs and any supported embeds. Then test one proposed restriction on an isolated Worker preview across desktop and mobile, inspecting console violations and network failures. A second enforced CSP combines with an existing one; it does not simply replace it. Preserve the prior Worker version or rule for rollback, and read back the headers at the canonical hostname after deployment. The [publishing workflow](publishing.md) verifies generated pages, links, assets and interactions. It does not certify a new security policy. Framing control, referrer and permissions policies, a valid [`security.txt`](https://www.rfc-editor.org/rfc/rfc9116.html), and a scoped CSP remain separate hardening decisions tracked in GitHub Issue [#3](https://github.com/comphy-lab/comphy-lab-blogs/issues/3).",
+    "url": "https://blogs.comphy-lab.org/docs/browser-security/#header-changes",
     "type": "blog_section",
     "priority": 3
   },
