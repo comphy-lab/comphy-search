@@ -859,9 +859,9 @@ def get_priority(repo_config, file_path):
     (8) while all other website files are assigned the lowest priority (10). For blog
     repositories, files in the '_posts' directory with a date-formatted name are given a
     higher priority (2) if they are less than 90 days old; otherwise, they receive a medium
-    priority (3). Documentation repositories assign a priority of 3 to files with 'api' in
-    their path and 4 to all others. Non-specified repository types default to a priority
-    of 4.
+    priority (3). Documentation repositories (project sites such as Viscoelastic3D) receive
+    priority 3 so they compete with blog content under the site's priority-first search
+    sort (comphy-lab.github.io#41). Non-specified repository types default to priority 4.
     
     Args:
         repo_config: A dictionary containing repository settings, including type and optional
@@ -923,12 +923,10 @@ def get_priority(repo_config, file_path):
                     return 2
         return 3
         
-    # Documentation (medium-low priority)
+    # Documentation (same band as blog; was 4 and lost to all blog_section)
     elif repo_type == "docs":
-        # API docs might get higher priority
-        if "api" in path_str.lower():
-            return 3
-        return 4
+        # Project doc sites like /Viscoelastic3D/ should surface in search (#41).
+        return 3
         
     # Default priority for other content
     return 4
