@@ -42,5 +42,41 @@ class PrivacyFilterTests(unittest.TestCase):
         )
 
 
+class DocsPriorityTests(unittest.TestCase):
+    def test_docs_repos_share_blog_priority_band(self):
+        """Project docs must not sit below blog under priority-first sort."""
+        import os
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as tmp:
+            repo_dir = Path(tmp) / "Viscoelastic3D"
+            repo_dir.mkdir()
+            index = repo_dir / "index.html"
+            index.write_text("<html></html>")
+            deep = repo_dir / "src" / "solver.c"
+            deep.parent.mkdir()
+            deep.write_text("int main(){}")
+
+            repo_config = {
+                "type": "docs",
+                "path": "Viscoelastic3D",
+                "url": "https://comphy-lab.org/Viscoelastic3D",
+            }
+            old_workspace = os.environ.get("GITHUB_WORKSPACE")
+            os.environ["GITHUB_WORKSPACE"] = tmp
+            try:
+                self.assertEqual(
+                    UPDATE_DATABASE.get_priority(repo_config, index), 3
+                )
+                self.assertEqual(
+                    UPDATE_DATABASE.get_priority(repo_config, deep), 3
+                )
+            finally:
+                if old_workspace is None:
+                    os.environ.pop("GITHUB_WORKSPACE", None)
+                else:
+                    os.environ["GITHUB_WORKSPACE"] = old_workspace
+
+
 if __name__ == "__main__":
     unittest.main()
