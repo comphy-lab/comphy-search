@@ -4,6 +4,7 @@ import re
 import os
 import urllib.parse
 from bs4 import BeautifulSoup
+import yaml
 from pathlib import Path
 import datetime
 import subprocess
@@ -40,12 +41,8 @@ REPOSITORIES = [
         "path": "CoMPhy-Lab-Blogs",  # Local directory name
         "url": "https://blogs.comphy-lab.org",  # URL where the blog is published
         "type": "blog",  # Repository type
-        # Optional: Blog-specific settings
-        "blog_settings": {
-            "post_dir": "_posts",  # Directory containing posts (standard Jekyll structure)
-            "date_in_url": True,   # Whether to include date in URLs (Jekyll style: /YYYY/MM/DD/title/)
-            "url_prefix": "/blog"  # Prefix for blog URLs
-        }
+        # Quartz publishes opted-in vault pages, not a Jekyll _posts tree.
+        "blog_settings": {"explicit_publish": True}
     },
     {
         "repo_url": "https://github.com/comphy-lab/Viscoelastic3D",  # GitHub repository URL
@@ -165,13 +162,67 @@ def is_public_blog_repo(repo_config):
     return repo_config.get("url", "").rstrip("/") == "https://blogs.comphy-lab.org"
 
 
+# Mirrors the Markdown-relevant exclusions in the blog's Quartz configuration.
+QUARTZ_IGNORED_MARKDOWN_PARTS = {
+    "_quartz", "_scripts", "docs", ".github", ".pandoc", ".obsidian",
+    ".trash", "private", "templates", "readme.md", "agents.md", "claude.md",
+    "private-todo-blog-public.md",
+}
+
+
+def is_regular_repository_input(root, path, *, directory=False):
+    """Refuse symlinks at the root, in parent directories, or at the file."""
+    try:
+        parts = path.relative_to(root).parts
+        if any(part == ".." or part.startswith(".") for part in parts):
+            return False
+        if root.is_symlink() or not root.is_dir():
+            return False
+        cursor = root
+        for part in parts:
+            cursor = cursor / part
+            if cursor.is_symlink():
+                return False
+        return cursor.is_dir() if directory else cursor.is_file()
+    except (ValueError, OSError):
+        return False
+
+
+def has_explicit_quartz_publish(content):
+    """Allow only an unambiguous, top-level YAML boolean `publish: true`."""
+    lines = content.splitlines()
+    if not lines or lines[0] != "---":
+        return False
+    try:
+        end = lines.index("---", 1)
+        node = yaml.compose("\n".join(lines[1:end]), Loader=yaml.SafeLoader)
+    except (ValueError, yaml.YAMLError, RecursionError):
+        return False
+    if not isinstance(node, yaml.MappingNode):
+        return False
+    flags = [
+        value for key, value in node.value
+        if isinstance(key, yaml.ScalarNode)
+        and key.tag == "tag:yaml.org,2002:str" and key.value == "publish"
+    ]
+    return (
+        len(flags) == 1
+        and isinstance(flags[0], yaml.ScalarNode)
+        and flags[0].tag == "tag:yaml.org,2002:bool"
+        and flags[0].value == "true"
+    )
+
+
 def should_exclude_public_blog_file(repo_config, file_path):
     """Keep public-blog internal/admin paths out of generated search indexes."""
     if not is_public_blog_repo(repo_config):
         return False
 
     rel_path = file_path.relative_to(get_repo_dir(repo_config)).as_posix()
-    return bool(PUBLIC_BLOG_INTERNAL_PATH_RE.search(rel_path))
+    return (
+        any(part.casefold() in QUARTZ_IGNORED_MARKDOWN_PARTS for part in PurePosixPath(rel_path).parts)
+        or bool(PUBLIC_BLOG_INTERNAL_PATH_RE.search(rel_path))
+    )
 
 
 def is_internal_public_blog_entry(entry):
@@ -249,6 +300,9 @@ def get_repo_dir(repo_config):
 def clone_or_update_repo(repo_config):
     repo_dir = get_repo_dir(repo_config)
     
+    if repo_dir.is_symlink():
+        return False
+
     # If directory exists, update it
     if repo_dir.exists():
         print(f"Updating existing repository at {repo_dir}")
@@ -355,6 +409,8 @@ def get_file_url(repo_config, file_path, permalink=None):
             else:
                 # Check if this is a redirect file
                 try:
+                    if not is_regular_repository_input(repo_dir, file_path):
+                        return f"{base_url}#{file_name.lower()}"
                     content = file_path.read_text(encoding='utf-8')
                     if 'meta http-equiv="refresh"' in content:
                         # Extract the redirect URL
@@ -562,6 +618,8 @@ def process_docs_html_file(repo_config, file_path, search_db):
     
     Parses the HTML file to extract the main content and title, splits the content into searchable chunks, and generates entries for both text and code sections. Handles files with compound extensions (e.g., `.c.html`) and assigns appropriate entry types and priorities.
     """
+    if should_exclude_file(file_path, repo_config):
+        return
     print(f"  - {file_path.relative_to(get_repo_dir(repo_config))}")
     
     try:
@@ -676,10 +734,14 @@ def process_docs_html_file(repo_config, file_path, search_db):
         print(f"Error processing documentation HTML file {file_path}: {e}")
 
 def process_markdown_file(repo_config, file_path, search_db):
-    print(f"  - {file_path.relative_to(get_repo_dir(repo_config))}")
+    if should_exclude_file(file_path, repo_config):
+        return
     
     try:
         content = file_path.read_text(encoding='utf-8')
+        if is_public_blog_repo(repo_config) and not has_explicit_quartz_publish(content):
+            return
+        print(f"  - {file_path.relative_to(get_repo_dir(repo_config))}")
         front_matter, content_body = parse_frontmatter(content)
         
         # Get permalink if available in frontmatter
@@ -1067,6 +1129,8 @@ def should_exclude_file(file_path, repo_config=None):
     Returns:
         bool: True if file should be excluded, False otherwise
     """
+    if repo_config and not is_regular_repository_input(get_repo_dir(repo_config), file_path):
+        return True
     if file_path.name.lower() in NON_CONTENT_FILENAMES:
         return True
 
@@ -1110,7 +1174,7 @@ def process_repository(repo_config, search_db):
     if repo_config["type"] == "docs":
         # For documentation repositories, ONLY process HTML files in the docs directory
         docs_dir = repo_dir / "docs"
-        if docs_dir.exists():
+        if is_regular_repository_input(repo_dir, docs_dir, directory=True):
             # Find all HTML files in docs directory
             html_files = list(docs_dir.glob('**/*.html'))
             # Filter out excluded files
@@ -1127,8 +1191,10 @@ def process_repository(repo_config, search_db):
             return  # Skip processing if docs directory doesn't exist
             
     elif repo_config["type"] == "blog":
-        # For blogs with posts directory structure
-        if repo_config.get("blog_settings", {}).get("post_dir"):
+        # For Quartz the per-file explicit-publish gate controls every entry.
+        if is_public_blog_repo(repo_config):
+            md_files = list(repo_dir.glob('**/*.md'))
+        elif repo_config.get("blog_settings", {}).get("post_dir"):
             post_dir = repo_dir / repo_config["blog_settings"]["post_dir"]
             if post_dir.exists():
                 md_files = list(post_dir.glob('**/*.md'))
@@ -1179,6 +1245,8 @@ def process_repository(repo_config, search_db):
 
 # Process HTML files from the root directory
 def process_html_file(repo_config, file_path, search_db):
+    if should_exclude_file(file_path, repo_config):
+        return
     print(f"  - {file_path.relative_to(get_repo_dir(repo_config))}")
     
     try:
